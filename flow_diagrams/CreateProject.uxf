@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>200</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>130</x>
+      <y>320</y>
+      <w>211</w>
+      <h>131</h>
+    </coordinates>
+    <panel_attributes>// Modify the text below and
+// observe the element preview.
+
+Hello, World! 
+Enjoy UMLet!</panel_attributes>
+    <additional_attributes/>
+    <custom_code>int y=height/2 - textHeight() * textlines.size()*2/3;
+
+for(String textline : textlines) {
+	y = y + textHeight();
+	printCenter(textline,y);
+}
+
+Polygon p = new Polygon();
+p.addPoint(width/3,5);
+p.addPoint(width*2/3,5);
+p.addPoint(width-5,height/2);
+p.addPoint(width*2/3,height-5);
+p.addPoint(width/3,height-5);
+p.addPoint(5,height/2);
+drawPolygon(p);</custom_code>
+  </element>
+</diagram>
