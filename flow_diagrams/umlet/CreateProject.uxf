@@ -4,22 +4,21 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>200</y>
+      <x>270</x>
+      <y>70</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>_object: Class_
+    <panel_attributes>Any Page
 --
-id: Long="36548"
-[waiting for message]</panel_attributes>
+ - Create</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>CustomElementImpl</type>
     <coordinates>
-      <x>130</x>
-      <y>320</y>
+      <x>100</x>
+      <y>430</y>
       <w>211</w>
       <h>131</h>
     </coordinates>
@@ -44,5 +43,40 @@ p.addPoint(width*2/3,height-5);
 p.addPoint(width/3,height-5);
 p.addPoint(5,height/2);
 drawPolygon(p);</custom_code>
+  </element>
+  <element>
+    <type>CustomElementImpl</type>
+    <coordinates>
+      <x>270</x>
+      <y>10</y>
+      <w>211</w>
+      <h>41</h>
+    </coordinates>
+    <panel_attributes>Create Project Flow Diagram</panel_attributes>
+    <additional_attributes/>
+    <custom_code>//This is an element with activated wordwrap
+//If a line would exceed the elements border, instead
+//the exceeding part is written into the next line
+
+int y=textHeight();
+
+setWordWrap(true);
+
+for(String textline : textlines) {
+	y += printCenter(textline,y);
+}</custom_code>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>330</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Create Project
+--
+ - Create</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
