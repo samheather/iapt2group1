@@ -1,0 +1,7 @@
+{{extend 'tx-layout.html'}}
+
+<div class="container">
+	<h1>Search: "{{=request.vars.searchTerm}}"</h1>
+	<p>Results:</p>
+	{{include "subviews/display-txs.html"}}
+</div>
