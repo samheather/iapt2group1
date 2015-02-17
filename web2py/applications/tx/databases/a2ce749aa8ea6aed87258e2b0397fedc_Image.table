@@ -1,5 +1,5 @@
 (dp1
-S'projectId'
+S'projectid'
 p2
 (dp3
 S'length'
@@ -39,7 +39,7 @@ I00
 sg10
 S'upload'
 p15
-ssS'imageDescription'
+ssS'imagedescription'
 p16
 (dp17
 g4
@@ -71,22 +71,29 @@ p22
 sg9
 I00
 sg10
-g20
-ssS'acceptedTranscriptionObject_id'
+S'id'
 p23
-(dp24
-g4
-I512
-sg5
-I00
-sg6
-I5
-sg7
-S'INTEGER REFERENCES TranscriptionObject (id) ON DELETE CASCADE'
-p25
-sg9
-I00
-sg10
-S'reference TranscriptionObject'
+ssS'acceptedtranscriptionobject_id'
+p24
+(dp25
+S'sortable'
 p26
+I5
+sS'sql'
+p27
+S'INTEGER REFERENCES TranscriptionObject (id) ON DELETE CASCADE'
+p28
+sS'length'
+p29
+I512
+sS'notnull'
+p30
+I00
+sS'unique'
+p31
+I00
+sS'type'
+p32
+S'reference TranscriptionObject'
+p33
 ss.

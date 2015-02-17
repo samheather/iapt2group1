@@ -25,21 +25,32 @@ db.define_table('Project',
 			Field('projectOpen', 'boolean', required=True)
 )
 
-db.define_table('TranscriptionObject',
-#			Field('image_id', db.Image, required=True), \
-			Field('owner_id', db.auth_user, required=True), \
-			Field('rejected', 'boolean', required=True)
-)
-
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('projectId', db.Project, required=True), \
 			Field('image', 'upload'), \
-			Field('imageDescription', 'string', label='Image Description', requires=IS_LENGTH(minsize=1, maxsize=100), required=True), \
-			Field('acceptedTranscriptionObject_id', db.TranscriptionObject)
+			Field('imageDescription', 'string', label='Image Description', requires=IS_LENGTH(minsize=1, maxsize=100), required=True)
 )
 
-db.TranscriptionObject.image_id = Field('image_id', db.Image, required=True)
+db.define_table('TranscriptionObject',
+			Field('image_id', db.Image, required=True), \
+			Field('owner_id', db.auth_user, required=True), \
+			Field('rejected', 'boolean', required=True)
+)
+
+db.Image.acceptedTranscriptionObject_id = Field('acceptedTranscriptionObject_id', db.TranscriptionObject, required=True)
+
+db.define_table('TranscriptionField',
+			Field('type_id', db.TranscriptionFieldType, required=True), \
+			Field('transcriptionObject_id', db.TranscriptionObject, required=True), \
+			Field('value', 'string', required=True)
+)
+
+db.define_table('FieldsForProject',
+			Field('project_id', db.Project, required=True), \
+			Field('type_id', db.TranscriptionFieldType, required=True), \
+			Field('label', 'string', requires=IS_LENGTH(minsize=1, maxsize=20), required=True)
+)
 
 
 

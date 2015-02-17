@@ -133,7 +133,7 @@ m2=0..n
       <w>190</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>FieldsForThisTemplate
+    <panel_attributes>FieldsForProject
 --
 id
 project_id
