@@ -1,0 +1,17 @@
+<!-- Candidate number: Y0073045 -->
+{{extend 'tx-layout.html'}}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to TX!</h1>
+        <p>Crowd Sourced Transcription at it's best.  Check out some projects up for 
+        transcription below, or add yours now!</p>
+      </div>
+    </div>
+    
+    <div class="container">
+    	<h2>Oldest Transcriptions:</h2>
+    	{{#bootables = newestFiveBootables}}
+		{{#include "subviews/display-bootables.html"}}
+	</div>
