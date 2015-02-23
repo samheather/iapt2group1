@@ -2,7 +2,7 @@
 from gluon.tools import Auth
 
 # Create BootUp DB if necessary
-db = DAL('sqlite://bootup.db')
+db = DAL('sqlite://tx.db')
 
 auth = Auth(db)
 auth.define_tables(username=True,signature=False)
@@ -58,4 +58,12 @@ db.define_table('FieldsForProject',
 
 
 
+
+
+
+
+
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
+
+
+
