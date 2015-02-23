@@ -30,8 +30,24 @@ db.define_table('Project',
 db.define_table('Image',
 			Field('projectId', db.Project, required=True),
 			Field('image', 'upload'),
-			Field('imageDescription', 'string', label='Image Description', requires=[IS_LENGTH(minsize=0,error_message="Please enter an image description"),IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")], required=True)
+			Field('imageDescription', 'string',
+                  label='Image Description',
+                  requires=[
+                      IS_LENGTH(minsize=0,error_message="Please enter an image description"),
+                      IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")],
+                  required=True
+                  ),
+            migrate=False
 )
+
+
+db.executesql('CREATE TABLE IF NOT EXISTS Image '
+              '(id              INTEGER PRIMARY KEY AUTOINCREMENT,'
+              'projectId        INTEGER REFERENCES Project (id) ON DELETE CASCADE,'
+              'image            CHAR(512),'
+              'imageDescription CHAR(512),'
+              'acceptedTranscription_id INTEGER REFERENCES Image(id) ON DELETE SET NULL)')
+
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
