@@ -24,9 +24,8 @@
 
 	<!-- include stylesheets -->
 	{{
-	#response.files.insert(0,URL('static','css/web2py.css'))
-	response.files.insert(1,URL('static','bootstrap3/css/bootstrap.min.css'))
-	response.files.insert(2,URL('static','css/tx.css'))
+	response.files.insert(0,URL('static','bootstrap3/css/bootstrap.min.css'))
+	response.files.insert(1,URL('static','css/tx.css'))
 	}}
 
 	{{include 'web2py_ajax.html'}}
@@ -75,23 +74,19 @@
             	<li><a href="{{=URL('user','register')}}">Register</a></li>
             	<li class="active"><a href="#">Login<span class="sr-only">(current)</span></a></li>
             {{else:}}
-            	<li><a href="#">Start New Project</a></li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
-				  <ul class="dropdown-menu" role="menu">
-					<li><a href="#">My Profile</a></li>
-					<li><a href="#">Log out</a></li>
-				  </ul>
-				</li>
+            	<li><a href="#">New Transcription</a></li>
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Log out</a></li>
             {{pass}}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-	
+	<div class="container" role="main">
 		{{include}}
 		{{pass}}
+	</div>
 		
 		<div class="container">
 			<hr>
