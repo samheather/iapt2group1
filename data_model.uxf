@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>220</y>
-      <w>150</w>
-      <h>140</h>
+      <x>216</x>
+      <y>176</y>
+      <w>120</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>User
 --
@@ -22,10 +22,10 @@ password</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
+      <x>432</x>
       <y>0</y>
-      <w>230</w>
-      <h>120</h>
+      <w>168</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>Image
 --
@@ -33,16 +33,16 @@ id
 project_id
 image
 imageDescription
-acceptedTranscriptionObject_id</panel_attributes>
+acceptedTranscription_id</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
+      <x>224</x>
       <y>0</y>
-      <w>160</w>
-      <h>120</h>
+      <w>128</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>Project
 --
@@ -56,25 +56,26 @@ projectOpen</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>450</y>
-      <w>200</w>
-      <h>100</h>
+      <x>432</x>
+      <y>360</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>TranscribedField
 --
 id
 field_id
+transcription_id
 value</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>620</y>
-      <w>190</w>
-      <h>70</h>
+      <x>0</x>
+      <y>496</y>
+      <w>152</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>TranscriptionFieldType
 --
@@ -86,10 +87,10 @@ friendlyName</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>110</y>
-      <w>50</w>
-      <h>130</h>
+      <x>264</x>
+      <y>88</y>
+      <w>40</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -100,10 +101,10 @@ m2=0..n
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>30</y>
-      <w>130</w>
-      <h>50</h>
+      <x>344</x>
+      <y>24</y>
+      <w>104</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -114,10 +115,10 @@ m2=1..n
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>470</y>
-      <w>380</w>
-      <h>50</h>
+      <x>144</x>
+      <y>376</y>
+      <w>304</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -128,10 +129,10 @@ m2=0..n
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>450</y>
-      <w>190</w>
-      <h>100</h>
+      <x>0</x>
+      <y>360</y>
+      <w>152</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Field
 --
@@ -144,10 +145,10 @@ label</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>30</y>
-      <w>210</w>
-      <h>440</h>
+      <x>72</x>
+      <y>24</y>
+      <w>168</w>
+      <h>352</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -158,10 +159,10 @@ m2=1..n
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>540</y>
-      <w>50</w>
-      <h>100</h>
+      <x>64</x>
+      <y>432</y>
+      <w>40</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -171,10 +172,10 @@ m2=1..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>220</y>
-      <w>200</w>
-      <h>100</h>
+      <x>432</x>
+      <y>176</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Transcription
 --
@@ -187,10 +188,10 @@ rejected</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>110</y>
-      <w>50</w>
-      <h>130</h>
+      <x>504</x>
+      <y>88</y>
+      <w>40</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -201,10 +202,10 @@ m2=0..n
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>310</y>
-      <w>50</w>
-      <h>160</h>
+      <x>504</x>
+      <y>248</y>
+      <w>40</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -214,10 +215,10 @@ m2=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>110</y>
-      <w>200</w>
-      <h>130</h>
+      <x>576</x>
+      <y>88</y>
+      <w>160</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -228,10 +229,10 @@ acceptedTranscription v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>260</y>
-      <w>150</w>
-      <h>50</h>
+      <x>328</x>
+      <y>208</y>
+      <w>120</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
