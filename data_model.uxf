@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
+<diagram program="umlet" version="13.1">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -214,16 +214,16 @@ m2=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
+      <x>920</x>
       <y>110</y>
-      <w>190</w>
+      <w>200</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1..n 
 acceptedTranscription v</panel_attributes>
-    <additional_attributes>90.0;10.0;90.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
