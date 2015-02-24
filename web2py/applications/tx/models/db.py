@@ -30,8 +30,24 @@ db.define_table('Project',
 db.define_table('Image',
 			Field('projectId', db.Project, required=True),
 			Field('image', 'upload'),
-			Field('imageDescription', 'string', label='Image Description', requires=[IS_LENGTH(minsize=0,error_message="Please enter an image description"),IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")], required=True)
+			Field('imageDescription', 'string',
+                  label='Image Description',
+                  requires=[
+                      IS_LENGTH(minsize=0,error_message="Please enter an image description"),
+                      IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")],
+                  required=True
+                  ),
+            migrate=False
 )
+
+
+db.executesql('CREATE TABLE IF NOT EXISTS Image '
+              '(id              INTEGER PRIMARY KEY AUTOINCREMENT,'
+              'project_id        INTEGER REFERENCES Project (id) ON DELETE CASCADE,'
+              'image            CHAR(512),'
+              'imageDescription CHAR(512),'
+              'acceptedTranscription_id INTEGER REFERENCES Image(id) ON DELETE SET NULL)')
+
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
@@ -57,10 +73,33 @@ db.define_table('ProjectField',
 )
 
 
+db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
+              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount'
+              ' FROM Image'
+              ' LEFT JOIN Transcription ON Transcription.image_id=Image.id'
+              ' WHERE Image.acceptedTranscription_id IS NULL'
+              '     AND Transcription.rejected IS NOT 1'
+              ' GROUP BY Image.id'
+              ' HAVING COUNT(Transcription.id)<3')
 
 
 
+db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
+              ' SELECT *, COUNT(ImagesForTranscription.id) AS imageCount'
+              ' FROM Project'
+              ' LEFT JOIN ImagesForTranscription ON '
+              '     ImagesForTranscription.project_id = Project.Id'
+              ' WHERE project.projectOpen'
+              ' GROUP BY project.id'
+              ' HAVING count(ImagesForTranscription.id)>0')
 
+
+
+db.define_table('ProjectsForTranscription',
+                Field('project_id'),
+                Field('image'),
+                Field('image_description'),
+                Field('imageCount'),migrate=False)
 
 
 
