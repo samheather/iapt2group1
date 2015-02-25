@@ -58,18 +58,18 @@ class LimitStringWidget(FormWidget):
         return INPUT(**attr)
 
 
-class BOOTUPFORM(SQLFORM):
+class BOOTSTRAPFORM(SQLFORM):
     SQLFORM.widgets.string = LimitStringWidget
     SQLFORM.widgets.text = LimitTextWidget
 
     def __init__(self, table, *args, **kwargs):
-        super(BOOTUPFORM, self).__init__(table, *args, formstyle='bootstrap3_stacked', **kwargs)
+        super(BOOTSTRAPFORM, self).__init__(table, *args, formstyle='bootstrap3_stacked', **kwargs)
 
     def process(self, *args, **kwargs):
         if ('beforevalidation' in kwargs):
             call_as_list(kwargs['beforevalidation'], self)
 
-        return super(BOOTUPFORM, self).process(**kwargs)
+        return super(BOOTSTRAPFORM, self).process(**kwargs)
 
     def getFieldRequirements(self, fieldname):
 
@@ -82,5 +82,5 @@ class BOOTUPFORM(SQLFORM):
 
     @staticmethod
     def factory(*fields, **kwargs):
-        return BOOTUPFORM(DAL(None).define_table("no_table",
+        return BOOTSTRAPFORM(DAL(None).define_table("no_table",
                                                  *fields), **kwargs)
