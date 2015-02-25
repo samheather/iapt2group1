@@ -26,6 +26,8 @@ db.define_table('Project',
 			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False)
 )
 
+
+
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
@@ -103,6 +105,8 @@ db.define_table('ProjectsForTranscription',
 
 
 
+
+db.Project.customFields = Field.Method(lambda row: db((db.ProjectField.project_id == row.Project.id) & (db.ProjectField.type_id == db.TranscriptionFieldType.id)).select(db.ProjectField.ALL,db.TranscriptionFieldType.ALL))
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
 
 
