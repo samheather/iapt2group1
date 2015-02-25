@@ -134,7 +134,7 @@ m2=0..n
       <w>152</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>Field
+    <panel_attributes>ProjectField
 --
 id
 project_id
