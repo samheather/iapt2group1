@@ -71,12 +71,12 @@
           <ul class="nav navbar-nav navbar-right">
 
           	{{if (auth.user == None):}}
-            	<li><a href="{{=URL('user','register')}}">Register</a></li>
-            	<li class="active"><a href="#">Login<span class="sr-only">(current)</span></a></li>
+            	<li><a href="{{=URL('default/user','register')}}">Register</a></li>
+            	<li class="active"><a href="{{=URL('default/user','login')}}">Login<span class="sr-only">(current)</span></a></li>
             {{else:}}
-            	<li><a href="#">New Transcription</a></li>
+            	<li><a href="{{=URL('project','create')}}">New Transcription</a></li>
 				<li><a href="#">Dashboard</a></li>
-				<li><a href="#">Log out</a></li>
+				<li><a href="{{=URL('default/user','logout')}}">Log out</a></li>
             {{pass}}
           </ul>
         </div><!--/.nav-collapse -->
