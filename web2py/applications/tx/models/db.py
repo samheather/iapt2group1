@@ -22,13 +22,13 @@ if db(db.TranscriptionFieldType.id > 0).count() == 0:
 db.define_table('Project',
 			Field('title', 'string', label='Title', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
 			Field('requestDescription', 'string', label='Request Description', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
-			Field('owner_id', db.auth_user, required=True),
-			Field('projectOpen', 'boolean', required=True)
+			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
+			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False)
 )
 
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
-			Field('project_id', db.Project, required=True),
+			Field('project_id', db.Project, required=True,readable=False,writable=False),
 			Field('image', 'upload'),
 			Field('imageDescription', 'string',
                   label='Image Description',
@@ -67,7 +67,7 @@ db.define_table('TranscriptionField',
 )
 
 db.define_table('ProjectField',
-			Field('project_id', db.Project, required=True),
+			Field('project_id', db.Project, required=True,readable=False, writable=False),
 			Field('type_id', db.TranscriptionFieldType, required=True),
 			Field('label', 'string', requires=IS_LENGTH(minsize=1, maxsize=20), required=True)
 )
