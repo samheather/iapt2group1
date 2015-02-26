@@ -14,10 +14,13 @@ def search():
 def user():
 	auth.settings.formstyle = 'bootstrap3_stacked'
 	return dict(form=auth())
-	
+
+@auth.requires_login()
 def dashboard():
-	justAddedproject_id = request.args(0)
-	return dict(justAddedproject_id=justAddedproject_id)
+	justAddedProject_id = int(request.args(0))
+	user = db((db.auth_user.id == auth.user_id)).select()[0]
+	return dict(user=user,
+				justAddedProject_id=justAddedProject_id)
 	
 # def auth_user():
 # 	auth.settings.formstyle = 'bootstrap3_stacked'
