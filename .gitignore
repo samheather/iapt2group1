@@ -11,7 +11,7 @@ web2py/applications/tx/errors/
 web2py/applications/tx/databases/
 web2py/applications/tx/sessions/
 web2py/applications/admin/sessions/
-
+web2py/applications/tx/uploads/
 # Distribution / packaging
 .Python
 .DS_STORE
