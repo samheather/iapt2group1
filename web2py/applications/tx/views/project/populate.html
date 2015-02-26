@@ -1,7 +1,7 @@
 {{extend 'tx-layout.html'}}
     
     <div class="section">
-    	<h2>Create Project: {{=project.title}}</h2>
+    	<h2>Manage Project: {{=project.title}}</h2>
     	<p>Description: {{=project.requestDescription}}</p>
     	<h3>Add Fields</h3>
         {{for field in project.customFields():}}
@@ -10,5 +10,8 @@
         {{pass}}
     	<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
     	<h3>Add Images</h3>
+        {{for image in project.images():}}
+            {{=image}}
+        {{pass}}
     	<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
 	</div>
