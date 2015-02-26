@@ -3,15 +3,42 @@
     <div class="section">
     	<h2>Manage Project: {{=project.title}}</h2>
     	<p>Description: {{=project.requestDescription}}</p>
+    	
     	<h3>Add Fields</h3>
-        {{for field in project.customFields():}}
-            {{=field.ProjectField.label}}
-            {{=field.TranscriptionFieldType.friendlyName}}
-        {{pass}}
+    	<p>Current Field:<p>
+    	<table class="table table-striped">
+			<tr>
+				<th>Field Name</th>
+				<th>Field Type</th>
+				<th></th>
+			</tr>
+			{{for field in project.customFields():}}
+			<tr>
+				<td>{{=field.ProjectField.label}}</td>
+				<td>{{=field.TranscriptionFieldType.friendlyName}}</td>
+				<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
+			</tr>
+			{{pass}}
+		</table>
     	<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
+    	
     	<h3>Add Images</h3>
-        {{for image in project.images():}}
-            {{=image}}
-        {{pass}}
+    	<p>Current Images:<p>
+    	<table class="table table-striped">
+			<tr>
+				<th>Image</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+			{{for image in project.images():}}
+			<tr>
+				<td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
+				<td>{{=image.imageDescription}}</td>
+				<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>
+			</tr>
+			{{pass}}
+		</table>
     	<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
+    	
+    	<p class="center"><a class="btn btn-primary btn-lg" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a><p>
 	</div>

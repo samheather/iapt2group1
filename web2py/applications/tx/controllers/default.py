@@ -15,6 +15,10 @@ def user():
 	auth.settings.formstyle = 'bootstrap3_stacked'
 	return dict(form=auth())
 	
+def dashboard():
+	justAddedproject_id = request.args(0)
+	return dict(justAddedproject_id=justAddedproject_id)
+	
 # def auth_user():
 # 	auth.settings.formstyle = 'bootstrap3_stacked'
 # 

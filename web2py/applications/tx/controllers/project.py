@@ -18,8 +18,6 @@ def populate():
 	project = db((db.Project.id == project_id)).select()[0]
 	return dict(project=project)
 
-
-
 @auth.requires_login()
 def addImage():
 	project_id = request.args(0)
@@ -45,3 +43,20 @@ def addField():
 		redirect(URL('project', 'populate', args=project_id))
 	return dict(form=form, message=message)
 
+@auth.requires_login()
+def deleteField():
+	project_id = request.args(0)
+	toDelete_id = request.args(1)
+	db(db.ProjectField.id == toDelete_id).delete()
+	redirect(URL('project', 'populate', args=project_id))
+	
+@auth.requires_login()
+def deleteImage():
+	project_id = request.args(0)
+	toDelete_id = request.args(1)
+	db(db.Image.id == toDelete_id).delete()
+	redirect(URL('project', 'populate', args=project_id))
+
+# Download the image from the web2py uploads folder
+def img():
+    return response.download(request, db)
