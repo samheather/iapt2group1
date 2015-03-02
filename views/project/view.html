@@ -1,0 +1,22 @@
+{{extend 'tx-layout.html'}}
+
+<h2 id="project-title">{{=project.title}}</h2>
+<h3 id="project-description">{{=project.requestDescription}}</h3>
+<h3 id="owner">{{=owner.first_name+' '+owner.last_name}}</h3>
+        {{if images:}}
+        {{for image in images:}}
+                <div id="view-image">
+                    <img src="{{=URL('default','download',args=image.image)}}" />
+                    <div id="image-description">{{=image.imageDescription}}</div>
+
+                    {{if fields:}}
+                    <div id="list-fields">
+                        {{for field in fields:}}
+                        <li>{{=field.label}}</li>
+                        {{pass}}
+                    </div>
+                    {{pass}}
+
+                    <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','placeholder', args=image.id)}}">Transcribe this image here</a>
+                </div>
+            {{pass}}

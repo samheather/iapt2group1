@@ -5,16 +5,16 @@ import datetime
 #from tx import *
 
 def index():
-	return dict()
-	
+    return dict()
+
 def search():
-	searchTerm="%"+request.vars.searchTerm+"%"
-	return dict()
+    searchTerm="%"+request.vars.searchTerm+"%"
+    return dict()
 
 def user():
-	auth.settings.formstyle = 'bootstrap3_stacked'
-	return dict(form=auth())
-	
+    auth.settings.formstyle = 'bootstrap3_stacked'
+    return dict(form=auth())
+
 # def auth_user():
 # 	auth.settings.formstyle = 'bootstrap3_stacked'
 # 
@@ -38,3 +38,11 @@ def user():
 # 	auth.settings.login_next = request.vars['_next']
 # 
 # 	return dict(form=auth())
+
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)

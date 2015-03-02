@@ -112,3 +112,35 @@ td {
 	font-weight: bold;
 	color: white;
 }
+
+/* Display Images in View Project */
+#view-image img {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+}
+
+#view-image {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+
+#image-description,
+#list-fields,
+#transcribe-button {
+    width: 24%;
+}
+
+#image-description{
+    float: left;
+}
+
+#list-fields {
+    display: inline-block;
+}
+
+#transcribe-button {
+    float: right;   
+}
