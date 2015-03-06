@@ -5,13 +5,10 @@ __pycache__/
 # C extensions
 *.so
 *.pid
-web2py/parameters_8000.py
-web2py/deposit/
-web2py/applications/tx/errors/
-web2py/applications/tx/databases/
-web2py/applications/tx/sessions/
-web2py/applications/admin/sessions/
-web2py/applications/tx/uploads/
+errors/
+databases/
+sessions/
+uploads/
 # Distribution / packaging
 .Python
 .DS_STORE
