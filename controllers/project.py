@@ -60,3 +60,21 @@ def view():
     owner = db.auth_user(project.owner_id)
     return dict(project = project, images = images, fields = fields, owner = owner)
 
+@auth.requires_login()
+def deleteField():
+	project_id = request.args(0)
+	toDelete_id = request.args(1)
+	db(db.ProjectField.id == toDelete_id).delete()
+	redirect(URL('project', 'populate', args=project_id))
+
+@auth.requires_login()
+def deleteImage():
+	project_id = request.args(0)
+	toDelete_id = request.args(1)
+	db(db.Image.id == toDelete_id).delete()
+	redirect(URL('project', 'populate', args=project_id))
+
+
+# Download the image from the web2py uploads folder
+def img():
+    return response.download(request, db)
