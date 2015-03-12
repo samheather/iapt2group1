@@ -23,7 +23,9 @@ db.define_table('Project',
 			Field('title', 'string', label='Title', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
 			Field('requestDescription', 'string', label='Request Description', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
 			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
-			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False)
+			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False),
+            Field.Method('canOpen',lambda row: auth.user_id==row.Project.owner_id & row.Project.projectOpen !=1),
+            Field.Method('canClose',lambda row: auth.user_id==row.Project.owner_id & row.Project.projectOpen ==1),
 )
 
 
@@ -82,7 +84,7 @@ db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
               ' GROUP BY Image.Id'
               ' HAVING transcriptionCount <3')
 
-db.executesql('CREATE VIEW IF NOT EXISTS ImageTranscrptionCount AS '
+db.executesql('CREATE VIEW IF NOT EXISTS ImageTranscriptionCount AS '
               ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
               ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> 1))'
               ' WHERE Image.acceptedTranscription_id IS NULL'
