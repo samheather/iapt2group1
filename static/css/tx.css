@@ -35,3 +35,7 @@ td {
 .center {
 	text-align: center;
 }
+
+.just-added-project {
+	background-color: #DEF6D5; !important
+}
