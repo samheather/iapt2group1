@@ -76,15 +76,17 @@ db.define_table('ProjectField',
 
 
 db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
-              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount'
-              ' FROM Image'
-              ' LEFT JOIN Transcription ON Transcription.image_id=Image.id'
+              ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
+              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> 1))'
               ' WHERE Image.acceptedTranscription_id IS NULL'
-              '     AND Transcription.rejected IS NOT 1'
-              ' GROUP BY Image.id'
-              ' HAVING COUNT(Transcription.id)<3')
+              ' GROUP BY Image.Id'
+              ' HAVING transcriptionCount <3')
 
-
+db.executesql('CREATE VIEW IF NOT EXISTS ImageTranscrptionCount AS '
+              ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
+              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> 1))'
+              ' WHERE Image.acceptedTranscription_id IS NULL'
+              ' GROUP BY Image.Id')
 
 db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
               ' SELECT *, COUNT(ImagesForTranscription.id) AS imageCount'
