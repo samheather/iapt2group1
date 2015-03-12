@@ -15,6 +15,17 @@ def user():
     auth.settings.formstyle = 'bootstrap3_stacked'
     return dict(form=auth())
 
+@auth.requires_login()
+def dashboard():
+    if len(request.args) ==0:
+        justAddedProject_id=0
+    else:
+        justAddedProject_id = int(request.args(0))
+
+    user = db((db.auth_user.id == auth.user_id)).select()[0]
+    return dict(user=user,justAddedProject_id=justAddedProject_id)
+
+
 # def auth_user():
 # 	auth.settings.formstyle = 'bootstrap3_stacked'
 # 
