@@ -121,6 +121,12 @@ td {
     margin-right: 10px;
 }
 
+#transcribe-image img {
+    width: 550px;
+    height: auto;
+    float: left;
+}
+
 #view-image {
     margin-bottom: 20px;
     float: left;
@@ -142,5 +148,5 @@ td {
 }
 
 #transcribe-button {
-    float: right;   
+    float: right;
 }

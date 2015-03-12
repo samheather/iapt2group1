@@ -58,5 +58,42 @@ def view():
     images = db(db.Image.project_id == project_id).select()
     fields = db(db.ProjectField.project_id == project_id).select()
     owner = db.auth_user(project.owner_id)
-    return dict(project = project, images = images, fields = fields, owner = owner)
+    return dict(project = project
+                , images = images
+                , fields = fields
+                , owner = owner)
 
+@auth.requires_login()
+def transcribe():
+    image_id = request.args(0) or 0
+    if image_id == 0:
+        redirect(URL('default', 'index'))
+    else:
+        image = db.Image(image_id)
+
+    project_id = request.vars.pid
+    fields_no_html = db(db.ProjectField.project_id == project_id
+                and db.ProjectField.type_id == db.TranscriptionFieldType.id)\
+        .select()
+    fields = attach_html(fields_no_html)
+    return dict(image = image, fields=fields)
+
+
+def attach_html(fields):
+    html=''
+    for field in fields:
+        if field.TranscriptionFieldType.type == 'textarea':
+            html = TEXTAREA(_class='form-control text'
+                            , _rows=10
+                            , _id='field-type-'+str(field.ProjectField.id))
+        elif field.TranscriptionFieldType.type == 'textfield':
+            html = INPUT(_class='form-control input'
+                         , _type='text'
+                         , _id='field-type-'+str(field.ProjectField.id))
+        elif field.TranscriptionFieldType.type == 'date':
+            html = INPUT(_class='date form-control'
+                         , _type='date'
+                         , _id='field-type-'+str(field.ProjectField.id))
+
+        field['html']=html
+    return fields
