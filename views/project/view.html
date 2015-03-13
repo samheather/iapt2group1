@@ -1,8 +1,7 @@
 {{extend 'tx-layout.html'}}
 
-<h2 id="project-title">{{=project.title}}</h2>
+<h2 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h2>
 <h3 id="project-description">{{=project.requestDescription}}</h3>
-<h3 id="owner">{{=owner.first_name+' '+owner.last_name}}</h3>
         {{if images:}}
         {{for image in images:}}
                 <div id="view-image">
@@ -17,6 +16,6 @@
                     </div>
                     {{pass}}
 
-                    <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','placeholder', args=image.id)}}">Transcribe this image here</a>
+                    <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
                 </div>
             {{pass}}

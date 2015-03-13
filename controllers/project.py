@@ -5,62 +5,99 @@ from txform import BOOTSTRAPFORM
 #from tx import *
 @auth.requires_login()
 def create():
-    form = BOOTSTRAPFORM(db.Project)
-    message = ""
-    if form.process().accepted:
-        redirect(URL('project', 'populate', args=form.vars.id))
-    return dict(form=form, message=message)
+	form = BOOTSTRAPFORM(db.Project)
+	message = ""
+	if form.process().accepted:
+		redirect(URL('project', 'populate', args=form.vars.id))
+	return dict(form=form, message=message)
 
 
 @auth.requires_login()
 def populate():
-    project_id = request.args(0)
-    project = db((db.Project.id == project_id)).select()[0]
-    return dict(project=project)
+	project_id = request.args(0)
+	project = db((db.Project.id == project_id)).select()[0]
+	return dict(project=project)
 
 
 
 @auth.requires_login()
 def addImage():
-    project_id = request.args(0)
+	project_id = request.args(0)
 
-    form = BOOTSTRAPFORM(db.Image)
-    # Fill in the Project ID
-    form.vars.project_id = project_id
-    message = ""
-    if form.process().accepted:
-        redirect(URL('project', 'populate', args=project_id))
-    return dict(form=form, message=message)
+	form = BOOTSTRAPFORM(db.Image)
+	# Fill in the Project ID
+	form.vars.project_id = project_id
+	message = ""
+	if form.process().accepted:
+		redirect(URL('project', 'populate', args=project_id))
+	return dict(form=form, message=message)
 
 
 @auth.requires_login()
 def addField():
-    project_id = request.args(0)
+	project_id = request.args(0)
 
-    form = BOOTSTRAPFORM(db.ProjectField)
-    # Fill in the Project ID
-    form.vars.project_id = project_id
-    message = ""
-    if form.process().accepted:
-        redirect(URL('project', 'populate', args=project_id))
-    return dict(form=form, message=message)
+	form = BOOTSTRAPFORM(db.ProjectField)
+	# Fill in the Project ID
+	form.vars.project_id = project_id
+	message = ""
+	if form.process().accepted:
+		redirect(URL('project', 'populate', args=project_id))
+	return dict(form=form, message=message)
 
 def view():
-    # Check if the URL has an argument; If not go to homepage
-    project_id = request.args(0) or redirect(URL('default', 'index'))
+	# Check if the URL has an argument; If not go to homepage
+	project_id = request.args(0) or redirect(URL('default', 'index'))
 
-    #Check if there is a project in the database with that ID. If not,
-    # go to the homeapge.
-    project = db.Project(project_id) or redirect(URL('default', 'index'))
+	#Check if there is a project in the database with that ID. If not,
+	# go to the homeapge.
+	project = db.Project(project_id) or redirect(URL('default', 'index'))
 
-    # Only display projects which are open to the public
-    #if project.ProjectOpen:
-    images = db(db.Image.project_id == project_id).select()
-    fields = db(db.ProjectField.project_id == project_id).select()
-    owner = db.auth_user(project.owner_id)
-    return dict(project = project, images = images, fields = fields, owner = owner)
+	# Only display projects which are open to the public
+	#if project.ProjectOpen:
+	images = db(db.Image.project_id == project_id).select()
+	fields = db(db.ProjectField.project_id == project_id).select()
+	owner = db.auth_user(project.owner_id)
+	return dict(project = project
+				, images = images
+				, fields = fields
+				, owner = owner)
 
 @auth.requires_login()
+def transcribe():
+	image_id = request.args(0) or 0
+	if image_id == 0:
+		redirect(URL('default', 'index'))
+	else:
+		image = db.Image(image_id)
+
+	project_id = request.vars.pid
+	fields_no_html = db(db.ProjectField.project_id == project_id
+				and db.ProjectField.type_id == db.TranscriptionFieldType.id)\
+		.select()
+	fields = attach_html(fields_no_html)
+	return dict(image = image, fields=fields)
+
+
+def attach_html(fields):
+	html=''
+	for field in fields:
+		if field.TranscriptionFieldType.type == 'textarea':
+			html = TEXTAREA(_class='form-control text'
+							, _rows=10
+							, _id='field-type-'+str(field.ProjectField.id))
+		elif field.TranscriptionFieldType.type == 'textfield':
+			html = INPUT(_class='form-control input'
+						 , _type='text'
+						 , _id='field-type-'+str(field.ProjectField.id))
+		elif field.TranscriptionFieldType.type == 'date':
+			html = INPUT(_class='date form-control'
+						 , _type='date'
+						 , _id='field-type-'+str(field.ProjectField.id))
+
+		field['html']=html
+	return fields
+
 def deleteField():
 	project_id = request.args(0)
 	toDelete_id = request.args(1)
@@ -77,4 +114,4 @@ def deleteImage():
 
 # Download the image from the web2py uploads folder
 def img():
-    return response.download(request, db)
+	return response.download(request, db)

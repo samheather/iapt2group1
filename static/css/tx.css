@@ -28,12 +28,29 @@ td {
 	width:150px;
 }
 
+
+#transcribe-image img {
+    width: 550px;
+    height: auto;
+    float: left;
+}
+
+#view-image {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+
 .table-button-column {
 	width:150px;
 }
 
 .center {
 	text-align: center;
+}
+
+#transcribe-button {
+    float: right;
 }
 
 .just-added-project {

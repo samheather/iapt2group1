@@ -1,0 +1,20 @@
+{{extend 'tx-layout.html'}}
+
+        <h2>{{=image.imageDescription}}</h2>
+
+        <div class="col-lg-6">
+            <div id="transcribe-image">
+                <img src="{{=URL('default','download',args=image.image)}}" />
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div id="fields">
+                {{for field in fields:}}
+                    <div class="form-group">
+                        <label for="field-type-{{=field.ProjectField.id}}">{{=field.ProjectField.label}}</label>
+                        {{=field.html}}
+                    </div>
+                {{pass}}
+            </div>
+        </div>

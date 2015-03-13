@@ -54,18 +54,22 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li>
-            
-            <form class="navbar-form navbar-left" role="search" action="{{=URL('default','search')}}" method="post">
-				<div class="form-group">
-					{{if (request.vars.searchTerm==None):}}
-						<input name="searchTerm" type="text" class="form-control" placeholder="Search">
+ 				{{if (request.vars.q==None):}}
+						<div class="form-group">
+                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form navbar-left" role="search">
+                              <input type="text" name="q" />
+                              <input type="submit" value="Search"/>
+                            </form>
+                        </div>
 					{{else:}}
-						<input name="searchTerm" type="text" class="form-control" placeholder="Search" value="{{=request.vars.searchTerm}}">
+                        <div class="form-group">
+                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}">
+                              <input type="text" name="q" value="{{=request.vars.q}}" />
+                              <input type="submit" value="Search"/>
+                            </form>
+                        </div>
 					{{pass}}
-				</div>
-				<button type="submit" class="btn btn-default">Go</button>
-			</form>
-            
+
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

@@ -8,8 +8,18 @@ def index():
     return dict()
 
 def search():
-    searchTerm="%"+request.vars.searchTerm+"%"
-    return dict()
+    projects = dict()
+    term = request.vars['q'].strip()
+
+    if term != '':
+        projects = db(((db.Project.title.like('%'+term+'%'))
+                     | (db.Project.requestDescription.like('%'+term+'%')))
+                     & (db.Project.projectOpen == 'T'))\
+            .select()
+        for project in projects:
+            project['image'] = db(db.Image.project_id == project.id).select().first()['image']
+
+    return dict(projects=projects, term=term)
 
 def user():
     auth.settings.formstyle = 'bootstrap3_stacked'
