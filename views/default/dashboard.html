@@ -22,7 +22,9 @@
 			<td>Some image</td>
 			<td>{{=project.title}}</td>
 			<td>Some status</td>
-			<td>Open/Close & View Transcriptions</td>
+			<td>{{if project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.id])}}">Open</a>{{pass}}
+                {{if project.canClose():}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.id])}}">Close</a>{{pass}}
+                <a class="btn btn-primary" href="{{=URL('project', 'transcriptions', args=[project.id])}}">View Transcriptions</a></td>
 		</tr>
 		{{pass}}
 	</table>
