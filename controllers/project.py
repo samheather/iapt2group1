@@ -111,6 +111,33 @@ def deleteImage():
 	db(db.Image.id == toDelete_id).delete()
 	redirect(URL('project', 'populate', args=project_id))
 
+def open():
+    project_id = request.args(0)
+    project = db(db.Project.id == project_id).select()[0]
+
+    if not project.canOpen():
+        raise("Unable to open this project")
+
+    form = BOOTSTRAPFORM.confirm('Open', 'btn-primary', {'Back': URL('default', 'dashboard')})
+    if form.accepted:
+        db(db.Project.id == project_id).update(projectOpen=True)
+        redirect(URL('project','view',args=project_id))
+    return dict(project=project,form=form)
+
+def close():
+    project_id = request.args(0)
+    project = db(db.Project.id == project_id).select()[0]
+
+    if not project.canClose():
+        raise("Unable to close this project")
+
+
+    form = BOOTSTRAPFORM.confirm('Close', 'btn-primary', {'Back': URL('default', 'dashboard')})
+    if form.accepted:
+        db(db.Project.id == project_id).update(projectOpen= False)
+        redirect(URL('default','dashboard'))
+
+    return dict(project=project,form=form)
 
 # Download the image from the web2py uploads folder
 def img():
