@@ -10,11 +10,6 @@
 
         <div class="col-lg-6">
             <div id="fields">
-                {{for field in fields:}}
-                    <div class="form-group">
-                        <label for="field-type-{{=field.ProjectField.id}}">{{=field.ProjectField.label}}</label>
-                        {{=field.html}}
-                    </div>
-                {{pass}}
+                {{=form}}
             </div>
         </div>

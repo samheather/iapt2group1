@@ -1,7 +1,7 @@
 from gluon.sqlhtml import FormWidget
 from gluon.sqlhtml import StringWidget
 from gluon.validators import IS_LENGTH
-from gluon import TEXTAREA, INPUT, SQLFORM
+from gluon import TEXTAREA, INPUT, SQLFORM,LABEL
 from gluon.validators import Validator, FieldMethod, FieldVirtual
 from gluon.sqlhtml import formstyle_bootstrap3_stacked
 from gluon.sqlhtml import Field
@@ -102,5 +102,31 @@ class BOOTSTRAPFORM(SQLFORM):
                    for name, value in hidden.iteritems()]
         form = FORM(INPUT(_type='submit', _value=text, _class='btn {0}'.format(btntype)), *inputs,
                     formstyle='bootstrap3_stacked')
+        form.process()
+        return form
+
+    @staticmethod
+    def generate(fields,label='Transcribe'):
+        inputs=[]
+
+        for field in fields:
+            inputs+=[LABEL(field.ProjectField.label,_for='field-type'+str(field.ProjectField.id))]
+            if field.TranscriptionFieldType.type == 'textarea':
+                inputs += [TEXTAREA(_class='form-control text'
+                                , _rows=10
+                                , _name=str(field.ProjectField.id)
+                                , _id='field-type-'+str(field.ProjectField.id))]
+            elif field.TranscriptionFieldType.type == 'textfield':
+                inputs += [INPUT(_class='form-control input'
+                             , _type='text'
+                             , _name=str(field.ProjectField.id)
+                             , _id='field-type-'+str(field.ProjectField.id))]
+            elif field.TranscriptionFieldType.type == 'date':
+                inputs+= [INPUT(_class='date form-control'
+                             , _type='date'
+                             , _name=str(field.ProjectField.id)
+                             , _id='field-type-'+str(field.ProjectField.id)) ]
+        inputs+=[INPUT(_type='submit', _value=label, _class='btn {0}'.format('btn-default'))]
+        form = FORM(*inputs, formstyle='bootstrap3_stacked')
         form.process()
         return form

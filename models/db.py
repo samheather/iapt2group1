@@ -64,11 +64,7 @@ Accepted transcription is nullable as the default transcription for a project is
 """
 db.Image.acceptedTranscription_id = Field('acceptedTranscription_id', db.Transcription, required=False)
 
-db.define_table('TranscriptionField',
-			Field('projectField_id', db.TranscriptionFieldType, required=True),
-			Field('transcription_id', db.Transcription, required=True),
-			Field('value', 'string', required=True)
-)
+
 
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
@@ -76,6 +72,11 @@ db.define_table('ProjectField',
 			Field('label', 'string', requires=IS_LENGTH(minsize=1, maxsize=20), required=True)
 )
 
+db.define_table('TranscriptionField',
+			Field('projectField_id', db.ProjectField, required=True),
+			Field('transcription_id', db.Transcription, required=True),
+			Field('value', 'string', required=True)
+)
 
 db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
               ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
