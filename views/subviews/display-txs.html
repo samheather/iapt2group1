@@ -1,9 +1,14 @@
 <div id="projects">
-<div class="row">
-        {{for project in projects:}}
-            <h2>{{=project.title}}</h2>
-            <div id="view-image" >
-                <img src="{{=URL('default','download',args=project.image)}}" class="table-image-column"/>
+    {{for project in projects:}}
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3 view-img">
+                <img src="{{=URL('default','download',args=project.image)}}" class="table-image-column" />
+
             </div>
-        {{pass}}
+            <div class="col-xs-12 col-sm-8 col-lg-8 col-md-8">
+                 <h2><a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a></h2>
+            </div>
+        </div>
+    {{pass}}
+
 </div>

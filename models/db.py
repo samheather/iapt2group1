@@ -79,14 +79,14 @@ db.define_table('ProjectField',
 
 db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
               ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
-              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> 1))'
+              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> "T"))'
               ' WHERE Image.acceptedTranscription_id IS NULL'
               ' GROUP BY Image.Id'
               ' HAVING transcriptionCount <3')
 
 db.executesql('CREATE VIEW IF NOT EXISTS ImageTranscriptionCount AS '
               ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
-              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> 1))'
+              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> "T"))'
               ' WHERE Image.acceptedTranscription_id IS NULL'
               ' GROUP BY Image.Id')
 
@@ -95,16 +95,17 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
               ' FROM Project'
               ' LEFT JOIN ImagesForTranscription ON '
               '     ImagesForTranscription.project_id = Project.Id'
-              ' WHERE project.projectOpen'
+              ' WHERE project.projectOpen = "T"'
               ' GROUP BY project.id'
               ' HAVING count(ImagesForTranscription.id)>0')
 
 
 
 db.define_table('ProjectsForTranscription',
-                Field('project_id'),
+                Field('id'),
+                Field('title'),
                 Field('image'),
-                Field('image_description'),
+                Field('imageDescription'),
                 Field('imageCount'),migrate=False)
 
 

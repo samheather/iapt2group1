@@ -8,9 +8,12 @@
         transcription below, or add yours now!</p>
       </div>
     </div>
+
+
     
     <div class="section">
     	<h2>Oldest Transcriptions:</h2>
+
     	{{#bootables = newestFiveBootables}}
-		{{#include "subviews/display-bootables.html"}}
+		{{include "subviews/display-txs.html"}}
 	</div>

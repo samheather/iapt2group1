@@ -5,7 +5,8 @@ import datetime
 #from tx import *
 
 def index():
-    return dict()
+    projects = db(db.ProjectsForTranscription.id>0).select()
+    return dict(projects=projects)
 
 def search():
     projects = dict()
