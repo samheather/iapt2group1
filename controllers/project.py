@@ -76,28 +76,32 @@ def transcribe():
             .select()
 
         form = BOOTSTRAPFORM.generate(fields_no_html)
-        ok=False
 
         #If form is posted
         if form.accepts(request.vars):
-            #For all the fields, we need to check if at least one of the fields is set
+            atLeastOneFieldSet = False
+
+            #Create a transcription object
+            tx=db.Transcription.insert(image_id=image.id,transcriber_id=auth.user_id,rejected=None)
+
             for var in fields_no_html:
                 if str(request.vars[str(var.ProjectField.id)]):
-                    ok=True
+                    atLeastOneFieldSet=True
 
-            #If at least one field is set
-            if ok:
-                #Create a transcription object
-                tx=db.Transcription.insert(image_id=image.id,transcriber_id=auth.user_id,rejected=None)
+                    #Store the field value
+                    db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=str(request.vars[str(var.ProjectField.id)]))
+                else:
+                    #If the field is not set, just set the value to None
+                    db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=None)
 
-                for var in fields_no_html:
-                    if str(request.vars[str(var.ProjectField.id)]):
-                        #Store the field value
-                        db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=str(request.vars[str(var.ProjectField.id)]))
-                    else:
-                        #If the field is not set, just set the value to None
-                        db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=None)
+
+            if atLeastOneFieldSet:
                 redirect(URL('project','view',args=image.project_id))
+            else:
+                #If no fields are set, then just rollback
+                db.rollback()
+
+
         return dict(image=image, form=form)
 
 
