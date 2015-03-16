@@ -15,7 +15,7 @@
                         {{pass}}
                     </div>
                     {{pass}}
-
+                    {{if image.done():}}IMAGE DONE{{pass}}
                     <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
                 </div>
             {{pass}}
