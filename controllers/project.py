@@ -139,7 +139,6 @@ def close():
 
     return dict(project=project, form=form)
 
-
 # Download the image from the web2py uploads folder
 def img():
     return response.download(request, db)

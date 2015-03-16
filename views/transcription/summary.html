@@ -1,0 +1,23 @@
+{{extend 'tx-layout.html'}}
+
+<h2>Summary of Transcriptions for This Project</h2>
+<table class="table table-striped" summary="A summary of all document images for this project and the number of transcriptions for each of them.">
+    <thead>
+        <tr>
+			<th></th> <!-- Image -->
+			<th>Image Description</th>
+			<th>Number of Transcriptions</th>
+			<th>Options</th>
+		</tr>
+    </thead>
+    <tbody>
+        {{for image in images:}}
+        <tr>
+            <td><img alt="{{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
+            <td>{{=image.Image.imageDescription}}</td>
+            <td>{{=image.ImagesForTranscription.transcriptionCount}}</td>
+            <td><a class="btn btn-primary" href="{{=URL('transcription', 'image', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
+        </tr>
+        {{pass}}
+    </tbody>
+</table>

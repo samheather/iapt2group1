@@ -35,7 +35,7 @@ td {
     float: left;
 }
 
-#view-image {
+.view-image {
     margin-bottom: 20px;
     float: left;
     width: 100%;
@@ -49,7 +49,7 @@ td {
 	text-align: center;
 }
 
-#transcribe-button {
+.transcribe-button {
     float: right;
 }
 
@@ -76,6 +76,33 @@ td {
     min-width: 100%;
 }
 
+.view-image img {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+}
+
+.image-description,
+.list-fields,
+.transcribe-button {
+    width: 24%;
+}
+.image-description{
+    float: left;
+}
+.list-fields {
+    display: inline-block;
+}
+.transcribe-button {
+    float: right;
+}
+
+/* Override bootstrap default of top */
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
 nav .navbar {
     height:70px !important;
 }
@@ -83,3 +110,13 @@ nav .navbar {
 .navbar-brand {
     font-family: Montserrat;
 }
+
+/* For accessibility reasons hide the extra information in the link but
+allow screen readers to pick it up
+*/
+a span {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px; }
