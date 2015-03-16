@@ -11,13 +11,11 @@ def create():
         redirect(URL('project', 'populate', args=form.vars.id))
     return dict(form=form, message=message)
 
-
 @auth.requires_login()
 def populate():
     project_id = request.args(0)
     project = db((db.Project.id == project_id)).select()[0]
     return dict(project=project)
-
 
 @auth.requires_login()
 def addImage():
@@ -31,7 +29,6 @@ def addImage():
         redirect(URL('project', 'populate', args=project_id))
     return dict(form=form, message=message)
 
-
 @auth.requires_login()
 def addField():
     project_id = request.args(0)
@@ -43,7 +40,6 @@ def addField():
     if form.process().accepted:
         redirect(URL('project', 'populate', args=project_id))
     return dict(form=form, message=message)
-
 
 def view():
     # Check if the URL has an argument; If not go to homepage
@@ -63,7 +59,6 @@ def view():
                 , fields=fields
                 , owner=owner)
 
-
 @auth.requires_login()
 def transcribe():
     image_id = request.args(0) or 0
@@ -82,18 +77,18 @@ def transcribe():
             atLeastOneFieldSet = False
 
             #Create a transcription object
-            tx=db.Transcription.insert(image_id=image.id,transcriber_id=auth.user_id,rejected=None)
+            tx=db.Transcription.insert(image_id=image.id
+                                       ,transcriber_id=auth.user_id
+                                       ,rejected=None)
 
             for var in fields_no_html:
                 if str(request.vars[str(var.ProjectField.id)]):
                     atLeastOneFieldSet=True
 
                     #Store the field value
-                    db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=str(request.vars[str(var.ProjectField.id)]))
-                else:
-                    #If the field is not set, just set the value to None
-                    db.TranscriptionField.insert(projectField_id=var.ProjectField.id,transcription_id=tx,value=None)
-
+                    db.TranscriptionField.insert(projectField_id=var.ProjectField.id
+                                                 ,transcription_id=tx
+                                                 ,value=str(request.vars[str(var.ProjectField.id)]))
 
             if atLeastOneFieldSet:
                 redirect(URL('project','view',args=image.project_id))
@@ -104,13 +99,11 @@ def transcribe():
 
         return dict(image=image, form=form)
 
-
 def deleteField():
     project_id = request.args(0)
     toDelete_id = request.args(1)
     db(db.ProjectField.id == toDelete_id).delete()
     redirect(URL('project', 'populate', args=project_id))
-
 
 @auth.requires_login()
 def deleteImage():
@@ -118,7 +111,6 @@ def deleteImage():
     toDelete_id = request.args(1)
     db(db.Image.id == toDelete_id).delete()
     redirect(URL('project', 'populate', args=project_id))
-
 
 def open():
     project_id = request.args(0)
@@ -132,7 +124,6 @@ def open():
         db(db.Project.id == project_id).update(projectOpen=True)
         redirect(URL('project', 'view', args=project_id))
     return dict(project=project, form=form)
-
 
 def close():
     project_id = request.args(0)
