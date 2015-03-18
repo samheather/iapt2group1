@@ -79,7 +79,7 @@
             	<li><a href="{{=URL('user','register')}}">Register</a></li>
             	<li><a href="{{=URL('user','login')}}">Login<span class="sr-only">(current)</span></a></li>
             {{else:}}
-            	<li><a href="{{=URL('project','create')}}">New Project</a></li>
+            	<li><a href="{{=URL('project','create')}}">New Transcription</a></li>
 				<li><a href="{{=URL('default','dashboard')}}">Dashboard</a></li>
 				<li><a href="{{=URL('user','logout')}}">Log out</a></li>
             {{pass}}
