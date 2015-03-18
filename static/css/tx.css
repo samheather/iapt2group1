@@ -119,4 +119,27 @@ a span {
     width: 1px;
     position: absolute;
     overflow: hidden;
-    top: -10px; }
+    top: -10px;
+}
+
+/* Transcriptions Page */
+.options {
+    float: right;
+}
+
+#transcription-image {
+    padding: 1px 30px 30px 30px;
+    background-color: #f3f3f3;
+}
+
+#transcription-image img {
+    width: auto;
+    max-height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#transcription-image h3 {
+    text-align: center;
+}

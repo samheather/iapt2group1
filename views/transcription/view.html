@@ -1,0 +1,35 @@
+{{extend 'tx-layout.html'}}
+
+        <div id="transcription-image">
+            <h3>{{=image.imageDescription}}</h3>
+            <img alt="{{=image.imageDescription}}" src="{{=URL('default','download',args=image.image)}}" />
+        </div>
+        <!-- Get the list item's index (idx) and iterate over the image transcriptions -->
+        {{for idx, tx in enumerate(transcriptions):}}
+            <h3>Transcription #{{=(idx+1)}} <span>by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</span></h3>
+                <div class="tx-row">
+                    <table class="table table-striped" summary="">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Offered Transcription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Display all fields for the respective transcription -->
+                        {{for field in fields:}}
+                            {{if field.TranscriptionField.transcription_id == tx.Transcription.id:}}
+                                <tr>
+                                    <td>{{=field.ProjectField.label}}</td>
+                                    <td>{{=field.TranscriptionField.value}}</td>
+                                </tr>
+                            {{pass}}
+                        {{pass}}
+                        </tbody>
+                    </table>
+                    <div class="options">
+                        <a class="btn btn-primary" href="{{=URL('transcription', 'accept', vars=dict(tx_id=tx.Transcription.id))}}">Accept <span>Transcriptions #{{=(idx+1)}}</span></a>
+                        <a class="btn btn-primary" href="{{=URL('transcription', 'reject', vars=dict(tx_id=tx.Transcription.id))}}">Reject <span>Transcriptions #{{=(idx+1)}}</span></a>
+                    </div>
+                </div>
+        {{pass}}
