@@ -6,6 +6,7 @@ db = DAL('sqlite://tx.db')
 
 auth = Auth(db)
 auth.define_tables(username=True,signature=False)
+auth.settings.login_url = URL('user','login')
 
 db.define_table('TranscriptionFieldType',
 			Field('type', 'string', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
@@ -79,12 +80,6 @@ db.define_table('TranscriptionField',
 )
 
 db.executesql('CREATE VIEW IF NOT EXISTS ImagesForTranscription AS'
-              ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
-              ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> "T"))'
-              ' WHERE Image.acceptedTranscription_id IS NULL'
-              ' GROUP BY Image.Id')
-
-db.executesql('CREATE VIEW IF NOT EXISTS ImageTranscriptionCount AS '
               ' SELECT *, COUNT(Transcription.Id) as transcriptionCount FROM Image'
               ' LEFT JOIN Transcription ON (Transcription.Image_Id = Image.id AND (rejected IS NULL or rejected <> "T"))'
               ' WHERE Image.acceptedTranscription_id IS NULL'

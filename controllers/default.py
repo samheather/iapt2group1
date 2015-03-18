@@ -22,9 +22,7 @@ def search():
 
     return dict(projects=projects, term=term)
 
-def user():
-    auth.settings.formstyle = 'bootstrap3_stacked'
-    return dict(form=auth())
+
 
 @auth.requires_login()
 def dashboard():

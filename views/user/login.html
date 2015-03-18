@@ -1,0 +1,28 @@
+{{extend 'tx-layout.html'}}
+
+<h2>Login</h2>
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <h3>Returning Users</h3>
+
+        {{=form}}
+
+        {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+          <br/>
+          <a href="{{=URL('user','reset')}}">Reset password</a>
+        {{pass}}
+
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        {{if not 'register' in auth.settings.actions_disabled:}}
+            <h3>New Users</h3>
+        <p>Don't have an account? You can register in less than 2 minutes.</p>
+        <a href="{{=URL('user','register')}}">Register</a>
+        {{pass}}
+
+    </div>
+
+
+</div>

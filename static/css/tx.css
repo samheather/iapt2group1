@@ -1,7 +1,29 @@
 body {
   padding-bottom: 20px;
   padding-top: 50px;
+    background-color: #f8f8f8;
+    color: #444444;
+    font-family: 'Droid Sans', sans-serif;
 }
+
+
+html, body
+{
+    height: 100%;
+}
+
+.container[role=main]  {
+    min-height: 100%;
+    margin-top:-175px;
+    padding-top:175px;
+    padding-bottom:60px;
+}
+
+
+.whitebg {
+    background-color: #ffffff;
+}
+
 
 .brand-colour{
 	color: #428bca !important;
@@ -105,11 +127,27 @@ td {
 
 nav .navbar {
     height:70px !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 
+
 .navbar-brand {
-    font-family: Montserrat;
+    font-family: 'Shadows Into Light', cursive;
+    font-size:200%;
+    color:#EEE !important;
 }
+
+.navbar-bg {
+    background-color: #000000;
+    color:#FFFFFF !important;
+}
+
+.navbar-nav > li > a {
+    color:#EEEEEE !important;
+}
+
+
 
 /* For accessibility reasons hide the extra information in the link but
 allow screen readers to pick it up
