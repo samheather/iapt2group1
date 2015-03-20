@@ -174,3 +174,7 @@ a span {
 #transcription-image h3 {
     text-align: center;
 }
+
+.error {
+    color:#DD3333;
+}
