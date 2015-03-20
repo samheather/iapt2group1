@@ -94,6 +94,14 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
               ' GROUP BY project.id'
               ' HAVING count(ImagesForTranscription.id)>0')
 
+# SELECT *, COUNT(Transcription.id) AS transcriptionCount
+#                FROM Project
+#                LEFT JOIN Image ON 
+#                    Image.project_id = Project.Id
+#                LEFT JOIN Transcription ON
+#                    Transcription.image_id = Image.id
+#                WHERE project.projectOpen = "T"
+#                GROUP BY project.id
 
 
 db.define_table('ImagesForTranscription',
