@@ -11,18 +11,18 @@
 			<th>Options</th>
 		</tr>
 		{{for project in projects:}}
-			{{if project.id == justAddedProject_id:}}
+			{{if project.Project.id == justAddedProject_id:}}
 				{{print 'true branch executed'}}
 				<tr class="just-added-project">
 			{{else:}}
 				<tr>
 			{{pass}}
-				<td><img src="{{=URL('default','download',args=project.image)}}" class="table-image-column" /></td>
-				<td>{{=project.title}}</td>
-				<td>Some status</td>
-				<td>{{if project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.id])}}">Open</a>{{pass}}
-					{{if project.canClose():}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.id])}}">Close</a>{{pass}}
-					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.id])}}">View Transcriptions <span>for {{=project.title}}</span></a></td>
+				<td><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" class="table-image-column" /></td>
+				<td>{{=project.Project.title}}</td>
+				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
+				<td>{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}
+					{{if project.Project.canClose():}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.Project.id])}}">Close</a>{{pass}}
+					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions <span>for {{=project.Project.title}}</span></a></td>
 			</tr>
 		{{pass}}
 	</table>

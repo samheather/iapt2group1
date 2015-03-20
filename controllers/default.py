@@ -33,8 +33,8 @@ def dashboard():
 
     user = db((db.auth_user.id == auth.user_id)).select()[0]
     projects = user.projects()
-    for project in projects:
-        project['image'] = db(db.Image.project_id == project.id).select().first()['image']
+#     for project in projects:
+#         project['image'] = db(db.Image.project_id == project.Project.id).select().first()['image']
     return dict(projects=projects,justAddedProject_id=justAddedProject_id)
 
 
