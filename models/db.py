@@ -22,7 +22,7 @@ if db(db.TranscriptionFieldType.id > 0).count() == 0:
 
 db.define_table('Project',
 			Field('title', 'string', label='Title', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
-			Field('requestDescription', 'string', label='Request Description', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
+			Field('requestDescription', 'text', label='Request Description', requires=IS_LENGTH(minsize=1, maxsize=300), required=True),
 			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
 			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False),
             Field.Method('canOpen',lambda row: (row.Project.projectOpen==False)),
