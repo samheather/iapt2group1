@@ -94,6 +94,14 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
               ' GROUP BY project.id'
               ' HAVING count(ImagesForTranscription.id)>0')
 
+db.executesql('CREATE VIEW IF NOT EXISTS ProjectTranscriptionCount AS'
+              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount'
+              ' FROM Project'
+              ' LEFT JOIN Image ON '
+              '     Image.project_id = Project.Id'
+              ' LEFT JOIN Transcription ON'
+              '     (Transcription.image_id = Image.id AND (rejected IS NULL or rejected <> "T"))'
+              ' GROUP BY project.id')
 
 
 db.define_table('ImagesForTranscription',
@@ -108,13 +116,20 @@ db.define_table('ProjectsForTranscription',
                 Field('image'),
                 Field('imageDescription'),
                 Field('imageCount'),migrate=False)
+                
+db.define_table('ProjectTranscriptionCount',
+                Field('id'),
+                Field('title'),
+                Field('owner_id'),
+                Field('image'),
+                Field('transcriptionCount'),migrate=False)
 
 
 
 
 db.Project.customFields = Field.Method(lambda row: db((db.ProjectField.project_id == row.Project.id) & (db.ProjectField.type_id == db.TranscriptionFieldType.id)).select(db.ProjectField.ALL,db.TranscriptionFieldType.ALL))
 db.Project.images = Field.Method(lambda row: db(db.Image.project_id == row.Project.id).select())
-db.auth_user.projects = Field.Method(lambda row: db(db.Project.owner_id == row.auth_user.id).select())
+db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id)).select())
 db.Image.done = Field.Method(lambda row: db(db.ImagesForTranscription.id == row.Image.id ).select(db.ImagesForTranscription.transcriptionCount)[0].transcriptionCount>=3)
 
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \

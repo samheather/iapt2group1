@@ -1,44 +1,56 @@
 {{extend 'tx-layout.html'}}
     
     <div class="section">
-    	<h2>Manage Project: {{=project.title}}</h2>
-    	<p>Description: {{=project.requestDescription}}</p>
-    	
-    	<h3>Add Fields</h3>
-    	<p>Current Field:<p>
-    	<table class="table table-striped">
-			<tr>
-				<th>Field Name</th>
-				<th>Field Type</th>
-				<th></th>
-			</tr>
-			{{for field in project.customFields():}}
-			<tr>
-				<td>{{=field.ProjectField.label}}</td>
-				<td>{{=field.TranscriptionFieldType.friendlyName}}</td>
-				<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
-			</tr>
-			{{pass}}
-		</table>
-    	<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
-    	
-    	<h3>Add Images</h3>
-    	<p>Current Images:<p>
-    	<table class="table table-striped">
-			<tr>
-				<th>Image</th>
-				<th>Description</th>
-				<th></th>
-			</tr>
-			{{for image in project.images():}}
-			<tr>
-				<td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
-				<td>{{=image.imageDescription}}</td>
-				<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>
-			</tr>
-			{{pass}}
-		</table>
-    	<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
+    	<div class="row">
+			<h2>Create Project: {{=project.title}} - Page 2 of 2</h2>
+			<p>Description: {{=project.requestDescription}}</p>
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+				<h3>Add Fields</h3>
+				<p>Current Field:<p>
+				<table class="table table-striped">
+					<tr>
+						<th>Field Name</th>
+						<th>Field Type</th>
+						<th></th>
+					</tr>
+					{{for field in project.customFields():}}
+					<tr>
+						<td>{{=field.ProjectField.label}}</td>
+						<td>{{=field.TranscriptionFieldType.friendlyName}}</td>
+						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
+					</tr>
+					{{pass}}
+				</table>
+				<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
+		
+				<h3>Add Images</h3>
+				<p>Current Images:<p>
+				<table class="table table-striped">
+					<tr>
+						<th>Image</th>
+						<th>Description</th>
+						<th></th>
+					</tr>
+					{{for image in project.images():}}
+					<tr>
+						<td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
+						<td>{{=image.imageDescription}}</td>
+						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>
+					</tr>
+					{{pass}}
+				</table>
+				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<h3>Instructions</h3>
+				<p>Add fields to represent the information that you would like to be 
+				transcribed.  Add a field for each distinct block of information, for 
+				example, the title of a document, the author or the main contents. Click
+				add field to add a parameter of data to be collected. Fields can also be
+				deleted if added incorrectly.</p>
+				<p>TODO: FILL THIS IN!!</p>
+			</div>
+		</div>
     	
     	<p class="center"><a class="btn btn-primary btn-lg" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a><p>
 	</div>
