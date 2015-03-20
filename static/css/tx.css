@@ -3,7 +3,7 @@ body {
   padding-top: 50px;
     background-color: #f8f8f8;
     color: #444444;
-    font-family: 'Droid Sans', sans-serif;
+    font-family: 'Droid Sans Bold', sans-serif;
 }
 
 
@@ -140,7 +140,6 @@ nav .navbar {
 .navbar-nav > li > a {
     color:#EEEEEE !important;
 }
-
 
 
 /* For accessibility reasons hide the extra information in the link but
