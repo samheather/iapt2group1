@@ -12,7 +12,6 @@
 		</tr>
 		{{for project in projects:}}
 			{{if project.Project.id == justAddedProject_id:}}
-				{{print 'true branch executed'}}
 				<tr class="just-added-project">
 			{{else:}}
 				<tr>
