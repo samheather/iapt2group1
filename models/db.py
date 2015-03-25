@@ -69,7 +69,7 @@ db.Image.acceptedTranscription_id = Field('acceptedTranscription_id', db.Transcr
 
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
-			Field('type_id',label='Field Type', db.TranscriptionFieldType, requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type"), required=True),
+			Field('type_id', db.TranscriptionFieldType, requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type"), required=True, label='Field Type'),
 			Field('label', 'string', requires=IS_LENGTH(minsize=1, maxsize=30), required=True)
 )
 
