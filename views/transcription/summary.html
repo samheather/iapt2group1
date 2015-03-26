@@ -15,7 +15,7 @@
         <tr>
             <td><img alt="{{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
             <td>{{=image.Image.imageDescription}}</td>
-            <td>{{=image.ImagesForTranscription.transcriptionCount}}</td>
+            <td>{{=image['COUNT(Image.id)']}}</td>
             <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
         </tr>
         {{pass}}

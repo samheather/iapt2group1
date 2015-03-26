@@ -7,7 +7,14 @@ def summary():
     project_id = request.args(0)  or redirect(URL('default', 'index'))
 
     if project_id:
-        images = db(db.ImagesForTranscription.id == db.Image.id).select(join = db.Image.on(db.Image.project_id == project_id))
+        # Get all images and their transcription count for this project
+        count = db.Image.id.count()
+        images = db(db.Image.project_id == project_id).select(
+            db.Image.id, db.Image.image, db.Image.imageDescription
+            , count
+            ,  groupby=db.Image.id
+            ,join=db.Transcription.on(db.Image.id==db.Transcription.image_id))
+
     return dict(images=images)
 
 @auth.requires_login()
@@ -59,3 +66,10 @@ def reject():
         db(db.Transcription.id == transcription_id).update(rejected=True)
         transcription = db(db.Transcription.id == transcription_id).select().first()
         redirect(URL('transcription', 'view', args=transcription.image_id))
+
+def rejectAll():
+    image_id = request.vars.image_id
+
+    if image_id:
+        db(db.Transcription.image_id == image_id).update(rejected=True)
+        redirect(URL('transcription', 'view', args=image_id))

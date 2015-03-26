@@ -158,6 +158,10 @@ a span {
     float: right;
 }
 
+.tx-row {
+    margin-bottom: 60px;
+}
+
 #transcription-image {
     padding: 1px 30px 30px 30px;
     background-color: #f3f3f3;

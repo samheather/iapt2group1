@@ -42,3 +42,6 @@
                     </div>
                 </div>
         {{pass}}
+        {{if not image.Accepted:}}
+            <a class="btn btn-primary" href="{{=URL('transcription', 'rejectAll', vars=dict(image_id=image.id))}}">Reject All Transcriptions</a>
+        {{pass}}

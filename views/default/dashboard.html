@@ -16,7 +16,7 @@
 			{{else:}}
 				<tr>
 			{{pass}}
-				<td><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" class="table-image-column" /></td>
+				<td><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" class="table-image-view" /></td>
 				<td>{{=project.Project.title}}</td>
 				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
 				<td>{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}

@@ -4,9 +4,9 @@
 <h3 id="project-description">{{=project.requestDescription}}</h3>
         {{if images:}}
         {{for image in images:}}
-                <div id="view-image">
+                <div class="view-image">
                 	<div class="col-md-9">
-	                    <img class="view-image" src="{{=URL('default','download',args=image.image)}}" />
+	                    <img class="view-img" src="{{=URL('default','download',args=image.image)}}" />
                     </div>
                 	<div class="col-md-3">
 	                    <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
@@ -21,7 +21,7 @@
 						</div>
 						{{pass}}
 						{{if image.done():}}Image Closed for Transcriptions{{else:}}
-						<a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
+						    <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
 						{{pass}}
 					</div>
                 </div>

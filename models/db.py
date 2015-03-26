@@ -42,7 +42,7 @@ db.define_table('Image',
                       IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")],
                   required=True
                   ),
-            Field('acceptedTranscription_id', 'reference Transcription', required=False),
+            Field('acceptedTranscription_id', 'reference Transcription', required=False, readable=False, writable=False),
             migrate=False
 )
 
