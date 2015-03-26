@@ -45,27 +45,23 @@ db.define_table('Image',
             migrate=False
 )
 
-
-db.executesql('CREATE TABLE IF NOT EXISTS Image '
-              '(id              INTEGER PRIMARY KEY AUTOINCREMENT,'
-              'project_id        INTEGER REFERENCES Project (id) ON DELETE CASCADE,'
-              'image            CHAR(512),'
-              'imageDescription CHAR(512),'
-              'acceptedTranscription_id INTEGER REFERENCES Image(id) ON DELETE SET NULL)')
-
-
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
 			Field('transcriber_id', db.auth_user, required=True),
 			Field('rejected', 'boolean', required=True)
 )
 
+db.executesql('CREATE TABLE IF NOT EXISTS Image '
+              '(id INTEGER PRIMARY KEY AUTOINCREMENT,'
+              'project_id INTEGER REFERENCES Project (id) ON DELETE CASCADE,'
+              'image CHAR(512),'
+              'imageDescription CHAR(512),'
+              'acceptedTranscription_id INTEGER REFERENCES Transcription(id) ON DELETE SET NULL)')
+
 """
 Accepted transcription is nullable as the default transcription for a project is none
 """
 db.Image.acceptedTranscription_id = Field('acceptedTranscription_id', db.Transcription, required=False)
-
-
 
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
@@ -131,7 +127,6 @@ db.Project.customFields = Field.Method(lambda row: db((db.ProjectField.project_i
 db.Project.images = Field.Method(lambda row: db(db.Image.project_id == row.Project.id).select())
 db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id)).select())
 db.Image.done = Field.Method(lambda row: db(db.ImagesForTranscription.id == row.Image.id ).select(db.ImagesForTranscription.transcriptionCount)[0].transcriptionCount>=3)
-
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
 
 
