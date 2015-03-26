@@ -28,8 +28,17 @@
                         </tbody>
                     </table>
                     <div class="options">
-                        <a class="btn btn-primary" href="{{=URL('transcription', 'accept', vars=dict(tx_id=tx.Transcription.id))}}">Accept <span>Transcriptions #{{=(idx+1)}}</span></a>
-                        <a class="btn btn-primary" href="{{=URL('transcription', 'reject', vars=dict(tx_id=tx.Transcription.id))}}">Reject <span>Transcriptions #{{=(idx+1)}}</span></a>
+                        {{if not image.Accepted:}}
+                            {{if tx.Transcription.rejected:}}
+                                <p><i>Transcription Rejected</i></p>
+                            {{else:}}
+                                <a class="btn btn-primary" href="{{=URL('transcription', 'accept', vars=dict(tx_id=tx.Transcription.id))}}">Accept <span>Transcriptions #{{=(idx+1)}}</span></a>
+                                <a class="btn btn-primary" href="{{=URL('transcription', 'reject', vars=dict(tx_id=tx.Transcription.id))}}">Reject <span>Transcriptions #{{=(idx+1)}}</span></a>
+                            {{pass}}
+                        {{elif tx.Transcription.rejected == False:}}
+                            <p><i>Transcription Accepted</i></p>
+                        {{else:}}
+                        {{pass}}
                     </div>
                 </div>
         {{pass}}
