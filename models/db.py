@@ -42,6 +42,7 @@ db.define_table('Image',
                       IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")],
                   required=True
                   ),
+            Field('acceptedTranscription_id', 'reference Transcription', required=False),
             migrate=False
 )
 
@@ -58,10 +59,6 @@ db.executesql('CREATE TABLE IF NOT EXISTS Image '
               'imageDescription CHAR(512),'
               'acceptedTranscription_id INTEGER REFERENCES Transcription(id) ON DELETE SET NULL)')
 
-"""
-Accepted transcription is nullable as the default transcription for a project is none
-"""
-db.Image.acceptedTranscription_id = Field('acceptedTranscription_id', db.Transcription, required=False)
 
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
