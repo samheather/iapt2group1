@@ -8,8 +8,17 @@ def summary():
 
     if project_id:
         # Get all images and their transcription count for this project
-        images = db(db.Image.id == db.ImagesForTranscription.id).select(join = db.Image.on(db.Image.project_id == project_id))
+        # images = db(db.Image.id == db.ImagesForTranscription.id).select(join = db.Image.on(db.Image.project_id == project_id))
 
+        images = db(db.Image.project_id == project_id).select(db.Image.id
+                                                              , db.Image.image
+                                                              , db.Image.imageDescription
+                                                              , db.Transcription.id.count()
+                                                              , groupby=db.Image.id
+                                                              , left=db.Transcription.on(((db.Image.id==db.Transcription.image_id)
+                                                                                            & (db.Transcription.rejected == None))
+                                                                                         | ((db.Transcription.rejected != 'T')
+                                                                                            & (db.Image.id==db.Transcription.image_id))))
     return dict(images=images)
 
 @auth.requires_login()
