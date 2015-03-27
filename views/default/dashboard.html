@@ -9,6 +9,7 @@
 		<tr>
 			<th>Image</th>
 			<th>Title</th>
+            <th>Project Status</th>
 			<th>Transcription Status</th>
 			<th>Options</th>
 		</tr>
@@ -29,6 +30,7 @@
 				<!-- Now add the image, title and transcription count for each project -->
 				<td><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" class="table-image-view" /></td>
 				<td>{{=project.Project.title}}</td>
+                <td>{{if project.Project.canOpen(): }} <i>Closed</i>{{else:}}<i>Open</i>{{pass}}</td>
 				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
 				<td>
 					<!-- If the project can be opened, show an open button -->
