@@ -250,3 +250,18 @@ div.title {
 #view-more-projects:hover {
     background-color: #EEE;
 }
+
+/* Close/Open project pages buttons */
+form .btn-primary {
+    margin-right: 3px;
+}
+
+/* Instructions */
+.instructions {
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    text-align: justify;
+    padding: 1px 15px;
+    margin-top: 10px;
+
+}

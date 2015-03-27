@@ -131,7 +131,10 @@ def deleteImage():
     redirect(URL('project', 'populate', args=project_id))
 
 def open():
+    # Set the page title
+    response.title = T('Open Project | ') + request.application
     project_id = request.args(0)
+
     project = db(db.Project.id == project_id).select()[0]
 
     if not project.canOpen():
@@ -144,6 +147,9 @@ def open():
     return dict(project=project, form=form)
 
 def close():
+    # Set the page title
+    response.title = T('Close Project | ') + request.application
+
     project_id = request.args(0)
     project = db(db.Project.id == project_id).select()[0]
 
