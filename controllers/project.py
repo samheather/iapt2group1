@@ -5,6 +5,9 @@ from txform import BOOTSTRAPFORM
 # from tx import *
 @auth.requires_login()
 def create():
+    # Set the page title
+    response.title = T('Create Project 1 of 2 | ') + request.application
+
     form = BOOTSTRAPFORM(db.Project)
     message = ""
     if form.process().accepted:
@@ -13,12 +16,18 @@ def create():
 
 @auth.requires_login()
 def populate():
+    # Set the page title
+    response.title = T('Create Project 2 of 2 | ') + request.application
+
     project_id = request.args(0)
     project = db((db.Project.id == project_id)).select()[0]
     return dict(project=project)
 
 @auth.requires_login()
 def addImage():
+    # Set the page title
+    response.title = T('Add Images | ') + request.application
+
     project_id = request.args(0)
 
     form = BOOTSTRAPFORM(db.Image)
@@ -31,6 +40,9 @@ def addImage():
 
 @auth.requires_login()
 def addField():
+    # Set the page title
+    response.title = T('Add Fields | ') + request.application
+
     project_id = request.args(0)
 
     form = BOOTSTRAPFORM(db.ProjectField)
@@ -42,6 +54,9 @@ def addField():
     return dict(form=form, message=message)
 
 def view():
+    # Set the page title
+    response.title = T('View Project | ') + request.application
+
     # Check if the URL has an argument; If not go to homepage
     project_id = request.args(0) or redirect(URL('default', 'index'))
 
@@ -61,6 +76,9 @@ def view():
 
 @auth.requires_login()
 def transcribe():
+    # Set the page title
+    response.title = T('Transcribe | ') + request.application
+
     image_id = request.args(0) or 0
     if image_id == 0:
         redirect(URL('default', 'index'))
