@@ -8,12 +8,7 @@ def summary():
 
     if project_id:
         # Get all images and their transcription count for this project
-        count = db.Image.id.count()
-        images = db(db.Image.project_id == project_id).select(
-            db.Image.id, db.Image.image, db.Image.imageDescription
-            , count
-            ,  groupby=db.Image.id
-            ,join=db.Transcription.on(db.Image.id==db.Transcription.image_id))
+        images = db(db.Image.id == db.ImagesForTranscription.id).select(join = db.Image.on(db.Image.project_id == project_id))
 
     return dict(images=images)
 
@@ -67,7 +62,7 @@ def reject():
         transcription = db(db.Transcription.id == transcription_id).select().first()
         redirect(URL('transcription', 'view', args=transcription.image_id))
 
-def rejectAll():
+def reject_all():
     image_id = request.vars.image_id
 
     if image_id:
