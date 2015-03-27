@@ -1,10 +1,17 @@
+<!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
     
     <div class="section">
+    	<!-- Two thirds of page width, unles mobile device, in which case full width-->
 	    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 			<h3>Create Project - Page 1 of 2</h3>
+			<!-- Show create project form -->
 			{{=form}}
 		</div>
+		<!--
+			One third of page width, unles mobile device, in which case full width
+			Div shows general documentation relevant to creating a new project
+		--->
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 			<h3>Instructions</h3>
 			<p>Provide basic project information on this page. On the next page, you can
