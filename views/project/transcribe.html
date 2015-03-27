@@ -1,16 +1,23 @@
+<!-- Page for actually transcribing an image -->
+
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
-        <h2>{{=image.imageDescription}}</h2>
-
-        <div class="col-lg-6">
-            <div id="transcribe-image">
-                <img src="{{=URL('default','download',args=image.image)}}" />
-            </div>
+    <!-- Provide the image description -->
+    <h2>{{=image.imageDescription}}</h2>
+    
+    <!-- Half screen width shows the actual image been transcribed -->
+    <div class="col-lg-6">
+        <div id="transcribe-image">
+            <img src="{{=URL('default','download',args=image.image)}}" />
         </div>
+    </div>
 
-        <div class="col-lg-6">
-            <div id="fields">
-                {{=form}}
-            </div>
+    <!-- The other half shows the fields that should be filled in -->
+    <div class="col-lg-6">
+        <!-- Div containing fields -->
+        <div id="fields">
+            <!-- Show the fields to be filled in -->
+            {{=form}}
         </div>
+    </div>

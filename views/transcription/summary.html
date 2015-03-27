@@ -1,22 +1,43 @@
+<!-- Page shows the summary table of images within a project and their status -->
+
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
 <h2>Summary of Transcriptions for This Project</h2>
+<!--
+    Table of images, the number of pending transcriptions / status of the image and 
+    buttons to click to review transcriptions for an image
+-->
 <table class="table table-striped" summary="A summary of all document images for this project and the number of transcriptions for each of them.">
     <thead>
         <tr>
-			<th></th> <!-- Image -->
+            <!-- Table headings -->
+			<th>Image</th>
 			<th>Image Description</th>
 			<th>Number of Transcriptions</th>
 			<th>Options</th>
 		</tr>
     </thead>
     <tbody>
+        <!-- For each image in the project, create a row -->
         {{for image in images:}}
         <tr>
-            <td><img alt="{{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
+            <!--
+                First show the image, with an alt tag for screen readers, containing the 
+                image description.
+            -->
+            <td><img alt="Image for transcription, with provided transcription: {{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
+            
+            <!-- Provide the image description -->
             <td>{{=image.Image.imageDescription}}</td>
+            
+            <!--
+                Provide the count of the number of pending transcriptions / status of 
+                this image
+            -->
             <td>{{=image['COUNT(Transcription.id)']}}</td>
+            
+            <!-- Button to view the transcriptions -->
             <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
         </tr>
         {{pass}}
