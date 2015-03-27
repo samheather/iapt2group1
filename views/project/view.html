@@ -1,29 +1,41 @@
+<!--
+    This page is the View Project page.  It is used for viewing a whole project, and the
+    images within it.
+-->
+
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
+<!-- First display the project title and owner -->
 <h2 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h2>
+
+<!-- Show the project description -->
 <h3 id="project-description">{{=project.requestDescription}}</h3>
-        {{if images:}}
+    <!-- If the project has images, for each image: -->
+    {{if images:}}
         {{for image in images:}}
-                <div class="view-image">
-                	<div class="col-md-9">
-	                    <img class="view-img" src="{{=URL('default','download',args=image.image)}}" />
-                    </div>
-                	<div class="col-md-3">
-	                    <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
-
-
-						{{if fields:}}
-						<div id="list-fields">
-							<b>Fields for Transcription:</b>
-							{{for field in fields:}}
-							<li>{{=field.label}}</li>
-							{{pass}}
-						</div>
-						{{pass}}
-						{{if image.done():}}Image Closed for Transcriptions{{else:}}
-						    <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
-						{{pass}}
-					</div>
+            <div class="view-image">
+                <div class="col-md-9">
+                    <img class="view-img" src="{{=URL('default','download',args=image.image)}}" />
                 </div>
-            {{pass}}
+                <div class="col-md-3">
+                    <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
+
+
+                    {{if fields:}}
+                    <div id="list-fields">
+                        <b>Fields for Transcription:</b>
+                        {{for field in fields:}}
+                        <li>{{=field.label}}</li>
+                        {{pass}}
+                    </div>
+                    {{pass}}
+                    {{if image.done():}}
+                        Image Closed for Transcriptions
+                    {{else:}}
+                        <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
+                    {{pass}}
+                </div>
+            </div>
+        {{pass}}
+    {{pass}}

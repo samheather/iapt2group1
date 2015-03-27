@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!--
+    This is the main site layout file, which sets up the title bar and the footer that is
+    shown on every page, above and below (respectively) the main page content.
+-->
 <head>
 	<meta charset="utf-8" />
   
@@ -29,17 +33,19 @@
 
 	{{include 'web2py_ajax.html'}}
 	
+	<!-- Import the fonts and JQuery that we use -->
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
     <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 
+    <!-- Set the site Title -->
 	<title>TX</title>
 	</head>
 
 	<body>
 
-<!-- Fixed navbar -->
+<!-- Setup the fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-bg" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -54,6 +60,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li>
+                <!-- Setup the search bar -->
+                <!-- If there is currently not a search term: -->
  				{{if (request.vars.q==None):}}
 						<div class="form-group">
                             <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form navbar-left" role="search">
@@ -62,6 +70,10 @@
                                 <input type="submit" value="Go"/>
                             </form>
                         </div>
+                    <!--
+                        Or if there is currently a search term, change the apearance to
+                        show that search term in the box.
+                    -->
 					{{else:}}
                         <div class="form-group">
                             <form id="search-form" method="GET" action="{{=URL('default', 'search')}}">
@@ -71,14 +83,19 @@
                             </form>
                         </div>
 					{{pass}}
-
             </li>
           </ul>
+          
+          <!-- Now setup the right hand side of the nav bar -->
           <ul class="nav navbar-nav navbar-right">
-
+            <!-- If nobody is signed in, show the register and login buttons -->
           	{{if (auth.user == None):}}
             	<li><a href="{{=URL('user','register')}}">Register</a></li>
             	<li><a href="{{=URL('user','login')}}">Login<span class="sr-only">(current)</span></a></li>
+            <!--
+                Else, user is logged in, so offer them to create a project, view the
+                dashboard or logout entirely.
+            -->
             {{else:}}
             	<li><a href="{{=URL('project','create')}}">New Project</a></li>
 				<li><a href="{{=URL('default','dashboard')}}">Dashboard</a></li>
@@ -89,11 +106,13 @@
       </div>
     </nav>
 
+    <!-- Now show the main page contents -->
 	<div class="container whitebg" role="main">
 		{{include}}
 		{{pass}}
 	</div>
 		
+		<!-- Show the page footer -->
 		<div class="container">
 			<hr>
 			<footer>
@@ -101,6 +120,10 @@
 			</footer>
 		</div>
 
+        <!--
+            Execute global javascript that may be needed on any page, such as JQuery and
+            Bootstrap
+        -->
 		<script>
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip()
