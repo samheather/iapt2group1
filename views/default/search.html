@@ -1,8 +1,16 @@
+<!-- Page shows the search results from a search on the site -->
+
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
 <div class="container">
+    <!-- Show the title with the search parameter -->
 	<h1>Search: {{=request.vars.q}}</h1>
 	<p>Results</p>
+    
+    <!--
+        Show transcription projects that match the search query, using the subview 
+        display-txs
+    -->
 	{{include "subviews/display-txs.html"}}
 </div>
