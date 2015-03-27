@@ -14,11 +14,17 @@
     <!-- If the project has images, for each image: -->
     {{if images:}}
         {{for image in images:}}
-            <div class="view-image">
-                <div class="col-md-9">
-                    <img class="view-img" src="{{=URL('default','download',args=image.image)}}" />
+            <!-- Create a row for each image and it's associated text -->
+            <div class="row">
+                <!--
+                    Center images and text in the page (can't use the full width, or the
+                    image is too big) by creating a constant space down the left side. 
+                -->
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <img class="view-img-fill-div" src="{{=URL('default','download',args=image.image)}}" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
 
 
@@ -36,6 +42,7 @@
                         <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
                     {{pass}}
                 </div>
+                <div class="col-md-1"></div>
             </div>
         {{pass}}
     {{pass}}

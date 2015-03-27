@@ -79,8 +79,18 @@ td {
     border:1px solid #ddd;
     margin-bottom:50px;
     background-color: #eee;
-
 }
+
+.view-img-fill-div {
+    width:100%;
+    overflow:hidden;
+    position: relative;
+
+    border:1px solid #ddd;
+    margin-bottom:50px;
+    background-color: #eee;
+}
+
 .view-img  img {
     position: absolute;
   left: 50%;
@@ -92,7 +102,6 @@ td {
       -ms-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
 }
-
 
 .image-description,
 .list-fields,
