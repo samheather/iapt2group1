@@ -64,7 +64,7 @@
                         </div>
 					{{else:}}
                         <div class="form-group">
-                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}">
+                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form navbar-left" role="search"">
                               <label for="search_text">Search</label>
                               <input id="search_text" type="text" name="q" value="{{=request.vars.q}}" />
                               <input type="submit" value="Go"/>
