@@ -8,10 +8,13 @@
 {{for project in projects:}}
         <li class="cell">
            <div class="project-tile">
+               <!-- Upper row to contain the thumbnail -->
                <div class="row1">
                     <img src="{{=URL('default','download',args=project.image)}}" />
                </div>
            </div>
+
+            <!-- Second row to display the project title -->
             <div class="row2">
                 <div class="title">
                     <a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a>

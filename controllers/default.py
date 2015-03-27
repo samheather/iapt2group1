@@ -5,7 +5,11 @@ import datetime
 #from tx import *
 
 def index():
-    projects = db(db.ProjectsForTranscription.id>0).select()
+    projects = db(db.ProjectsForTranscription.id>0).select(orderby=~db.ProjectsForTranscription.id, limitby=(0, 5))
+    return dict(projects=projects)
+
+def browse():
+    projects = db(db.ProjectsForTranscription.id>0).select(orderby=~db.ProjectsForTranscription.id)
     return dict(projects=projects)
 
 def search():

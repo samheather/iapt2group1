@@ -1,0 +1,15 @@
+<!--
+    Browse page of the website. Shows all projects awaiting transcription
+-->
+
+<!-- Show in the project template -->
+{{extend 'tx-layout.html'}}
+
+    <!--
+        Seciton to contain projects most in need of transcription (because they are old)
+    -->
+    <div class="section">
+    	<h2>Projects Awaiting Transcriptions:</h2>
+    	<!-- General transcription project list, using the subview display-txs -->
+		{{include "subviews/display-txs.html"}}
+	</div>

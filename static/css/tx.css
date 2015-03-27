@@ -68,7 +68,7 @@ td {
 }
 
 .just-added-project {
-	background-color: #DEF6D5; !important
+	background-color: #DEF6D5 !important;
 }
 
 .view-img {
@@ -236,4 +236,17 @@ div.title {
 .project-tile img {
     width: 218px;
     height: auto;
+}
+
+#view-more-projects {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    overflow: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#view-more-projects:hover {
+    background-color: #EEE;
 }
