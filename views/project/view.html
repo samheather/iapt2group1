@@ -21,27 +21,54 @@
                     image is too big) by creating a constant space down the left side. 
                 -->
                 <div class="col-md-1"></div>
+                
+                <!--
+                    Unless on a mobile screen, show the image to take 5/12th of the screen
+                    - enough to see it by, but not so much that it dominates the screen
+                    space.
+                -->
                 <div class="col-md-5">
                     <img class="view-img-fill-div" src="{{=URL('default','download',args=image.image)}}" />
                 </div>
+                
+                <!--
+                    Unless on a mobile screen, show the accompanying text and button next
+                    to the image in a div of the same sive.
+                -->
                 <div class="col-md-5">
                     <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
 
-
+                    <!--
+                        If fields exist to transcribe data into exist in this project,
+                        list the names of the fields of data we want.
+                    -->
                     {{if fields:}}
-                    <div id="list-fields">
-                        <b>Fields for Transcription:</b>
-                        {{for field in fields:}}
-                        <li>{{=field.label}}</li>
-                        {{pass}}
-                    </div>
+                        <div id="list-fields">
+                            <b>Fields for Transcription:</b>
+                            <!--
+                                For each field, show list the friendly name of the data we
+                                are trying to capture.
+                            -->
+                            {{for field in fields:}}
+                                <li>{{=field.label}}</li>
+                            {{pass}}
+                        </div>
                     {{pass}}
+                    <!-- If the image has got >=3 pending transcriptions or an accepted
+                        transcription (determined from done()) then don't show a button,
+                        simply show an explanatory message.
+                    -->
                     {{if image.done():}}
                         Image Closed for Transcriptions
+                    <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
                         <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
                     {{pass}}
                 </div>
+                <!--
+                    Center images and text in the page (can't use the full width, or the
+                    image is too big) by creating a constant space down the left side. 
+                -->
                 <div class="col-md-1"></div>
             </div>
         {{pass}}
