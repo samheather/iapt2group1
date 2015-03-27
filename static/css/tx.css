@@ -123,6 +123,7 @@ td {
 .navbar-bg {
     background-color: #000000;
     color:#FFFFFF !important;
+    font-weight: bolder;
 }
 
 .navbar-nav > li > a {
@@ -132,12 +133,13 @@ td {
 /*
     Search Form
 */
-#search-form {
+#search-form input{
     color: #1E2226;
 }
 
 #search-form .btn {
     margin-top: -4px;
+    padding: 4px 12px;
 }
 
 #search-form  input[type=text] {
