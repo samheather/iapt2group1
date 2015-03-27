@@ -13,12 +13,10 @@
 
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        {{if not 'register' in auth.settings.actions_disabled:}}
             <h3>Returning Users</h3>
             <p>Already have an account?</p>
             <a href="{{=URL('user','login')}}">Log In</a>
 
-              {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
             <p>Forgotten password?</p>
             <a href="{{=URL('user','reset')}}">Reset password</a>
             {{pass}}
