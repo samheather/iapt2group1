@@ -1,11 +1,25 @@
+<!--
+	This is a Subview used to list open projects on the website. Examples of use include
+	the home page and the search page. It saves repeating the below code.
+-->
+
+<!-- Create a divider which contains the list of projects -->
 <div id="projects">
     {{for project in projects:}}
         <div class="row">
+        	<!--
+        		Create a column 1/4 width or full screen on mobile device to show the
+        		project image
+        	-->
             <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3 ">
                 <div class="view-img">
                     <img src="{{=URL('default','download',args=project.image)}}" />
                 </div>
             </div>
+            <!--
+            	Use the rest of the space (full screen width on mobile) for the project
+            	title
+            -->
             <div class="col-xs-12 col-sm-8 col-lg-8 col-md-8">
                  <h2><a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a></h2>
             </div>

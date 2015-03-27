@@ -1,6 +1,7 @@
+<!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <!-- Main jumbotron for site title (TX) and tagline of what we do. -->
     <div class="jumbotron">
       <div class="section">
         <h1>Welcome to TX!</h1>
@@ -9,10 +10,11 @@
       </div>
     </div>
 
-
-    
+    <!--
+        Seciton to contain projects most in need of transcription (because they are old)
+    -->
     <div class="section">
     	<h2>Oldest Pending Projects Awaiting Transcriptions:</h2>
-
+    	<!-- General transcription project list, using the subview display-txs -->
 		{{include "subviews/display-txs.html"}}
 	</div>

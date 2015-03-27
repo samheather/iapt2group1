@@ -1,8 +1,10 @@
+<!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
 <div class="container">
 	<h1>Dashboard</h1>
 	<h2>Your Projects:</h2>
+	<!-- Table containing list of projects belonging to that user -->
 	<table class="table table-striped">
 		<tr>
 			<th></th> <!-- Image -->
@@ -10,18 +12,33 @@
 			<th>Transcription Status</th>
 			<th>Options</th>
 		</tr>
+		<!--
+			Generate each row from each project in the projects belonging to that user
+		-->
 		{{for project in projects:}}
+			<!--
+				If the project ID in this row is the project that was just created, make
+				the background colour of this row green to indicate to the user that this
+				is the project they just created.
+			-->
 			{{if project.Project.id == justAddedProject_id:}}
 				<tr class="just-added-project">
 			{{else:}}
 				<tr>
 			{{pass}}
+				<!-- Now add the image, title and transcription count for each project -->
 				<td><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" class="table-image-view" /></td>
 				<td>{{=project.Project.title}}</td>
 				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
-				<td>{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}
+				<td>
+					<!-- If the project can be opened, show an open button -->
+					{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}
+					
+					<!-- If the project can be closed, show a close button -->
 					{{if project.Project.canClose():}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.Project.id])}}">Close</a>{{pass}}
-					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions <span>for {{=project.Project.title}}</span></a></td>
+					
+					<!-- Add a button to view available transcriptions -->
+					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions</a></td>
 			</tr>
 		{{pass}}
 	</table>
