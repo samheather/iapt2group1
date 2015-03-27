@@ -187,3 +187,44 @@ a span {
 .error {
     color:#DD3333;
 }
+
+/*
+    Index
+*/
+ul.projects {
+    margin-left: 0;
+    float: left;
+    clear: left;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+li.cell {
+    float: left;
+    width: 226px;
+    list-style: none;
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+    white-space: normal;
+}
+
+.row2 {
+    width: 198px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.title {
+    font-size: 125%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.project-tile img {
+    width: 218px;
+    height: auto;
+}
