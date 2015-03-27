@@ -71,11 +71,6 @@ td {
 	background-color: #DEF6D5; !important
 }
 
-
-
-
-
-
 .view-img {
     height:180px;
     overflow:hidden;
@@ -119,13 +114,6 @@ td {
     vertical-align: middle;
 }
 
-nav .navbar {
-    height:70px !important;
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-}
-
-
 .navbar-brand {
     font-family: 'Shadows Into Light', cursive;
     font-size:200%;
@@ -135,10 +123,27 @@ nav .navbar {
 .navbar-bg {
     background-color: #000000;
     color:#FFFFFF !important;
+    font-weight: bolder;
 }
 
 .navbar-nav > li > a {
     color:#EEEEEE !important;
+}
+
+/*
+    Search Form
+*/
+#search-form input{
+    color: #1E2226;
+}
+
+#search-form .btn {
+    margin-top: -4px;
+    padding: 4px 12px;
+}
+
+#search-form  input[type=text] {
+    margin-top: 3px;
 }
 
 
