@@ -38,6 +38,7 @@
                 <td>{{if project.Project.canOpen(): }} <i>Closed</i>{{else:}}<i>Open</i>{{pass}}</td>
 				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
 				<td>
+                    <a class="btn btn-primary" href="{{=URL('project', 'view', args=[project.Project.id])}}">View <span>{{=project.Project.title}}</span></a>
 					<!-- If the project can be opened, show an open button -->
 					{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}
 					
