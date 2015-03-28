@@ -1,3 +1,4 @@
+{{if not ("active" in locals()): active=""}}
 <!DOCTYPE html>
 
 <!-- Set the site language -->
@@ -57,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand-colour navbar-brand" href="{{=URL('default','index')}}">TX<span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="brand-colour navbar-brand" href="{{=URL('default','index')}}">TransXribe<span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
@@ -65,17 +66,17 @@
           <ul class="nav navbar-nav ">
             <!-- If nobody is signed in, show the register and login buttons -->
           	{{if (auth.user == None):}}
-                <li><a href="{{=URL('default','browse')}}">Browse Collections</a></li>
-            	<li><a href="{{=URL('user','register')}}">Register</a></li>
-            	<li><a href="{{=URL('user','login')}}">Login<span class="sr-only">(current)</span></a></li>
+                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
+            	<li {{if active=="register":}}class="current"{{pass}}><a href="{{=URL('user','register')}}">Register</a><span></span></li>
+            	<li {{if active=="login":}}class="current"{{pass}}><a href="{{=URL('user','login')}}">Login<span></span></a></li>
             <!--
                 Else, user is logged in, so offer them to create a project, view the
                 dashboard or logout entirely.
             -->
             {{else:}}
-            	<li><a href="{{=URL('project','create')}}">New Collection</a></li>
-                <li><a href="{{=URL('default','dashboard')}}">Browse Collections</a></li>
-				<li><a href="{{=URL('default','dashboard')}}">Dashboard</a></li>
+            	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">New Collection</a><span></span></li>
+                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
+				<li {{if active=="dashboard":}}class="current"{{pass}}><a href="{{=URL('default','dashboard')}}">Dashboard</a><span></span></li>
 				<li><a href="{{=URL('user','logout')}}">Log out</a></li>
             {{pass}}
           </ul>
