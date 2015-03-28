@@ -267,5 +267,15 @@ form .btn-primary {
 }
 
 #owner {
-    font-size: 50%;
+    font-size: 40%;
+}
+
+#project-description {
+    font-size:1.40em;
+    margin-bottom: 1cm;
+}
+
+#project-title {
+    margin-top: 1cm;
+    margin-bottom: 0.5cm;
 }
