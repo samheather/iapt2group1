@@ -7,56 +7,22 @@
 {{extend 'tx-layout.html'}}
 
     <div class="section">
-        <h1>Create Collection: {{=project.title}}</h1>
 
+        <!-- Project title and description -->
+        <h1>Create Collection: {{=project.title}}</h1>
         <p>Description: {{=project.requestDescription}}</p>
 
     	<div class="row">
-<<<<<<< HEAD
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-				<div class="project-section">
-                    <h2>Fields</h2>
 
-                    {{if len(project.customFields()) >0: }}
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Field Name</th>
-                            <th>Field Type</th>
-                            <th></th>
-                        </tr>
-                        {{for field in project.customFields():}}
-                        <tr>
-                            <td>{{=field.ProjectField.label}}</td>
-                            <td>{{=field.TranscriptionFieldType.friendlyName}}</td>
-                            <td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
-                        </tr>
-                        {{pass}}
-                    </table>
-                    {{else:}}
-                    <p>This project has no fields.</p>
-                    {{pass}}
-                    <a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
-                </div>
-
-
-                <div class="project-section">
-
-				<h2>Records</h2>
-
-                {{if len(project.images()) >0: }}
-=======
-    		<!-- Project title and description -->
-    		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-				<h2>Create Project: {{=project.title}} - Page 2 of 2</h2>
-				<p>Description: {{=project.requestDescription}}</p>
-			</div>
 			<!-- Tables showing Fields and Images, and their add/delete buttons -->
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 				<!--
 					Title, list of fields, and open to add more Fields.
 				-->
-				<h3>Fields</h3>
-				<p>Current Field:<p>
+
+                <div class="project-section">
+				<h2>Fields</h2>
+                {{if len(project.images()) >0: }}
 				<!-- Start the table for Fields -->
 				<table class="table table-striped">
 					<tr>
@@ -78,17 +44,30 @@
 					</tr>
 					{{pass}}
 				</table>
+                {{else:}}
+                <p>This project has no fields</p>
+                {{pass}}
 				<!-- After the the table, show a button to add Fields.-->
 				<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
+                </div>
 
+
+
+
+
+
+
+                <div class="project-section">
 				<!--
 					Table showing images added, their delete buttons, and open to upload
 					more images
 				-->
-				<h3>Images</h3>
-				<p>Current Images:<p>
+
+				<h2>Images</h2>
+
+                {{if len(project.images()) >0: }}
+
 				<!-- Start the table for Images -->
->>>>>>> 005ff652156e5626eb19f71d6b6fbcacd70cf1a3
 				<table class="table table-striped">
 					<tr>
 						<th>Image</th>
@@ -109,21 +88,19 @@
 					</tr>
 					{{pass}}
 				</table>
-<<<<<<< HEAD
-                {{else:}}
-                <p>This project has no records.</p>
-                {{pass}}
-				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Upload Image</a>
-                    </div>
-			</div>
 
-=======
-				<!-- After the the table, show a button to add Images.-->
-				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
+                    {{else:}}
+                        <p>This project has no images.</p>
+                    {{pass}}
+                    <!-- After the the table, show a button to add Images.-->
+				    <a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Upload Image</a>
+                </div>
+
+
+
 			</div>
 			
 			<!-- Show a sidebar with instrucitons on adding fields and images -->
->>>>>>> 005ff652156e5626eb19f71d6b6fbcacd70cf1a3
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div><span class="step">1</span>Create Collection</div>
                 <div><span class="step active_step">2</span>Add Fields and Records</div>
