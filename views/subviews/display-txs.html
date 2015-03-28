@@ -4,26 +4,22 @@
 -->
 
 <!-- Create a divider which contains the list of projects -->
-<div id="projects">
-    {{for project in projects:}}
-        <div class="row">
-        	<!--
-        		Create a column 1/4 width or full screen on mobile device to show the
-        		project image
-        	-->
-            <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3 ">
-                <div class="view-img">
+<ul class="projects">
+{{for project in projects:}}
+        <li class="cell">
+           <div class="project-tile">
+               <!-- Upper row to contain the thumbnail -->
+               <div class="row1">
                     <img src="{{=URL('default','download',args=project.image)}}" />
+               </div>
+           </div>
+
+            <!-- Second row to display the project title -->
+            <div class="row2">
+                <div class="title">
+                    <a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a>
                 </div>
             </div>
-            <!--
-            	Use the rest of the space (full screen width on mobile) for the project
-            	title
-            -->
-            <div class="col-xs-12 col-sm-9 col-lg-9 col-md-9">
-                 <h2><a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a></h2>
-            </div>
-        </div>
+        </li>
     {{pass}}
-
-</div>
+</ul>

@@ -6,11 +6,19 @@
 <div class="container">
     <!-- Show the title with the search parameter -->
 	<h1>Search: {{=request.vars.q}}</h1>
-	<p>Results</p>
-    
+
     <!--
-        Show transcription projects that match the search query, using the subview 
-        display-txs
+        Display results, if there are any. Otherwise, inform the user that
+        no projects have been found.
     -->
-	{{include "subviews/display-txs.html"}}
+    {{if projects:}}
+        <h2>Results</h2>
+        <!--
+            Show transcription projects that match the search query, using the subview
+            display-txs
+        -->
+        {{include "subviews/display-txs.html"}}
+    {{else:}}
+        <h2>There are no projects which match your query.</h2>
+    {{pass}}
 </div>

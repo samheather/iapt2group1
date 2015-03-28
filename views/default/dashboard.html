@@ -45,7 +45,7 @@
 					{{if project.Project.canClose():}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.Project.id])}}">Close</a>{{pass}}
 					
 					<!-- Add a button to view available transcriptions -->
-					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions</a></td>
+					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions<span> for {{=project.Project.title}}</span></a></td>
 			</tr>
 		{{pass}}
 	</table>
