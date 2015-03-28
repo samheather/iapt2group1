@@ -12,6 +12,27 @@ html, body
     height: 100%;
 }
 
+.step {
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fafafa;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.active_step {
+    background-color: #5382BE;
+    color: #fafafa;
+}
+
+.project-section {
+    padding-bottom: 40px;
+}
+
 
 #search_text {
     font-size:12px;

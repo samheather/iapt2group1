@@ -36,7 +36,7 @@ def addImage():
     message = ""
     if form.process().accepted:
         redirect(URL('project', 'populate', args=project_id))
-    return dict(form=form, message=message)
+    return dict(form=form, message=message,projectid=project_id)
 
 @auth.requires_login()
 def addField():
@@ -51,7 +51,7 @@ def addField():
     message = ""
     if form.process().accepted:
         redirect(URL('project', 'populate', args=project_id))
-    return dict(form=form, message=message)
+    return dict(form=form, message=message,projectid=project_id)
 
 def view():
     # Set the page title

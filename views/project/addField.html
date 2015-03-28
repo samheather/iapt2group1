@@ -7,7 +7,16 @@
 {{extend 'tx-layout.html'}}
     
     <div class="section">
-    	<h2>Add New Field:</h2>
+        <h1>Create Collection</h1>
+        <h2>Add Field</h2>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">{{=form}}</div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div><span class="step">1</span>Create Collection</div>
+                <div><span class="step active_step">2</span> <a href="{{=URL('project','populate',args=projectid)}}">Add Fields and Records</a></div>
+                <div><span class="step">3</span>Open To Public</div></div>
+        </div>
+
     	<!-- Show the form for adding a field -->
-    	{{=form}}
+
     </div>

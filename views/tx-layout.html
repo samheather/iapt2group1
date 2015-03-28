@@ -68,7 +68,7 @@
           	{{if (auth.user == None):}}
                 <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
             	<li {{if active=="register":}}class="current"{{pass}}><a href="{{=URL('user','register')}}">Register</a><span></span></li>
-            	<li {{if active=="login":}}class="current"{{pass}}><a href="{{=URL('user','login')}}">Login<span></span></a></li>
+            	<li {{if active=="login":}}class="current"{{pass}}><a href="{{=URL('user','login')}}">Login</a><span></span></li>
             <!--
                 Else, user is logged in, so offer them to create a project, view the
                 dashboard or logout entirely.

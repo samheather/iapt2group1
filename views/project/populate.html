@@ -7,30 +7,42 @@
 {{extend 'tx-layout.html'}}
 
     <div class="section">
-    	<div class="row">
-			<h2 class="col-xs-12 col-sm-8 col-md-8 col-lg-8">Create Project: {{=project.title}} - Page 2 of 2</h2>
-			<p class="col-xs-12 col-sm-8 col-md-8 col-lg-8">Description: {{=project.requestDescription}}</p>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-				<h3>Add Fields</h3>
-				<p>Current Field:<p>
-				<table class="table table-striped">
-					<tr>
-						<th>Field Name</th>
-						<th>Field Type</th>
-						<th></th>
-					</tr>
-					{{for field in project.customFields():}}
-					<tr>
-						<td>{{=field.ProjectField.label}}</td>
-						<td>{{=field.TranscriptionFieldType.friendlyName}}</td>
-						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
-					</tr>
-					{{pass}}
-				</table>
-				<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
+        <h1>Create Collection: {{=project.title}}</h1>
 
-				<h3>Add Images</h3>
-				<p>Current Images:<p>
+        <p>Description: {{=project.requestDescription}}</p>
+
+    	<div class="row">
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+				<div class="project-section">
+                    <h2>Fields</h2>
+
+                    {{if len(project.customFields()) >0: }}
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Field Name</th>
+                            <th>Field Type</th>
+                            <th></th>
+                        </tr>
+                        {{for field in project.customFields():}}
+                        <tr>
+                            <td>{{=field.ProjectField.label}}</td>
+                            <td>{{=field.TranscriptionFieldType.friendlyName}}</td>
+                            <td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
+                        </tr>
+                        {{pass}}
+                    </table>
+                    {{else:}}
+                    <p>This project has no fields.</p>
+                    {{pass}}
+                    <a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
+                </div>
+
+
+                <div class="project-section">
+
+				<h2>Records</h2>
+
+                {{if len(project.images()) >0: }}
 				<table class="table table-striped">
 					<tr>
 						<th>Image</th>
@@ -45,9 +57,17 @@
 					</tr>
 					{{pass}}
 				</table>
-				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
+                {{else:}}
+                <p>This project has no records.</p>
+                {{pass}}
+				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Upload Image</a>
+                    </div>
 			</div>
+
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div><span class="step">1</span>Create Collection</div>
+                <div><span class="step active_step">2</span>Add Fields and Records</div>
+                <div><span class="step">3</span>Open To Public</div>
                 <div class="instructions">
                     <h3>Instructions</h3>
                     <p>Add fields to represent the information that you would like to be
