@@ -91,7 +91,16 @@
 
 		<!--
 			Show a large central button for creating the project, now that images
-			and fields have been added.
+			and fields have been added. 
 		-->
-    	<p class="center"><a class="btn btn-primary btn-lg" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a><p>
+		<p class="center">
+		<!-- First check if can create a button. If can, proceed -->
+		{{if canClickCreate:}}
+	    	<a class="btn btn-primary btn-lg" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a>
+	    <!-- Else, add the disabled class and show an feedforward message explaining the reason -->
+	    {{else:}}
+		    <a class="btn btn-primary btn-lg disabled" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a>
+		    <br /><i>{{=canClickCreateMessage}}</i>
+	    {{pass}}
+	    </p>
 	</div>

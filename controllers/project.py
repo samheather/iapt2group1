@@ -21,7 +21,22 @@ def populate():
 
     project_id = request.args(0)
     project = db((db.Project.id == project_id)).select()[0]
-    return dict(project=project)
+    
+    canClickCreate = True
+    canClickCreateMessage = ''
+    if (len(project.customFields()) == 0):
+        canClickCreate = False
+        canClickCreateMessage = 'Please add some fields to this project to be able to submit.'
+    elif (len(project.images()) == 0):
+        canClickCreate = False
+        canClickCreateMessage = 'Please upload some images to this project to be able to submit.'
+    if (len(project.customFields()) == 0) and (len(project.images()) == 0):
+        canClickCreate = False
+        canClickCreateMessage = 'Please add fields and images to this project to be able to submit.'
+    
+    return dict(project=project,
+                canClickCreate=canClickCreate,
+                canClickCreateMessage=canClickCreateMessage)
 
 @auth.requires_login()
 def addImage():
