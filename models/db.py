@@ -34,7 +34,7 @@ db.define_table('Project',
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
-			Field('image', 'upload'),
+			Field('image', 'upload', comment="Maximum file size: Xmb"),
 			Field('imageDescription', 'string',
                   label='Image Description',
                   requires=[

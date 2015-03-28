@@ -21,7 +21,7 @@ def populate():
 def addImage():
     project_id = request.args(0)
 
-    form = BOOTSTRAPFORM(db.Image)
+    form = BOOTSTRAPFORM(db.Image, submit_button = "Upload image and return to Create Project")
     # Fill in the Project ID
     form.vars.project_id = project_id
     message = ""
