@@ -62,7 +62,7 @@
                         Image Closed for Transcriptions
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
-                        <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
+                        <a id="transcribe-button" class="btn btn-primary" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
                     {{pass}}
                 </div>
                 <!--
