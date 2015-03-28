@@ -62,6 +62,10 @@ nav{
 	text-align:center;
 }
 
+#search_text {
+    padding:0;
+    font-size:11px;
+}
 .navlist li{
     display:inline;
 }

@@ -12,6 +12,26 @@ html, body
     height: 100%;
 }
 
+#search_text {
+    font-size:12px;
+    padding-bottom:0;
+    margin-bottom:0;
+    padding-top:0px;
+    margin-top:0px;
+    font-weight: Normal;
+}
+#search-form  {
+    margin-top:6px;
+}
+#search-form .input-group-btn {
+    padding-top:7px;
+}
+
+#search-form .input-group-btn button {
+    height:34px !important;
+    position: relative;
+}
+
 .container[role=main]  {
     min-height: 100%;
     margin-top:-175px;

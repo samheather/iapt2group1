@@ -60,38 +60,12 @@
           <a class="brand-colour navbar-brand" href="{{=URL('default','index')}}">TX<span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li>
-                <!-- Setup the search bar -->
-                <!-- If there is currently not a search term: -->
- 				{{if (request.vars.q==None):}}
-						<div class="form-group">
-                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form navbar-left" role="search">
-                                <label for="search_text">Search</label>
-                                <input id="search_text" type="text" name="q" />
-                                <input type="submit" value="Go"/>
-                            </form>
-                        </div>
-                    <!--
-                        Or if there is currently a search term, change the apearance to
-                        show that search term in the box.
-                    -->
-					{{else:}}
-                        <div class="form-group">
-                            <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form navbar-left" role="search"">
-                              <label for="search_text">Search</label>
-                              <input id="search_text" type="text" name="q" value="{{=request.vars.q}}" />
-                              <input type="submit" value="Go"/>
-                            </form>
-                        </div>
-					{{pass}}
-            </li>
-          </ul>
-          
+
           <!-- Now setup the right hand side of the nav bar -->
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav ">
             <!-- If nobody is signed in, show the register and login buttons -->
           	{{if (auth.user == None):}}
+                <li><a href="{{=URL('default','browse')}}">Browse Collections</a></li>
             	<li><a href="{{=URL('user','register')}}">Register</a></li>
             	<li><a href="{{=URL('user','login')}}">Login<span class="sr-only">(current)</span></a></li>
             <!--
@@ -99,11 +73,30 @@
                 dashboard or logout entirely.
             -->
             {{else:}}
-            	<li><a href="{{=URL('project','create')}}">New Project</a></li>
+            	<li><a href="{{=URL('project','create')}}">New Collection</a></li>
+                <li><a href="{{=URL('default','dashboard')}}">Browse Collections</a></li>
 				<li><a href="{{=URL('default','dashboard')}}">Dashboard</a></li>
 				<li><a href="{{=URL('user','logout')}}">Log out</a></li>
             {{pass}}
           </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+
+                <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form" role="search">
+
+
+                    <div class="input-group">
+                        <input type="text" id="search_text" name="q" value="{{=request.vars.q or ""}}" class="form-control" placeholder="Search Collections">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+
+            </li>
+          </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>
