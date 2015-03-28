@@ -8,45 +8,74 @@
 
     <div class="section">
     	<div class="row">
-			<h2 class="col-xs-12 col-sm-8 col-md-8 col-lg-8">Create Project: {{=project.title}} - Page 2 of 2</h2>
-			<p class="col-xs-12 col-sm-8 col-md-8 col-lg-8">Description: {{=project.requestDescription}}</p>
+    		<!-- Project title and description -->
+    		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+				<h2>Create Project: {{=project.title}} - Page 2 of 2</h2>
+				<p>Description: {{=project.requestDescription}}</p>
+			</div>
+			<!-- Tables showing Fields and Images, and their add/delete buttons -->
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-				<h3>Add Fields</h3>
+				<!--
+					Title, list of fields, and open to add more Fields.
+				-->
+				<h3>Fields</h3>
 				<p>Current Field:<p>
+				<!-- Start the table for Fields -->
 				<table class="table table-striped">
 					<tr>
 						<th>Field Name</th>
 						<th>Field Type</th>
 						<th></th>
 					</tr>
+					<!-- For each field added so far -->
 					{{for field in project.customFields():}}
 					<tr>
+						<!-- Show the field title -->
 						<td>{{=field.ProjectField.label}}</td>
+						
+						<!-- Show the field type -->
 						<td>{{=field.TranscriptionFieldType.friendlyName}}</td>
+						
+						<!-- Show a delete button to delete the field -->
 						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
 					</tr>
 					{{pass}}
 				</table>
+				<!-- After the the table, show a button to add Fields.-->
 				<a class="btn btn-primary" href="{{=URL('project', 'addField', args=project.id)}}">Add Field</a>
 
-				<h3>Add Images</h3>
+				<!--
+					Table showing images added, their delete buttons, and open to upload
+					more images
+				-->
+				<h3>Images</h3>
 				<p>Current Images:<p>
+				<!-- Start the table for Images -->
 				<table class="table table-striped">
 					<tr>
 						<th>Image</th>
 						<th>Description</th>
 						<th></th>
 					</tr>
+					<!-- For each image added so far: -->
 					{{for image in project.images():}}
 					<tr>
+						<!-- Show the image -->
 						<td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
+						
+						<!-- Show the iamge description -->
 						<td>{{=image.imageDescription}}</td>
+						
+						<!-- Show a button to delete the image -->
 						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>
 					</tr>
 					{{pass}}
 				</table>
+				<!-- After the the table, show a button to add Images.-->
 				<a class="btn btn-primary" href="{{=URL('project', 'addImage', args=project.id)}}">Add Image</a>
 			</div>
+			
+			<!-- Show a sidebar with instrucitons on adding fields and images -->
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="instructions">
                     <h3>Instructions</h3>
@@ -60,5 +89,9 @@
 			</div>
 		</div>
 
+		<!--
+			Show a large central button for creating the project, now that images
+			and fields have been added.
+		-->
     	<p class="center"><a class="btn btn-primary btn-lg" href="{{=URL('default', 'dashboard', args=project.id)}}">Create Project</a><p>
 	</div>
