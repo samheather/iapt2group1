@@ -37,6 +37,8 @@ def search():
 
     return dict(projects=projects, term=term)
 
+def login():
+    redirect(URL('user','login',args='invalid'))
 
 
 @auth.requires_login()

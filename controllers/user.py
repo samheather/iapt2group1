@@ -2,8 +2,10 @@ def login():
     # Set the page title
     response.title = T('Login | ') + request.application
 
-    request.args.append("login")
+    request.args.insert(0,"login")
+
     auth.settings.formstyle = 'bootstrap3_stacked'
+
     return dict(form=auth())
 
 
