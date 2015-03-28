@@ -265,3 +265,22 @@ form .btn-primary {
     margin-top: 10px;
 
 }
+
+#owner {
+    font-size: 40%;
+}
+
+#project-description {
+    font-size:1.40em;
+    margin-bottom: 1cm;
+}
+
+#project-title {
+    margin-top: 1cm;
+    margin-bottom: 0.5cm;
+}
+
+#transcribe-description {
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+}

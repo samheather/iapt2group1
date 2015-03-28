@@ -7,10 +7,10 @@
 {{extend 'tx-layout.html'}}
 
 <!-- First display the project title and owner -->
-<h2 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h2>
+<h1 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h1>
 
 <!-- Show the project description -->
-<h3 id="project-description">{{=project.requestDescription}}</h3>
+<h4 id="project-description">{{=project.requestDescription}}</h4>
     <!-- If the project has images, for each image: -->
     {{if images:}}
         {{for image in images:}}
@@ -62,7 +62,7 @@
                         Image Closed for Transcriptions
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
-                        <a id="transcribe-button" class="btn btn-default" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image here</a>
+                        <a id="transcribe-button" class="btn btn-primary" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
                     {{pass}}
                 </div>
                 <!--
