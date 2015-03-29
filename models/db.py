@@ -34,10 +34,10 @@ db.define_table('Project',
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
-			Field('image', 'upload', comment=("Maximum file size: Xmb")),
 			Field('image', 'upload'
                   , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."
-                  , requires=IS_IMAGE(error_message="Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP.")),
+                  , requires=[IS_NOT_EMPTY(error_message="Please select an image file"),
+                              IS_IMAGE(error_message="Invalid format. Image has to be in JPG/JPEG/PNG/GIF/BMP format")]),
 			Field('imageDescription', 'string',
                   label='Image Description',
                   requires=[
@@ -48,9 +48,6 @@ db.define_table('Image',
             Field('acceptedTranscription_id', 'reference Transcription', required=False, readable=False, writable=False),
             migrate=False
 )
-
-db.Image.image.requires=[IS_NOT_EMPTY(error_message="Please select an image file"),
-                         IS_IMAGE(extensions=('bmp', 'gif', 'jpeg', 'png'), error_message='Invalid format. Image has to be in JPG/JPEG/PNG/GIF/BMP format')]
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
