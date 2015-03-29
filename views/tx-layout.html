@@ -86,9 +86,8 @@
 
                 <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form" role="search">
 
-
+                    <label class="sr-only" for="search_text">Search</label>
                     <div class="input-group">
-                        <label class="sr-only" for="search_text">Search</label>
                         <input type="text" id="search_text" name="q" value="{{=request.vars.q or ""}}" class="form-control" placeholder="Search Collections">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Search</button>
