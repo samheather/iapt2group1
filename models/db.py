@@ -21,8 +21,8 @@ if db(db.TranscriptionFieldType.id > 0).count() == 0:
 	db.commit()
 
 db.define_table('Project',
-			Field('title', 'string', label='Title', requires=IS_LENGTH(minsize=1, maxsize=100), required=True),
-			Field('requestDescription', 'text', label='Request Description', requires=IS_LENGTH(minsize=1, maxsize=300), required=True),
+			Field('title', 'string', label='Title', requires=(IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=100)), required=True),
+			Field('requestDescription', 'text', label='Request Description', requires=(IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=300)), required=True),
 			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
 			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False),
             Field.Method('canOpen',lambda row: (row.Project.projectOpen==False)),
@@ -34,17 +34,20 @@ db.define_table('Project',
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
-			Field('image', 'upload', comment="Maximum file size: Xmb"),
+			Field('image', 'upload', comment=("Maximum file size: Xmb")),
 			Field('imageDescription', 'string',
                   label='Image Description',
                   requires=[
-                      IS_LENGTH(minsize=0,error_message="Please enter an image description"),
-                      IS_LENGTH(minsize=0, maxsize=100,error_message="Please enter an image description shorter than 100 characters")],
+                      IS_NOT_EMPTY(error_message="Cannot be empty. Please enter an image description shorter than 100 characters"),
+                      IS_LENGTH(minsize=1, maxsize=100)],
                   required=True
                   ),
             Field('acceptedTranscription_id', 'reference Transcription', required=False, readable=False, writable=False),
             migrate=False
 )
+
+db.Image.image.requires=[IS_NOT_EMPTY(error_message="Please select an image file"),
+                         IS_IMAGE(extensions=('bmp', 'gif', 'jpeg', 'png'), error_message='Invalid format. Image has to be in JPG/JPEG/PNG/GIF/BMP format')]
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
@@ -62,8 +65,8 @@ db.executesql('CREATE TABLE IF NOT EXISTS Image '
 
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
-			Field('type_id', db.TranscriptionFieldType, requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type"), required=True, label='Field Type'),
-			Field('label', 'string', requires=IS_LENGTH(minsize=1, maxsize=30), required=True)
+			Field('type_id', db.TranscriptionFieldType, required=True, label='Field Type', requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type",error_message="Please select a field type!")),
+			Field('label', 'string', requires=[IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=30)], required=True)
 )
 
 db.define_table('TranscriptionField',
@@ -130,5 +133,3 @@ db.Project.images = Field.Method(lambda row: db(db.Image.project_id == row.Proje
 db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id) &  (db.ProjectTranscriptionCount.fieldCount>0) & (db.ProjectTranscriptionCount.imageCount>0)).select())
 db.Image.done = Field.Method(lambda row: True if (len(db(db.ImagesForTranscription.id == row.Image.id ).select(db.ImagesForTranscription.transcriptionCount)) == 0) or (db(db.ImagesForTranscription.id == row.Image.id ).select(db.ImagesForTranscription.transcriptionCount)[0].transcriptionCount>=3) else False)
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
-
-
