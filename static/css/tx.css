@@ -338,8 +338,11 @@ form .btn-primary {
 }
 
 #project-title {
-    margin-top: 1cm;
     margin-bottom: 0.5cm;
+}
+
+#tx-alert {
+    margin-top: 15px;
 }
 
 #transcribe-description {

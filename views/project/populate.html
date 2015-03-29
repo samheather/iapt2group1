@@ -10,7 +10,7 @@
 
         <!-- Project title and description -->
         <h1>Create Collection: {{=project.title}}</h1>
-        <p>Description: {{=project.requestDescription}}</p>
+        <h3>Description: {{=project.requestDescription}}</h3>
 
     	<div class="row">
 
@@ -21,7 +21,7 @@
 				-->
 
                 <div class="project-section">
-				<h2>Fields</h2>
+				<h3>Fields</h3>
                 {{if len(project.images()) >0: }}
 				<!-- Start the table for Fields -->
 				<table class="table table-striped">
@@ -63,7 +63,7 @@
 					more images
 				-->
 
-				<h2>Images</h2>
+				<h3>Images</h3>
 
                 {{if len(project.images()) >0: }}
 
