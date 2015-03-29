@@ -35,8 +35,7 @@ db.define_table('Project',
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
 			Field('image', 'upload'
-                  , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."
-                  , requires=IS_IMAGE(error_message="Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP.")),
+                  , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
 			Field('imageDescription', 'string',
                   label='Image Description',
                   requires=[
@@ -47,6 +46,9 @@ db.define_table('Image',
             Field('acceptedTranscription_id', 'reference Transcription', required=False, readable=False, writable=False),
             migrate=False
 )
+
+db.Image.image.requires=[IS_IMAGE(error_message="Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP."),
+                         IS_LENGTH(4096,0, error_message="Please choose an image which is less than 5 MB.")]
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
