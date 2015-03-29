@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand-colour navbar-brand" href="{{=URL('default','index')}}">TransXribe<span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="brand-colour navbar-brand brand" href="{{=URL('default','index')}}">TransXribe<span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
@@ -86,7 +86,7 @@
 
                 <form id="search-form" method="GET" action="{{=URL('default', 'search')}}" class="navbar-form" role="search">
 
-
+                    <label class="sr-only" for="search_text">Search</label>
                     <div class="input-group">
                         <input type="text" id="search_text" name="q" value="{{=request.vars.q or ""}}" class="form-control" placeholder="Search Collections">
                         <span class="input-group-btn">

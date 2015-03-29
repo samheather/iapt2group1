@@ -6,6 +6,10 @@
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
+{{if message:}}
+    <div id="tx-alert" class="alert alert-success">{{=message}}</div>
+{{pass}}
+
 <!-- First display the project title and owner -->
 <h1 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h1>
 
