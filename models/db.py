@@ -52,7 +52,7 @@ db.define_table('Image',
 
 db.Image.image.requires=[IS_NOT_EMPTY(error_message="Please select an image file before proceeding."),
                          IS_IMAGE(error_message="Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP."),
-                         IS_LENGTH(4096,0, error_message="Please choose an image which is less than 5 MB.")]
+                         IS_LENGTH(4194304,0, error_message="Please choose an image which is less than 5 MB.")]
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
