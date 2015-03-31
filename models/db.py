@@ -117,6 +117,8 @@ db.define_table('ImagesForTranscription',
 db.define_table('ProjectsForTranscription',
                 Field('id'),
                 Field('title'),
+                Field('requestDescription'),
+                Field('projectOpen'),
                 Field('image'),
                 Field('imageDescription'),
                 Field('imageCount'),migrate=False)
