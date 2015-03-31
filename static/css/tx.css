@@ -106,14 +106,33 @@ td {
 	width:150px;
 }
 
+.row {
+    margin-bottom: 20px;
+}
+
 .center {
 	text-align: center;
 }
 
-.transcribe-button {
-    float: right;
+.flaticon-checked21 {
+    color: green;
+}
+.flaticon-checked21::before {
+    font-size: 30px !important;
+    margin-right: 3px;
 }
 
+.already {
+    font-size: 1.3em;
+    line-height: 1.3em;
+}
+
+.list-fields,
+.image-description,
+.transcribe-button {
+    font-size: 1.3em;
+    margin-top: 30px;
+}
 .just-added-project {
 	background-color: #DEF6D5 !important;
 }
@@ -150,21 +169,6 @@ td {
           transform: translate(-50%,-50%);
 }
 
-.image-description,
-.list-fields,
-.transcribe-button {
-    width: 24%;
-}
-.image-description{
-    float: left;
-}
-.list-fields {
-    display: inline-block;
-}
-.transcribe-button {
-    float: right;
-}
-
 /* Override bootstrap default of top */
 .table > tbody > tr > td {
     vertical-align: middle;
@@ -173,9 +177,6 @@ td {
 .navbar-brand {
     font-size:200%;
     color:#EEE !important;
-}
-
-.brand {
     font-family: 'Shadows Into Light', cursive;
 }
 

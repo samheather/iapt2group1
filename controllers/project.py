@@ -78,7 +78,7 @@ def view():
     project_id = request.args(0) or redirect(URL('default', 'index'))
 
     #Check if there is a project in the database with that ID. If not,
-    # go to the homeapge.
+    # go to the homepage.
     project = db.Project(project_id) or redirect(URL('default', 'index'))
 
     # Only display projects which are open to the public
