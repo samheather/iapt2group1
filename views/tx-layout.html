@@ -101,10 +101,23 @@
 
         </div><!--/.nav-collapse -->
       </div>
+      
     </nav>
 
     <!-- Now show the main page contents -->
 	<div class="container whitebg" role="main">
+        <!-- Show breadcrumbs -->
+        {{if ("breadcrumbs" in locals()):}}
+            <ol class="breadcrumb">
+                {{for breadcrumb in breadcrumbs:}}
+                    {{if breadcrumb != breadcrumbs[-1]:}}
+                        <li><a href="{{=breadcrumb[0]}}">{{=breadcrumb[1]}}</a></li>
+                    {{else:}}
+                        <li class="{{=breadcrumb[0]}}">{{=breadcrumb[1]}}</li>
+                    {{pass}}
+                {{pass}}
+            </ol>
+        {{pass}}
 		{{include}}
 		{{pass}}
 	</div>
