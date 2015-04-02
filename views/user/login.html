@@ -1,10 +1,15 @@
 
 {{active="login"}}
+
 {{extend 'tx-layout.html'}}
 
 <h2>Login</h2>
 
-
+{{if '_next' in request.vars:}}
+        <div class="error">
+            <span class="glyphicon glyphicon-warning-sign"></span> You need to log in or create an account before you can do this action.
+        </div>
+{{pass}}
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <h3>Returning Users</h3>

@@ -31,8 +31,6 @@ db.define_table('Project',
             Field.Method('canClose',lambda row: (row.Project.projectOpen)),
 )
 
-
-
 ## TODO - we need to explain our 100 char image description limit below.
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
