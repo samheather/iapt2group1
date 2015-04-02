@@ -10,7 +10,9 @@
            <div class="project-tile">
                <!-- Upper row to contain the thumbnail -->
                <div class="row1">
-                    <img src="{{=URL('default','download',args=project.image)}}" />
+               		<a href="{{=URL('project','view', args=project.id)}}">
+	                    <img src="{{=URL('default','download',args=project.image)}}" />
+	                </a>
                </div>
            </div>
 
