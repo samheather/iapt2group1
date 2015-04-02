@@ -18,9 +18,8 @@ db.define_table('TranscriptionFieldType',
 
 if db(db.TranscriptionFieldType.id > 0).count() == 0:
 	db.TranscriptionFieldType.bulk_insert([
-						{'type':'textfield','friendlyName':'Text Field'},
-						{'type':'textarea','friendlyName':'Multi-lined Text'},
-						{'type':'date','friendlyName':'Date Selector'}])
+						{'type':'textfield','friendlyName':'Short Text (one line)'},
+						{'type':'textarea','friendlyName':'Long Text (multi line)'}])
 	db.commit()
 
 db.define_table('Project',
