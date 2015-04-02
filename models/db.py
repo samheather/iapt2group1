@@ -7,8 +7,8 @@ db = DAL('sqlite://tx.db')
 auth = Auth(db)
 auth.define_tables(username=True,signature=False)
 auth.settings.login_url = URL('user','login')
-db.auth_user.password.requires=IS_LENGTH(minsize=6, maxsize=32, error_message="Your password should be between 6 and 32 characters.")
-db.auth_user.password.comment="Choose a password between 6 and 32 characters."
+db.auth_user.password.requires=IS_LENGTH(minsize=6, error_message="Your password should be longer than 6 characters.")
+db.auth_user.password.comment="Choose a password longer than 6 characters."
 db.auth_user.email.comment="Your email should be of the form name@email.com"
 
 db.define_table('TranscriptionFieldType',
