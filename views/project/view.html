@@ -58,7 +58,7 @@
                         transcription (determined from done()) then don't show a button,
                         simply show an explanatory message.
                     -->
-                    {{if image.done():}}
+                    {{if image.done() or project.canOpen():}}
                         Image Closed for Transcriptions
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
