@@ -60,7 +60,7 @@ def addField():
 
     project_id = request.args(0)
 
-    form = BOOTSTRAPFORM(db.ProjectField)
+    form = BOOTSTRAPFORM(db.ProjectField, submit_button = "Add field and return to Create Project")
     # Fill in the Project ID
     form.vars.project_id = project_id
     message = ""
