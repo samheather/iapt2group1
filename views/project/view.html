@@ -6,6 +6,10 @@
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 
+{{if message:}}
+    <div id="tx-alert" class="alert alert-success">{{=message}}</div>
+{{pass}}
+
 <!-- First display the project title and owner -->
 <h1 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h1>
 
@@ -35,15 +39,22 @@
                     Unless on a mobile screen, show the accompanying text and button next
                     to the image in a div of the same sive.
                 -->
-                <div class="col-md-5">
-                    <b>Image: </b><div id="image-description">{{=image.imageDescription}}</div>
+                <div class="col-md-5 center">
+                    {{if auth.user and image.isTranscribedBy(auth.user.id):}}
+                        <div class="already"><i class="flaticon-checked21"></i>  You have already transcribed this image.</div>
+                    {{pass}}
+
+                    <div class="image-description">
+                        <b>Image description: </b>
+                        <p>{{=image.imageDescription}}</p>
+                    </div>
 
                     <!--
                         If fields exist to transcribe data into exist in this project,
                         list the names of the fields of data we want.
                     -->
                     {{if fields:}}
-                        <div id="list-fields">
+                        <div class="list-fields">
                             <b>Fields for Transcription:</b>
                             <!--
                                 For each field, show list the friendly name of the data we
@@ -62,7 +73,7 @@
                         Image Closed for Transcriptions
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
-                        <a id="transcribe-button" class="btn btn-primary" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
+                        <a class="btn btn-primary transcribe-button" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
                     {{pass}}
                 </div>
                 <!--

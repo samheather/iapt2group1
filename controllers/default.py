@@ -17,7 +17,7 @@ def browse():
     response.title = T('Browse Projects | ') + request.application
 
     # Get all projects from the database
-    projects = db(db.ProjectsForTranscription.id>0).select(orderby=~db.ProjectsForTranscription.id)
+    projects = db(db.ProjectsForTranscription.id>0).select(orderby=db.ProjectsForTranscription.id)
     return dict(projects=projects)
 
 def search():
@@ -28,12 +28,13 @@ def search():
     term = request.vars['q'].strip()
 
     if term != '':
-        projects = db(((db.Project.title.like('%'+term+'%'))
-                     | (db.Project.requestDescription.like('%'+term+'%')))
-                     & (db.Project.projectOpen == 'T'))\
+        projects = db(((db.ProjectsForTranscription.title.like('%'+term+'%'))
+                     | (db.ProjectsForTranscription.requestDescription.like('%'+term+'%')))
+                     & (db.ProjectsForTranscription.projectOpen == 'T'))\
             .select()
-        for project in projects:
-            project['image'] = db(db.Image.project_id == project.id).select().first()['image']
+
+        # for project in projects:
+        #     project['image'] = db(db.Image.project_id == project.id).select().first()['image']
 
     return dict(projects=projects, term=term)
 

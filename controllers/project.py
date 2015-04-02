@@ -71,12 +71,14 @@ def addField():
 def view():
     # Set the page title
     response.title = T('View Project | ') + request.application
+    message = session.message or ""
+    session.message = ""
 
     # Check if the URL has an argument; If not go to homepage
     project_id = request.args(0) or redirect(URL('default', 'index'))
 
     #Check if there is a project in the database with that ID. If not,
-    # go to the homeapge.
+    # go to the homepage.
     project = db.Project(project_id) or redirect(URL('default', 'index'))
 
     # Only display projects which are open to the public
@@ -87,7 +89,8 @@ def view():
     return dict(project=project
                 , images=images
                 , fields=fields
-                , owner=owner)
+                , owner=owner
+                , message=message)
 
 @auth.requires_login()
 def transcribe():
@@ -124,6 +127,7 @@ def transcribe():
                                                  ,value=str(request.vars[str(var.ProjectField.id)]))
 
             if atLeastOneFieldSet:
+                session.message = "You've successfully added your transcription for this document."
                 redirect(URL('project','view',args=image.project_id))
             else:
                 #If no fields are set, then just rollback

@@ -9,7 +9,7 @@
     <!-- Main jumbotron for site title (TX) and tagline of what we do. -->
     <div class="jumbotron">
       <div class="section">
-        <h1>Welcome to <span class="brand">TransXribe!</span></h1>
+        <h1>Welcome to TransXribe!</h1>
         <p>Crowd Sourced Transcription at its best.  Check out some projects up for
         transcription below, or add yours now!</p>
       </div>
@@ -23,4 +23,6 @@
     	<!-- General transcription project list, using the subview display-txs -->
 		{{include "subviews/display-txs.html"}}
 	</div>
-    <div id="view-more-projects"><a href="{{=URL('default', 'browse')}}">View More Projects</a></div>
+    {{if projects:}}
+        <div id="view-more-projects"><a href="{{=URL('default', 'browse')}}">View More Projects</a></div>
+    {{pass}}
