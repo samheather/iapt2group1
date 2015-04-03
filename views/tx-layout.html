@@ -48,6 +48,8 @@
 	</head>
 
 	<body>
+    <!-- Skip to main content link -->
+    <a class="skip-main" href="#main">Skip to main content</a>
     {{include "tx-header.html"}}
 <!-- Setup the fixed navbar -->
     <nav class="navbar navbar-default navbar-bg" role="navigation">
@@ -103,7 +105,7 @@
     </nav>
 
     <!-- Now show the main page contents -->
-	<div class="container whitebg" role="main">
+	<div class="container whitebg" role="main" id="main">
         <!-- Show breadcrumbs -->
         {{if ("breadcrumbs" in locals()):}}
             <ol class="breadcrumb">

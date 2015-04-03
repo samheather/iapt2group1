@@ -383,3 +383,31 @@ header a {
 .navbar-fixed-top {
     top: 25px;
 }
+
+/* Skip to main content */
+a.skip-main {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+}
+a.skip-main:focus, a.skip-main:active {
+    color: #000;
+    background-color: #FFF;
+    left: auto;
+    top: -10px;
+    width: 30%;
+    height: 50px;
+    overflow: hidden;
+    margin: 0 35%;
+    border-radius: 15px;
+    border: 3px solid #CCC;
+    text-align: center;
+    font-size: 1.2em;
+    z-index: 999;
+    vertical-align: middle;
+    line-height: 50px;
+}
