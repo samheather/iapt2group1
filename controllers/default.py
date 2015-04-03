@@ -6,7 +6,7 @@ import datetime
 
 def index():
     # Set the page title
-    response.title = T('Home | ') + request.application
+    response.title = T('Home | TransXribe')
 
     # Get the five oldest projects from the database
     projects = db(db.ProjectsForTranscription.id>0).select(orderby=db.ProjectsForTranscription.id, limitby=(0, 5))
@@ -14,7 +14,7 @@ def index():
 
 def browse():
     # Set the page title
-    response.title = T('Browse Projects | ') + request.application
+    response.title = T('Browse Projects | TransXribe')
 
     # Get all projects from the database
     projects = db(db.ProjectsForTranscription.id>0).select(orderby=db.ProjectsForTranscription.id)
@@ -22,7 +22,7 @@ def browse():
 
 def search():
     # Set the page title
-    response.title = T('Search | ') + request.application
+    response.title = T('Search | TransXribe')
 
     projects = dict()
     term = request.vars['q'].strip()
@@ -45,7 +45,7 @@ def login():
 @auth.requires_login()
 def dashboard():
     # Set the page title
-    response.title = T('Dashboard | ') + request.application
+    response.title = T('Dashboard | TransXribe')
 
     if len(request.args) ==0:
         justAddedProject_id=0

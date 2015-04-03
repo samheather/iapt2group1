@@ -1,6 +1,5 @@
 body {
-  padding-bottom: 20px;
-  padding-top: 50px;
+    padding-bottom: 20px;
     background-color: #f8f8f8;
     color: #444444;
     font-family: 'Droid Sans Bold', sans-serif;
@@ -57,9 +56,8 @@ html, body
 
 .container[role=main]  {
     min-height: 100%;
-    margin-top:-140px;
-    padding-top:175px;
-    padding-bottom:60px;
+    padding-top:10px;
+    padding-bottom:10px;
 }
 
 
@@ -185,6 +183,7 @@ td {
     background-color: #000000;
     color:#FFFFFF !important;
     font-weight: bolder;
+    margin-bottom: 0;
 }
 
 .navbar-nav > li > a {
@@ -357,12 +356,8 @@ header {
     height: 25px;
     margin-top: 0;
     background: none repeat scroll 0 0 #F4F4F4;
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 999;
-    padding-top: 2px;
 }
 
 header a {

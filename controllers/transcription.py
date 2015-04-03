@@ -5,7 +5,7 @@ from txform import BOOTSTRAPFORM
 @auth.requires_login()
 def summary():
     # Set the page title
-    response.title = T('Transcription Summary | ') + request.application
+    response.title = T('Transcription Summary | TransXribe')
 
     project_id = request.args(0)  or redirect(URL('default', 'index'))
 
@@ -27,7 +27,7 @@ def summary():
 @auth.requires_login()
 def view():
     # Set the page title
-    response.title = T('View Transcriptions | ') + request.application
+    response.title = T('View Transcriptions | TransXribe')
 
     image_id = request.args(0) or redirect(URL('default', 'index'))
     if image_id:

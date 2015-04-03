@@ -6,7 +6,7 @@ from txform import BOOTSTRAPFORM
 @auth.requires_login()
 def create():
     # Set the page title
-    response.title = T('Create Project 1 of 2 | ') + request.application
+    response.title = T('Create Project 1 of 2 | TransXribe')
 
     form = BOOTSTRAPFORM(db.Project)
     message = ""
@@ -17,7 +17,7 @@ def create():
 @auth.requires_login()
 def populate():
     # Set the page title
-    response.title = T('Create Project 2 of 2 | ') + request.application
+    response.title = T('Create Project 2 of 2 | TransXribe')
 
     project_id = request.args(0)
     project = db((db.Project.id == project_id)).select()[0]
@@ -41,7 +41,7 @@ def populate():
 @auth.requires_login()
 def addImage():
     # Set the page title
-    response.title = T('Add Images | ') + request.application
+    response.title = T('Add Images | TransXribe')
 
     project_id = request.args(0)
 
@@ -56,7 +56,7 @@ def addImage():
 @auth.requires_login()
 def addField():
     # Set the page title
-    response.title = T('Add Fields | ') + request.application
+    response.title = T('Add Fields | TransXribe')
 
     project_id = request.args(0)
 
@@ -70,7 +70,7 @@ def addField():
 
 def view():
     # Set the page title
-    response.title = T('View Project | ') + request.application
+    response.title = T('View Project | TransXribe')
     message = session.message or ""
     session.message = ""
 
@@ -95,7 +95,7 @@ def view():
 @auth.requires_login()
 def transcribe():
     # Set the page title
-    response.title = T('Transcribe | ') + request.application
+    response.title = T('Transcribe | TransXribe')
 
     image_id = request.args(0) or 0
     if image_id == 0:
@@ -151,7 +151,7 @@ def deleteImage():
 
 def open():
     # Set the page title
-    response.title = T('Open Project | ') + request.application
+    response.title = T('Open Project | TransXribe')
     project_id = request.args(0)
 
     project = db(db.Project.id == project_id).select()[0]
@@ -167,7 +167,7 @@ def open():
 
 def close():
     # Set the page title
-    response.title = T('Close Project | ') + request.application
+    response.title = T('Close Project | TransXribe')
 
     project_id = request.args(0)
     project = db(db.Project.id == project_id).select()[0]

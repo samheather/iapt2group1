@@ -1,6 +1,6 @@
 def login():
     # Set the page title
-    response.title = T('Login | ') + request.application
+    response.title = T('Login | TransXribe')
 
     request.args.insert(0,"login")
 
@@ -16,7 +16,7 @@ def logout():
 
 def register():
     # Set the page title
-    response.title = T('Register | ') + request.application
+    response.title = T('Register | TransXribe')
 
     request.args.append("register")
     auth.settings.formstyle = 'bootstrap3_stacked'
@@ -25,7 +25,7 @@ def register():
 
 def reset():
     # Set the page title
-    response.title = T('Reset Password | ') + request.application
+    response.title = T('Reset Password | TransXribe')
 
     request.args.append("request_reset_password")
     auth.settings.formstyle = 'bootstrap3_stacked'
