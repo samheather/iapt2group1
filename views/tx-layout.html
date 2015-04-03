@@ -67,8 +67,8 @@
           <ul class="nav navbar-nav ">
             <!-- If nobody is signed in, show the register and login buttons -->
           	{{if (auth.user == None):}}
-            	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Collection</a><span></span></li>
-                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
+            	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Project</a><span></span></li>
+                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Project</a><span></span></li>
             	<li {{if active=="register":}}class="current"{{pass}}><a href="{{=URL('user','register')}}">Register</a><span></span></li>
             	<li {{if active=="login":}}class="current"{{pass}}><a href="{{=URL('user','login')}}">Login</a><span></span></li>
             <!--
@@ -76,8 +76,8 @@
                 dashboard or logout entirely.
             -->
             {{else:}}
-            	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Collection</a><span></span></li>
-                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
+            	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Project</a><span></span></li>
+                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Project</a><span></span></li>
 				<li {{if active=="dashboard":}}class="current"{{pass}}><a href="{{=URL('default','dashboard')}}">Dashboard</a><span></span></li>
 				<li><a href="{{=URL('user','logout')}}">Log out</a></li>
             {{pass}}
