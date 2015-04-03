@@ -1,5 +1,11 @@
 <!-- Set the breadcrumbs -->
-{{breadcrumbs=[[URL('default','index'),'Home'],[URL('user','login'),'Login'],['','Reset Password']]}}
+<!-- If ref was register: -->
+{{if request.vars.has_key('ref') and (request.vars['ref'] == 'register'):}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],[URL('user','register'),'Register'],['','Reset Password']]}}
+<!-- Else, ref must have been login page: -->
+{{else:}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],[URL('user','login'),'Login'],['','Reset Password']]}}
+{{pass}}
 {{extend 'tx-layout.html'}}
 
 <h2>Reset Password</h2>
