@@ -60,6 +60,10 @@ html, body
     padding-bottom:10px;
 }
 
+.account-bar {
+    padding-top: 3px;
+}
+
 
 .whitebg {
     background-color: #ffffff;
