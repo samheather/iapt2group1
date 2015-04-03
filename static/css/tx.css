@@ -41,6 +41,7 @@ html, body
     padding-top:0px;
     margin-top:0px;
     font-weight: Normal;
+    width: 218px;
 }
 #search-form  {
     margin-top:6px;
@@ -56,7 +57,7 @@ html, body
 
 .container[role=main]  {
     min-height: 100%;
-    margin-top:-175px;
+    margin-top:-140px;
     padding-top:175px;
     padding-bottom:60px;
 }
@@ -349,4 +350,41 @@ form .btn-primary {
 #transcribe-description {
     margin-top: 1cm;
     margin-bottom: 1cm;
+}
+
+/* Header bar */
+header {
+    height: 25px;
+    margin-top: 0;
+    background: none repeat scroll 0 0 #F4F4F4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding-top: 2px;
+}
+
+header a {
+    color: black;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+#login-container {
+    float:right;
+}
+
+.login-link > a {
+    float: right;
+    margin-right: 3px;
+    margin-left: 20px;
+}
+
+.navbar-text {
+    margin: 0;
+}
+
+.navbar-fixed-top {
+    top: 25px;
 }

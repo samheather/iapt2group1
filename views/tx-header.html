@@ -1,0 +1,19 @@
+<!-- Login bar -->
+<header>
+    <div class="container">
+        <!-- Show the login/register link if the user is not authenticated -->
+        {{if not auth.is_logged_in():}}
+            <div class="pull-right">
+                <span class="navbar-text">Are you a member?</span>
+                <a class="login-link" href={{=URL('user', 'login')}}>Log in</a>
+                <a href="{{=URL('user', 'register')}}">Register</a>
+            </div>
+        {{else:}}
+        <!-- Show username and links to profile if the user is authenticated -->
+            <div id="login-container">
+                <p class="navbar-text">Welcome, <strong>{{=auth.user.first_name}}</strong>!</p>
+                <a href="{{=URL('user','logout')}}">Logout</a>
+            </div>
+        {{pass}}
+    </div>
+</header>

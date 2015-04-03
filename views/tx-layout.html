@@ -48,7 +48,7 @@
 	</head>
 
 	<body>
-
+    {{include "tx-header.html"}}
 <!-- Setup the fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-bg" role="navigation">
       <div class="container">
@@ -69,8 +69,6 @@
           	{{if (auth.user == None):}}
             	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Collection</a><span></span></li>
                 <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
-            	<li {{if active=="register":}}class="current"{{pass}}><a href="{{=URL('user','register')}}">Register</a><span></span></li>
-            	<li {{if active=="login":}}class="current"{{pass}}><a href="{{=URL('user','login')}}">Login</a><span></span></li>
             <!--
                 Else, user is logged in, so offer them to create a project, view the
                 dashboard or logout entirely.
@@ -79,7 +77,6 @@
             	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Collection</a><span></span></li>
                 <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Collections</a><span></span></li>
 				<li {{if active=="dashboard":}}class="current"{{pass}}><a href="{{=URL('default','dashboard')}}">Dashboard</a><span></span></li>
-				<li><a href="{{=URL('user','logout')}}">Log out</a></li>
             {{pass}}
           </ul>
 
