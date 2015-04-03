@@ -38,6 +38,7 @@ db.define_table('Image',
                    , comment="Maximum file size: 50 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
 			Field('imageDescription', 'string',
                   label='Image Description',
+                  comment="You should give a brief description of the image you are uploading",
                   requires=[
                       IS_NOT_EMPTY(error_message="Cannot be empty. Please enter an image description shorter than 100 characters"),
                       IS_LENGTH(minsize=1, maxsize=100)],
@@ -68,7 +69,7 @@ db.executesql('CREATE TABLE IF NOT EXISTS Image '
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
 			Field('type_id', db.TranscriptionFieldType, required=True, label='Field Type', requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type",error_message="Please select a field type!")),
-			Field('label', 'string', requires=[IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=30)], required=True)
+			Field('label', 'string', label='Field Description', requires=[IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=30)], required=True, comment="You should describe what you would like people to transcribe into this Field (e.g. date, document title or author)")
 )
 
 db.define_table('TranscriptionField',
