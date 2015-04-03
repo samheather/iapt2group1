@@ -4,7 +4,19 @@
 -->
 
 <!-- Set the breadcrumbs -->
-{{breadcrumbs=[[URL('default','index'),'Home'],['','View Project']]}}
+<!-- If ref was dashboard:-->
+{{if request.vars.has_key('ref') and (request.vars['ref'] == 'dashboard'):}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],[URL('default','dashboard'),'Dashboard'],['','View Project']]}}
+<!-- Elif ref was search, can go back page to search page -->
+{{elif request.vars.has_key('ref') and (request.vars['ref'] == 'search'):}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],[request.env.http_referer,'Search'],['','View Project']]}}
+<!-- Elif ref was Browse, can go back page to browse page -->
+{{elif request.vars.has_key('ref') and (request.vars['ref'] == 'browse'):}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],[URL('default','browse'),'Browse Projects'],['','View Project']]}}
+<!-- Else show normal breadcrumb without dashboard: -->
+{{else:}}
+    {{breadcrumbs=[[URL('default','index'),'Home'],['','View Project']]}}
+{{pass}}
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
 

@@ -20,7 +20,7 @@
 
         {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
           <br/>
-          <a href="{{=URL('user','reset')}}">Reset password</a>
+          <a href="{{=URL('user','reset', vars=dict(ref='login'))}}">Reset password</a>
         {{pass}}
 
     </div>

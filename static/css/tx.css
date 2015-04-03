@@ -92,14 +92,11 @@ td {
 	width:128px;
 }
 
-
-
 #transcribe-image img {
-    width: 550px;
+    width: 100%;
     height: auto;
     float: left;
 }
-
 
 .table-button-column {
 	width:150px;

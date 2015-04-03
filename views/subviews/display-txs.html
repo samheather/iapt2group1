@@ -3,6 +3,9 @@
 	the home page and the search page. It saves repeating the below code.
 -->
 
+<!-- If no reference set, set it to blank -->
+{{if not ("ref" in locals()): ref=""}}
+
 <!-- Create a divider which contains the list of projects -->
 <ul class="projects">
 {{for project in projects:}}
@@ -10,8 +13,8 @@
            <div class="project-tile">
                <!-- Upper row to contain the thumbnail -->
                <div class="row1">
-               		<a href="{{=URL('project','view', args=project.id)}}">
-	                    <img src="{{=URL('default','download',args=project.image)}}" />
+               		<a href="{{=URL('project','view', args=project.id, vars=dict(ref=ref))}}">
+	                    <img src="{{=URL('default','download',args=project.image)}}" alt="Icon image for project: {{=project.title}}" />
 	                </a>
                </div>
            </div>
@@ -19,7 +22,7 @@
             <!-- Second row to display the project title -->
             <div class="row2">
                 <div class="title">
-                    <a href="{{=URL('project','view', args=project.id)}}">{{=project.title}}</a>
+                    <a href="{{=URL('project','view', args=project.id, vars=dict(ref=ref))}}">{{=project.title}}</a>
                 </div>
             </div>
         </li>
