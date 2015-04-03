@@ -110,7 +110,7 @@ class BOOTSTRAPFORM(SQLFORM):
         inputs=[]
 
         for field in fields:
-            inputs+=[LABEL(field.ProjectField.label,_for='field-type'+str(field.ProjectField.id))]
+            inputs+=[LABEL(field.ProjectField.label,_for='field-type-'+str(field.ProjectField.id))]
             if field.TranscriptionFieldType.type == 'textarea':
                 inputs += [TEXTAREA(_class='form-control text'
                                 , _rows=10
@@ -126,7 +126,7 @@ class BOOTSTRAPFORM(SQLFORM):
                              , _type='date'
                              , _name=str(field.ProjectField.id)
                              , _id='field-type-'+str(field.ProjectField.id)) ]
-        inputs+=[INPUT(_type='submit', _value=label, _class='btn {0}'.format('btn-default'))]
+        inputs+=[INPUT(_type='submit', _value=label, _class='btn {0}'.format('btn-primary'))]
         form = FORM(*inputs, formstyle='bootstrap3_stacked')
         form.process()
         return form

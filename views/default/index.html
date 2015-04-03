@@ -5,6 +5,9 @@
 
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
+    {{if request.args(0)=="newUser":}}
+            <div id="tx-alert" class="alert alert-success">Your profile was created successfully and you are now logged in as {{=auth.user.username}}.</div>
+    {{pass}}
 
     <!-- Main jumbotron for site title (TX) and tagline of what we do. -->
     <div class="jumbotron">
@@ -26,3 +29,5 @@
     {{if projects:}}
         <div id="view-more-projects"><a href="{{=URL('default', 'browse')}}">View More Projects</a></div>
     {{pass}}
+
+        {{=request}}

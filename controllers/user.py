@@ -20,6 +20,7 @@ def register():
 
     request.args.append("register")
     auth.settings.formstyle = 'bootstrap3_stacked'
+    auth.settings.register_next = URL('default', 'index', args='newUser')
     return dict(form=auth())
 
 def reset():
