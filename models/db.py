@@ -35,7 +35,7 @@ db.define_table('Project',
 db.define_table('Image',
 			Field('project_id', db.Project, required=True,readable=False,writable=False),
 			Field('image', 'upload'
-                   , comment="Maximum file size: 50 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
+                   , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
 			Field('imageDescription', 'string',
                   label='Image Description',
                   comment="You should give a brief description of the image you are uploading",
@@ -50,7 +50,7 @@ db.define_table('Image',
 
 db.Image.image.requires=[IS_NOT_EMPTY(error_message="Please select an image file before proceeding."),
                          IS_IMAGE(error_message="Invalid file. Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP."),
-                         IS_LENGTH(52428800,0, error_message="Please choose an image which is less than 50 MB.")]
+                         IS_LENGTH(5242880,0, error_message="Please choose an image which is less than 5 MB.")]
 
 db.define_table('Transcription',
 			Field('image_id', db.Image, required=True),
