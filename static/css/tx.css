@@ -40,10 +40,12 @@ html, body
     padding-top:0px;
     margin-top:0px;
     font-weight: Normal;
-    width: 218px;
+    width: 200px;
 }
 #search-form  {
     margin-top:6px;
+    padding-left:10px;
+    padding-right:10px;
 }
 #search-form .input-group-btn {
     padding-top:7px;
@@ -385,8 +387,19 @@ header a {
     margin: 0;
 }
 
+/* Compressing the Nav Bar so it doesn't go onto two lines in bootstrap md screen size */
 .navbar-fixed-top {
     top: 25px;
+}
+
+.nav > li > a {
+    padding-left:9px;
+    padding-right:9px;
+}
+
+a.navbar-brand {
+    padding-left:9px;
+    padding-right:9px;
 }
 
 /* Skip to main content */
