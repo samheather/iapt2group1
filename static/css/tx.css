@@ -127,6 +127,10 @@ td {
     line-height: 1.3em;
 }
 
+.three-transcription-warning {
+    margin-top: 6px;
+}
+
 .list-fields,
 .image-description,
 .transcribe-button {
