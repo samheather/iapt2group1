@@ -358,6 +358,7 @@ header {
     background: none repeat scroll 0 0 #F4F4F4;
     width: 100%;
     z-index: 999;
+    padding-top: 2px;
 }
 
 header a {
