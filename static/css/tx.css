@@ -60,6 +60,10 @@ html, body
     padding-bottom:10px;
 }
 
+.account-bar {
+    padding-top: 3px;
+}
+
 
 .whitebg {
     background-color: #ffffff;
@@ -92,14 +96,11 @@ td {
 	width:128px;
 }
 
-
-
 #transcribe-image img {
-    width: 550px;
+    width: 100%;
     height: auto;
     float: left;
 }
-
 
 .table-button-column {
 	width:150px;
@@ -124,6 +125,10 @@ td {
 .already {
     font-size: 1.3em;
     line-height: 1.3em;
+}
+
+.three-transcription-warning {
+    margin-top: 6px;
 }
 
 .list-fields,

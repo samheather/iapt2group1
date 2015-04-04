@@ -6,6 +6,12 @@
             <h3>{{=image.imageDescription}}</h3>
             <img alt="{{=image.imageDescription}}" src="{{=URL('default','download',args=image.image)}}" />
         </div>
+        {{if image.done() and image.acceptedTranscription_id == None:}}          
+            <div class="panel panel-warning center three-transcription-warning">
+                <div class="panel-heading"><h4>This image has 3 pending transcriptions and so has been closed. Either accept a transcription, or reject some to re-open the image.</h4></div>
+            </div>
+            
+        {{pass}}
         <!-- Get the list item's index (idx) and iterate over the image transcriptions -->
         {{for idx, tx in enumerate(transcriptions):}}
             <h3>Transcription #{{=(idx+1)}} <span>by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</span></h3>
@@ -45,5 +51,5 @@
                 </div>
         {{pass}}
         {{if not image.Accepted:}}
-            <a class="btn btn-primary" href="{{=URL('transcription', 'reject_all', vars=dict(image_id=image.id))}}">Reject All Transcriptions</a>
+            <a class="btn btn-primary" href="{{=URL('transcription', 'reject_all', vars=dict(image_id=image.id))}}">Reject All Transcriptions and Re-Open Image</a>
         {{pass}}

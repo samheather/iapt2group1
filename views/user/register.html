@@ -28,6 +28,6 @@
 
         <!-- Show a link for users who have forgotten their passwords -->
         <p>Forgotten password?</p>
-        <a href="{{=URL('user','reset')}}">Reset password</a>
+        <a href="{{=URL('user','reset', vars=dict(ref='register'))}}">Reset password</a>
     </div>
 </div>
