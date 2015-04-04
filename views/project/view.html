@@ -86,7 +86,7 @@
                         simply show an explanatory message.
                     -->
                     {{if image.done() or project.canOpen():}}
-                        Image Closed for Transcriptions
+                        <div id="image-closed">Image Closed for Transcriptions</div>
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
                         <a class="btn btn-primary transcribe-button" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
