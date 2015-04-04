@@ -70,7 +70,7 @@
             <!-- If nobody is signed in, show the register and login buttons -->
           	{{if (auth.user == None):}}
             	<li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Project</a><span></span></li>
-                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Project</a><span></span></li>
+                <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse Projects</a><span></span></li>
             <!--
                 Else, user is logged in, so offer them to create a project, view the
                 dashboard or logout entirely.
