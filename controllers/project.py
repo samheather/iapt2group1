@@ -97,6 +97,7 @@ def transcribe():
     # Set the page title
     response.title = T('Transcribe | TransXribe')
 
+    error_message = ''
     image_id = request.args(0) or 0
     if image_id == 0:
         redirect(URL('default', 'index'))
@@ -131,10 +132,11 @@ def transcribe():
                 redirect(URL('project','view',args=image.project_id))
             else:
                 #If no fields are set, then just rollback
+                error_message = "You must fill in at least one field to submit a transcription."
                 db.rollback()
 
 
-        return dict(image=image, form=form)
+        return dict(image=image, form=form, error_message=error_message)
 
 def deleteField():
     project_id = request.args(0)

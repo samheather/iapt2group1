@@ -9,7 +9,7 @@
     <h2 id="transcribe-description">Transcribing: {{=image.imageDescription}}</h2>
     
     <p class="center">Please transcribe the content from the image to the appropriate fields.</p>
-    
+
     <!-- Half screen width shows the actual image been transcribed -->
     <div class="col-lg-6">
         <div id="transcribe-image">
@@ -19,6 +19,11 @@
 
     <!-- The other half shows the fields that should be filled in -->
     <div class="col-lg-6">
+    {{if error_message:}}
+    <div class="error">
+        <span class="glyphicon glyphicon-warning-sign"></span>{{=error_message}}
+    </div>
+    {{pass}}
         <!-- Div containing fields -->
         <div id="fields">
             <!-- Show the fields to be filled in -->
