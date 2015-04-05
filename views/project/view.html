@@ -56,10 +56,9 @@
                     to the image in a div of the same sive.
                 -->
                 <div class="col-md-5">
-                    {{if auth.user and image.isTranscribedBy(auth.user.id):}}
+                    {{if auth.user and (image.transcribedBy().find(lambda row: row.transcriber_id == auth.user.id)):}}
                         <div class="already"><i class="flaticon-checked21"></i>  You have transcribed this image.</div>
                     {{pass}}
-
                     <div class="image-description">
                         <b>Image description: </b>
                         <p>{{=image.imageDescription}}</p>

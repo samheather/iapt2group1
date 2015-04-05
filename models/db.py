@@ -142,9 +142,6 @@ db.Image.done = Field.Method(lambda row:
                                                  or (db(db.ImagesForTranscription.id == row.Image.id )
                                                      .select(db.ImagesForTranscription.transcriptionCount)[0].transcriptionCount>=3)
                              else False)
-db.Image.isTranscribedBy = Field.Method(lambda row, transcriber_id:
-                                      False if len(db(db.Transcription.image_id == row.Image.id)
-                                               .select(db.Transcription.transcriber_id)) ==0
-                                      else db(db.Transcription.image_id == row.Image.id)
-                                               .select(db.Transcription.transcriber_id)[0].transcriber_id == transcriber_id)
+db.Image.transcribedBy = Field.Method(lambda row: db(db.Transcription.image_id == row.Image.id)
+                                               .select(db.Transcription.transcriber_id))
 # For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
