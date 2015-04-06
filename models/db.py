@@ -95,12 +95,10 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
 
 db.executesql('DROP VIEW IF EXISTS ProjectTranscriptionCount')
 db.executesql('CREATE VIEW IF NOT EXISTS ProjectTranscriptionCount AS'
-              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount, COUNT(Image.id) AS imageCount, COUNT(ProjectField.id) AS fieldCount'
+              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount, COUNT(Image.id) AS imageCount'
               ' FROM Project'
               ' LEFT JOIN Image ON '
               '     Image.project_id = Project.Id'
-              ' LEFT JOIN ProjectField ON '
-              '     ProjectField.project_id = Project.Id'
               ' LEFT JOIN Transcription ON'
               '     (Transcription.image_id = Image.id AND (rejected IS NULL or rejected <> "T"))'
               ' GROUP BY project.id')
@@ -127,15 +125,15 @@ db.define_table('ProjectTranscriptionCount',
                 Field('owner_id'),
                 Field('image'),
                 Field('transcriptionCount'),
-                Field('imageCount','integer'),
-                Field('fieldCount','integer'),migrate=False)
+                Field('imageCount','integer'),migrate=False)
 
 
 
 
 db.Project.customFields = Field.Method(lambda row: db((db.ProjectField.project_id == row.Project.id) & (db.ProjectField.type_id == db.TranscriptionFieldType.id)).select(db.ProjectField.ALL,db.TranscriptionFieldType.ALL))
 db.Project.images = Field.Method(lambda row: db(db.Image.project_id == row.Project.id).select())
-db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id) &  (db.ProjectTranscriptionCount.fieldCount>0) & (db.ProjectTranscriptionCount.imageCount>0)).select())
+db.Project.fieldCount = Field.Method(lambda row: db(row.Project.id == db.ProjectField.project_id).select(db.ProjectField.id.count(), groupby=row.Project.id))
+db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id) &  (db.Project.fieldCount>0) & (db.ProjectTranscriptionCount.imageCount>0)).select())
 db.Image.done = Field.Method(lambda row:
                              True if (len(db(db.ImagesForTranscription.id == row.Image.id )
                                                       .select(db.ImagesForTranscription.transcriptionCount)) == 0)

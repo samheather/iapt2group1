@@ -146,6 +146,12 @@ td {
     margin-top: 30px;
 }
 
+#fields .btn {
+    float: right;
+    margin-top: 10px;
+    margin-right: 0;
+}
+
 .just-added-project {
 	background-color: #DEF6D5 !important;
 }
