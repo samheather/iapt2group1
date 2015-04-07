@@ -18,10 +18,9 @@ def summary():
                                                               , db.Image.imageDescription
                                                               , db.Transcription.id.count()
                                                               , groupby=db.Image.id
-                                                              , left=db.Transcription.on(((db.Image.id==db.Transcription.image_id)
-                                                                                            & (db.Transcription.rejected == None))
-                                                                                         | ((db.Transcription.rejected != 'T')
-                                                                                            & (db.Image.id==db.Transcription.image_id))))
+                                                              , left=db.Transcription.on((db.Image.id==db.Transcription.image_id)
+                                                                                            & (db.Transcription.rejected == None)
+                                                                                        ))
     return dict(images=images)
 
 @auth.requires_login()

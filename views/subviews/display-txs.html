@@ -6,9 +6,13 @@
 <!-- If no reference set, set it to blank -->
 {{if not ("ref" in locals()): ref=""}}
 
+        {{idx=0}}
 <!-- Create a divider which contains the list of projects -->
-<ul class="projects">
-{{for project in projects:}}
+{{for idx, project in enumerate(projects):}}
+    <!-- Break to a new row every five projects -->
+    {{if (idx or 0)%5 == 0:}}
+        <ul class="projects">
+    {{pass}}
         <li class="cell">
            <div class="project-tile">
                <!-- Upper row to contain the thumbnail -->
@@ -27,4 +31,6 @@
             </div>
         </li>
     {{pass}}
-</ul>
+    {{if idx%5 == 0:}}
+        </ul>
+    {{pass}}

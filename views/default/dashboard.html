@@ -38,7 +38,7 @@
 				<td><a href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}"><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" alt="Icon image for {{=project.Project.title}}" class="table-image-view" /></a></td>
 				<td>{{=project.Project.title}}</td>
                 <td>{{if project.Project.canOpen(): }} <i>Closed</i>{{else:}}<i>Open</i>{{pass}}</td>
-				<td>{{=project.ProjectTranscriptionCount.transcriptionCount}}</td>
+				<td>{{=project.Project.total()[0]['COUNT(Project.id)']}} total, {{=project.ProjectTranscriptionCount.transcriptionCount}} pending</td>
 				<td>
                     <a class="btn btn-primary" href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}">View <span>{{=project.Project.title}}</span></a>
 					<!-- If the project can be opened, show an open button -->

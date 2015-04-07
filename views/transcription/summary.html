@@ -37,7 +37,7 @@
                 Provide the count of the number of pending transcriptions / status of 
                 this image
             -->
-            <td>{{=image['COUNT(Transcription.id)']}}</td>
+            <td>{{=image.Image.total()[0]['COUNT(Image.id)']}} total, {{=image['COUNT(Transcription.id)']}} pending</td>
             
             <!-- Button to view the transcriptions -->
             <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>

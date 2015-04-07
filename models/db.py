@@ -129,17 +129,32 @@ db.define_table('ProjectTranscriptionCount',
 
 
 
-
+# Get the types of fields, which have been defined for a project.
 db.Project.customFields = Field.Method(lambda row: db((db.ProjectField.project_id == row.Project.id) & (db.ProjectField.type_id == db.TranscriptionFieldType.id)).select(db.ProjectField.ALL,db.TranscriptionFieldType.ALL))
+
+# Get all images, which have been added for a project.
 db.Project.images = Field.Method(lambda row: db(db.Image.project_id == row.Project.id).select())
+
+# Get total number of fields, which have been added for a project.
 db.Project.fieldCount = Field.Method(lambda row: db(row.Project.id == db.ProjectField.project_id).select(db.ProjectField.id.count(), groupby=row.Project.id))
+
+# Get all projects, which have been created by a user.
 db.auth_user.projects = Field.Method(lambda row: db((db.ProjectTranscriptionCount.owner_id == row.auth_user.id) & (db.Project.id == db.ProjectTranscriptionCount.id) &  (db.Project.fieldCount>0) & (db.ProjectTranscriptionCount.imageCount>0)).select())
+
+# Check if an image already has three transcriptions, which will close her for the public.
 db.Image.done = Field.Method(lambda row:
                              True if (len(db(db.ImagesForTranscription.id == row.Image.id )
                                                       .select(db.ImagesForTranscription.transcriptionCount)) == 0)
                                                  or (db(db.ImagesForTranscription.id == row.Image.id )
                                                      .select(db.ImagesForTranscription.transcriptionCount)[0].transcriptionCount>=3)
                              else False)
+
+# Get all users, who have transcribed an image.
 db.Image.transcribedBy = Field.Method(lambda row: db(db.Transcription.image_id == row.Image.id)
                                                .select(db.Transcription.transcriber_id))
-# For field type: 'reference TranscriptionFieldType', requires=IS_IN_DB(db, db.TranscriptionFieldType.id, '%(type)s'), required=True), \
+
+# Get total number of transcriptions for a project.
+db.Project.total = Field.Method(lambda row: db(db.Project.id == row.Project.id).select(db.Project.id.count(), join=[db.Image.on(db.Project.id == db.Image.project_id), db.Transcription.on(db.Transcription.image_id == db.Image.id)]))
+
+# Get total number of transcriptions for an image.
+db.Image.total = Field.Method(lambda row: db(row.Image.id == db.Transcription.image_id).select(db.Image.id.count()))
