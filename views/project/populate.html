@@ -33,7 +33,12 @@
                     </tr>
                     <!-- For each field added so far -->
                     {{for field in project.customFields():}}
+                    {{if just_added_field == field.ProjectField.id:}}
+                    <tr class="just-added-field">
+                    {{else:}}
+                    {{print just_added_field}}
                     <tr>
+                    {{pass}}
                         <!-- Show the field title -->
                         <td>{{=field.ProjectField.label}}</td>
                         <!-- Show the field type -->
@@ -67,10 +72,14 @@
 					</tr>
                     <!-- For each image added so far: -->
                     {{for image in project.images():}}
-                    <tr>
+                    {{if just_added_image == image.id:}}
+                    <tr class="just-added-image">
+                    {{else:}}
+                        <tr>
+                    {{pass}}
                         <!-- Show the image -->
                         <td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
-						<!-- Show the iamge description -->
+						<!-- Show the image description -->
 						<td>{{=image.imageDescription}}</td>
 						<!-- Show a button to delete the image -->
 						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>

@@ -33,10 +33,24 @@ def populate():
     if (len(project.customFields()) == 0) and (len(project.images()) == 0):
         canClickCreate = False
         canClickCreateMessage = 'Please add fields and images to this project to be able to submit.'
+
+    just_added_image = 0
+    just_added_field = 0
+
+    if request.vars:
+        if request.vars['i']:
+            just_added_image = int(request.vars['i'])
+        elif request.vars['f']:
+            just_added_field = int(request.vars['f'])
+    else:
+        just_added_field = 0
+        just_added_image = 0
     
     return dict(project=project,
                 canClickCreate=canClickCreate,
-                canClickCreateMessage=canClickCreateMessage)
+                canClickCreateMessage=canClickCreateMessage,
+                just_added_field=just_added_field,
+                just_added_image=just_added_image)
 
 @auth.requires_login()
 def addImage():
@@ -50,7 +64,7 @@ def addImage():
     form.vars.project_id = project_id
     message = ""
     if form.process().accepted:
-        redirect(URL('project', 'populate', args=project_id))
+        redirect(URL('project', 'populate', args=project_id, vars=dict(i=form.vars.id)))
     return dict(form=form, message=message,projectid=project_id)
 
 @auth.requires_login()
@@ -65,7 +79,7 @@ def addField():
     form.vars.project_id = project_id
     message = ""
     if form.process().accepted:
-        redirect(URL('project', 'populate', args=project_id))
+        redirect(URL('project', 'populate', args=project_id, vars=dict(f=form.vars.id)))
     return dict(form=form, message=message,projectid=project_id)
 
 def view():

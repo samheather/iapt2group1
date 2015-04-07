@@ -152,7 +152,9 @@ td {
     margin-right: 0;
 }
 
-.just-added-project {
+.just-added-project,
+.just-added-image,
+.just-added-field {
 	background-color: #DEF6D5 !important;
 }
 
