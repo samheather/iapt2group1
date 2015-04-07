@@ -154,7 +154,7 @@ db.Image.transcribedBy = Field.Method(lambda row: db(db.Transcription.image_id =
                                                .select(db.Transcription.transcriber_id))
 
 # Get total number of transcriptions for a project.
-db.Project.total = Field.Method(lambda row: db(db.Project.id == row.Project.id).select(db.Project.id.count(), join=[db.Image.on(db.Project.id == db.Image.project_id), db.Transcription.on(db.Transcription.image_id == db.Image.id)]))
+db.Project.total = Field.Method(lambda row: db(db.Project.id == row.Project.id).select(db.Transcription.id.count(), join=[db.Image.on(db.Project.id == db.Image.project_id), db.Transcription.on(db.Transcription.image_id == db.Image.id)]))
 
 # Get total number of transcriptions for an image.
-db.Image.total = Field.Method(lambda row: db(row.Image.id == db.Transcription.image_id).select(db.Image.id.count()))
+db.Image.total = Field.Method(lambda row: db(row.Image.id == db.Transcription.image_id).select(db.Transcription.id.count()))
