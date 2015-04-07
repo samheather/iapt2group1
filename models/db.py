@@ -95,7 +95,7 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
 
 db.executesql('DROP VIEW IF EXISTS ProjectTranscriptionCount')
 db.executesql('CREATE VIEW IF NOT EXISTS ProjectTranscriptionCount AS'
-              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount, COUNT(Image.id) AS imageCount'
+              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount, COUNT(Image.id) AS imageCount, SUM(CASE WHEN rejected is NULL THEN 0 ELSE 1 END) PendingTranscriptionCount'
               ' FROM Project'
               ' LEFT JOIN Image ON '
               '     Image.project_id = Project.Id'
@@ -125,6 +125,7 @@ db.define_table('ProjectTranscriptionCount',
                 Field('owner_id'),
                 Field('image'),
                 Field('transcriptionCount'),
+                Field('PendingTranscriptionCount'),
                 Field('imageCount','integer'),migrate=False)
 
 
