@@ -40,7 +40,11 @@
             <td>{{=image.Image.total()[0]['COUNT(Transcription.id)']}} total, {{=image['COUNT(Transcription.id)']}} pending</td>
             
             <!-- Button to view the transcriptions -->
-            <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
+            {{if image.Image.total()[0]['COUNT(Transcription.id)'] >0:}}
+                <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
+            {{else:}}
+                <td></td>
+            {{pass}}
         </tr>
         {{pass}}
     </tbody>
