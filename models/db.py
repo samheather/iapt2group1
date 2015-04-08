@@ -93,15 +93,25 @@ db.executesql('CREATE VIEW IF NOT EXISTS ProjectsForTranscription AS'
               ' GROUP BY project.id'
               ' HAVING count(ImagesForTranscription.id)>0')
 
-#db.executesql('DROP VIEW IF EXISTS ProjectTranscriptionCount')
+db.executesql('DROP VIEW IF EXISTS ProjectTranscriptionCount')
 db.executesql('CREATE VIEW IF NOT EXISTS ProjectTranscriptionCount AS'
-              ' SELECT *, COUNT(Transcription.id) AS transcriptionCount, COUNT(Image.id) AS imageCount, SUM(CASE WHEN rejected is NULL THEN 1 ELSE 0 END) PendingTranscriptionCount'
-              ' FROM Project'
-              ' LEFT JOIN Image ON '
-              '     Image.project_id = Project.Id'
-              ' LEFT JOIN Transcription ON'
-              '     (Transcription.image_id = Image.id AND (rejected IS NULL or rejected <> "T"))'
-              ' GROUP BY project.id')
+              ' SELECT Project.*'
+              '     , Image.*'
+              '     , COUNT(Image.id) as imageCount'
+              '     , coalesce(A.transcriptionCount,0) as pendingTranscriptions '
+              ' FROM Project '
+              '     LEFT JOIN (SELECT '
+              '                     Project.id as p_id, '
+              '                     COUNT(Transcription.id) transcriptionCount '
+              '                FROM Project '
+              '                LEFT JOIN Image ON Image.project_id = Project.Id '
+              '                LEFT JOIN Transcription ON (Transcription.image_id = Image.id '
+              '                                                 and Transcription.rejected is null)'
+              '                GROUP BY project.id'
+              '                HAVING COUNT(Transcription.id)>0) A'
+              '     ON Project.id == A.p_id'
+              ' LEFT JOIN Image ON Image.project_id == Project.id '
+              ' GROUP BY Project.id')
 
 
 db.define_table('ImagesForTranscription',
@@ -124,8 +134,7 @@ db.define_table('ProjectTranscriptionCount',
                 Field('title'),
                 Field('owner_id'),
                 Field('image'),
-                Field('transcriptionCount'),
-                Field('PendingTranscriptionCount'),
+                Field('pendingTranscriptions'),
                 Field('imageCount','integer'),migrate=False)
 
 
