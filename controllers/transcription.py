@@ -62,11 +62,17 @@ def accept():
     transcription_id = request.vars.tx_id
 
     if transcription_id:
-       db(db.Transcription.id == transcription_id).update(rejected=False)
-       transcription = db(db.Transcription.id == transcription_id).select().first()
-       image_id = transcription.image_id
-       db(db.Image.id == image_id).update(acceptedTranscription_id=transcription_id)
-       redirect(URL('transcription', 'view', args=transcription.image_id))
+        # Update the Transcription table.
+        db(db.Transcription.id == transcription_id).update(rejected=False)
+
+       # Add the id of the accepted transcription to the Image table.
+        transcription = db(db.Transcription.id == transcription_id).select().first()
+        image_id = transcription.image_id
+        db(db.Image.id == image_id).update(acceptedTranscription_id=transcription_id)
+
+        # If a transcription is accepted, mark all others as rejected in the database.
+        db(db.Transcription.image_id == image_id and db.Transcription.id != transcription_id).update(rejected=True)
+        redirect(URL('transcription', 'view', args=transcription.image_id))
 
 def reject():
     transcription_id = request.vars.tx_id
