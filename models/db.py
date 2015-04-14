@@ -38,7 +38,7 @@ db.define_table('Image',
                    , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
 			Field('imageDescription', 'string',
                   label='Image Description',
-                  comment="You should give a brief description of the image you are uploading",
+                  comment="Provide a brief description for the chosen image",
                   requires=[
                       IS_NOT_EMPTY(error_message="Cannot be empty. Please enter an image description shorter than 100 characters"),
                       IS_LENGTH(minsize=1, maxsize=100)],
