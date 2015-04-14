@@ -1,3 +1,8 @@
+/*
+ *  Transcriptions Site CSS.
+ *  Set body colour to grey, text colour to dark grey and global font to Droid Sans
+ *
+ */
 body {
     padding-bottom: 20px;
     background-color: #f8f8f8;
@@ -5,12 +10,53 @@ body {
     font-family: 'Droid Sans Bold', sans-serif;
 }
 
-
 html, body
 {
     height: 100%;
 }
 
+
+/*
+ *  Skip to main content link appears at the top of the page. but only when it's focused
+ */
+a.skip-main {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    background-color: #FFF;
+    z-index:-999;
+}
+a.skip-main:focus, a.skip-main:active {
+    background-color: #FFF;
+    left: auto;
+    top: -10px;
+    width: 30%;
+    height: 50px;
+    overflow: hidden;
+    margin: 0 35%;
+    border-radius: 15px;
+    border: 3px solid #CCC;
+    text-align: center;
+    font-size: 1.2em;
+    z-index: 999;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+a {
+    color: #0A5A9C !important;
+}
+
+a.btn {
+    color: #FFFFFF !important;
+}
+
+/*
+ *  Styles for bullet points in step-by-step project creation
+ */
 .step {
     border-radius: 40px;
     width: 40px;
@@ -24,8 +70,8 @@ html, body
 }
 
 .active_step {
-    background-color: #5382BE;
-    color: #fafafa;
+    background-color: #337AB7;
+    color: #ffffff;
 }
 
 .project-section {
@@ -142,9 +188,8 @@ td {
 }
 
 #image-closed {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 30px;
+        font-size: 1.3em;
+    line-height: 1.3em;
 }
 
 #fields .btn {
@@ -417,32 +462,4 @@ header a {
 a.navbar-brand {
     padding-left:9px;
     padding-right:9px;
-}
-
-/* Skip to main content */
-a.skip-main {
-    left:-999px;
-    position:absolute;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-    z-index:-999;
-}
-a.skip-main:focus, a.skip-main:active {
-    color: #000;
-    background-color: #FFF;
-    left: auto;
-    top: -10px;
-    width: 30%;
-    height: 50px;
-    overflow: hidden;
-    margin: 0 35%;
-    border-radius: 15px;
-    border: 3px solid #CCC;
-    text-align: center;
-    font-size: 1.2em;
-    z-index: 999;
-    vertical-align: middle;
-    line-height: 50px;
 }

@@ -3,7 +3,7 @@
 {{extend 'tx-layout.html'}}
 
         <div id="transcription-image">
-            <h3>{{=image.imageDescription}}</h3>
+            <h2>{{=image.imageDescription}}</h2>
             <img alt="{{=image.imageDescription}}" src="{{=URL('default','download',args=image.image)}}" />
         </div>
         {{if image.done() and image.acceptedTranscription_id == None:}}          
@@ -13,10 +13,15 @@
             
         {{pass}}
         <!-- Get the list item's index (idx) and iterate over the image transcriptions -->
+
+        {{if len(transcriptions)>0:}}
+            <h2>Transcriptions</h2>
+        {{pass}}
         {{for idx, tx in enumerate(transcriptions):}}
             <h3>Transcription #{{=(idx+1)}} <span>by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</span></h3>
                 <div class="tx-row">
-                    <table class="table table-striped" summary="">
+                    <table class="table table-striped">
+                        <caption class="sr-only">Transcriptions for this image provided by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</caption>
                         <thead>
                             <tr>
                                 <th>Field</th>

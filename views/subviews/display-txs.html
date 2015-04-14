@@ -25,9 +25,8 @@
 
             <!-- Second row to display the project title -->
             <div class="row2">
-                <div class="title">
-                    <a href="{{=URL('project','view', args=project.id, vars=dict(ref=ref))}}">{{=project.title}}</a>
-                </div>
+                <a class="title" href="{{=URL('project','view', args=project.id, vars=dict(ref=ref))}}"><h2>{{=project.title}}</h2></a>
+
             </div>
         </li>
     {{pass}}

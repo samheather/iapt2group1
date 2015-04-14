@@ -28,7 +28,7 @@
 <h1 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h1>
 
 <!-- Show the project description -->
-<h4 id="project-description">{{=project.requestDescription}}</h4>
+<div id="project-description">{{=project.requestDescription}}</div>
     <!-- If the project has images, for each image: -->
     {{if images:}}
         {{for image in images:}}
@@ -47,7 +47,7 @@
                 -->
                 <div class="col-md-5">
                     <a href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">
-                        <img class="view-img-fill-div" src="{{=URL('default','download',args=image.image)}}" />
+                        <img class="view-img-fill-div" alt="{{=image.imageDescription}}" src="{{=URL('default','download',args=image.image)}}" />
                     </a>
                 </div>
                 
@@ -60,7 +60,7 @@
                         <div class="already"><i class="flaticon-checked21"></i>  You have transcribed this image.</div>
                     {{pass}}
                     <div class="image-description">
-                        <b>Image description: </b>
+                        <h2>Image description: </h2>
                         <p>{{=image.imageDescription}}</p>
                     </div>
 
@@ -70,14 +70,16 @@
                     -->
                     {{if fields:}}
                         <div class="list-fields">
-                            <b>Fields for Transcription:</b>
+                            <h2>Fields for Transcription:</h2>
                             <!--
                                 For each field, show list the friendly name of the data we
                                 are trying to capture.
                             -->
-                            {{for field in fields:}}
-                                <li>{{=field.label}}</li>
-                            {{pass}}
+                            <ul>
+                                {{for field in fields:}}
+                                    <li>{{=field.label}}</li>
+                                {{pass}}
+                            </ul>
                         </div>
                     {{pass}}
                     <!-- If the image has got >=3 pending transcriptions or an accepted
