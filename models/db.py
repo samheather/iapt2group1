@@ -8,7 +8,7 @@ auth = Auth(db)
 auth.define_tables(username=True,signature=False)
 auth.settings.login_url = URL('user','login')
 db.auth_user.password.requires=IS_LENGTH(minsize=6, error_message="Your password should be longer than 6 characters.")
-db.auth_user.password.comment="Choose a password longer than 6 characters."
+db.auth_user.password.comment="Enter a password longer than 6 characters."
 db.auth_user.email.comment="Your email should be of the form name@email.com"
 
 db.define_table('TranscriptionFieldType',
