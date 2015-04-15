@@ -8,6 +8,7 @@ from gluon.sqlhtml import Field
 from gluon.html import call_as_list
 from gluon import DAL
 from gluon import FORM
+from mark_mandatory import *
 
 class LimitTextWidget(FormWidget):
     _class = 'text'
@@ -63,6 +64,9 @@ class BOOTSTRAPFORM(SQLFORM):
     SQLFORM.widgets.text = LimitTextWidget
 
     def __init__(self, table, *args, **kwargs):
+
+        # Mark the required fields in the table with an asteriks
+        mark_not_empty(table)
         super(BOOTSTRAPFORM, self).__init__(table, *args, formstyle='bootstrap3_stacked', **kwargs)
 
     def process(self, *args, **kwargs):

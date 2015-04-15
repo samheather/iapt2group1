@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from txform import BOOTSTRAPFORM
+from mark_mandatory import  *
 
 # from tx import *
 @auth.requires_login()

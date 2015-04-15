@@ -463,3 +463,7 @@ a.navbar-brand {
     padding-left:9px;
     padding-right:9px;
 }
+
+.not_empty {
+    color: red;
+}

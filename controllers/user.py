@@ -1,3 +1,8 @@
+from mark_mandatory import *
+
+# Add the asteriks to the fields in the user table
+mark_not_empty(auth.table_user())
+
 def login():
     # Set the page title
     response.title = T('Login | TransXribe')
