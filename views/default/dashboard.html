@@ -18,6 +18,7 @@
 			<th>Title</th>
             <th>Project Status</th>
 			<th>Number of Transcriptions</th>
+            <th>Number of Images</th>
 			<th>Options</th>
 		</tr>
 		<!--
@@ -39,7 +40,8 @@
 				<td>{{=project.Project.title}}</td>
                 <td>{{if project.Project.canOpen(): }} <i>Closed</i>{{else:}}<i>Open</i>{{pass}}</td>
 				<td>{{=project.Project.total()[0]['COUNT(Transcription.id)']}} total, {{=project.ProjectTranscriptionCount.pendingTranscriptions}} pending</td>
-				<td>
+				<td>{{=project.ProjectTranscriptionCount.imageCount}}</td>
+                <td>
                     <a class="btn btn-primary" href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}">View <span>{{=project.Project.title}}</span></a>
 					<!-- If the project can be opened, show an open button -->
 					{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}

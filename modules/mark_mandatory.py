@@ -1,3 +1,7 @@
+##
+## Source: http://dev.s-cubism.com/plugin_notemptymarker
+##
+
 from gluon import *
 
 
