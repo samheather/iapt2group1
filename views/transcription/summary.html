@@ -29,7 +29,7 @@
                 First show the image, with an alt tag for screen readers, containing the 
                 image description.
             -->
-            <td><img alt="Image for transcription, with provided transcription: {{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
+            <td><img alt="{{=image.Image.imageDescription}}" class="table-image-view" src="{{=URL('default','download',args=image.Image.image)}}" /></td>
             
             <!-- Provide the image description -->
             <td>{{=image.Image.imageDescription}}</td>
