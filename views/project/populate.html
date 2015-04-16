@@ -24,10 +24,12 @@
                 -->
                 {{if len(project.customFields()) >0: }}
                 <!-- Start the table for Fields -->
-                <table class="table table-striped" summary="Column one has the label for the added field,
-                column two describes the type and the third column allows you to delete the respective field.">
+                <table class="table table-striped" summary="Column one indicates whether the field is newly added,
+                Column two has the label for the added field,
+                column three describes the type and the fourth column allows you to delete the respective field.">
                     <caption class="caption2">List of Fields</caption>
                     <tr>
+                        <th><span class="sr-only">New</span></th>
                         <th>Field Name</th>
                         <th>Field Type</th>
                         <th>Options</th>
@@ -36,9 +38,11 @@
                     {{for field in project.customFields():}}
                     {{if just_added_field == field.ProjectField.id:}}
                     <tr class="just-added-field">
+                        <!-- Show the New keyword for newly created fields -->
+                        <td><i style="color:red; margin-right: 15px;">New </i></td>
                     {{else:}}
-                    {{print just_added_field}}
                     <tr>
+                    <td></td>
                     {{pass}}
                         <!-- Show the field title -->
                         <td>{{=field.ProjectField.label}}</td>
@@ -64,10 +68,12 @@
 				-->
                 {{if len(project.images()) >0: }}
                 <!-- Start the table for Images -->
-                <table class="table table-striped" summary="Column one contains the added image,
-                column two contains its description and column three contains a Delete button per each image.">
+                <table class="table table-striped" summary="Column one indicates whether the image is newly added,
+                column two contains the added image,
+                column three contains its description and column four contains a Delete button for each image.">
                     <caption class="caption2">List of Images</caption>
                     <tr>
+                        <th><span class="sr-only">New</span></th>
                         <th>Image</th>
 						<th>Description</th>
 						<th>Options</th>
@@ -75,9 +81,11 @@
                     <!-- For each image added so far: -->
                     {{for image in project.images():}}
                     {{if just_added_image == image.id:}}
-                    <tr class="just-added-image">
+                        <tr class="just-added-image">
+                        <td><i style="color:red; margin-right: 15px;">New </i></td>
                     {{else:}}
                         <tr>
+                        <td></td>
                     {{pass}}
                         <!-- Show the image -->
                         <td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}" alt="{{=image.imageDescription}}"/></td>

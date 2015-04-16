@@ -11,14 +11,16 @@
 <div class="section">
 	<h1>Dashboard</h1>
 	<!-- Table containing list of projects belonging to that user -->
-	<table class="table table-striped" summary="Column 1 contains an image link to the project,
-                                                column 2 displays the project title,
-                                                column 3 contains the status of the project - one of Open and Closed,
-                                                column 4 gives the total number of transcriptions as well as the pending,
-                                                column 5 displays the number of images added for the respective project and
-                                                column 6 gives 	action options such as View Project, Open or Close Project and View Transcriptions.">
+	<table class="table table-striped" summary="Column 1 indicates whether the project is newly added
+	                                            Column 2 contains an image link to the project,
+                                                column 3 displays the project title,
+                                                column 4 contains the status of the project - one of Open and Closed,
+                                                column 5 gives the total number of transcriptions as well as the pending,
+                                                column 6 displays the number of images added for the respective project and
+                                                column 7 gives 	action options such as View Project, Open or Close Project and View Transcriptions.">
         <caption class="caption2">Your Projects</caption>
 		<tr>
+            <th><span class="sr-only">New</span></th>
 			<th>Image</th>
 			<th>Title</th>
             <th>Project Status</th>
@@ -37,8 +39,10 @@
 			-->
 			{{if project.Project.id == justAddedProject_id:}}
 				<tr class="just-added-project">
+                <td><i style="color:red; margin-right: 15px;">New </i></td>
 			{{else:}}
 				<tr>
+                <td></td>
 			{{pass}}
 				<!-- Now add the image, title and transcription count for each project -->
 				<td><a href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}"><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" alt="{{=project.Project.title}} project" class="table-image-view" /></a></td>
