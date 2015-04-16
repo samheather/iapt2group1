@@ -53,10 +53,10 @@
                 <td>
                     <a class="btn btn-primary" href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}">View <span>{{=project.Project.title}}</span></a>
 					<!-- If the project can be opened, show an open button -->
-					{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open</a>{{pass}}
+					{{if project.Project.canOpen(): }}<a class="btn btn-primary" href="{{=URL('project', 'open', args=[project.Project.id])}}">Open <span>{{=project.Project.title}}</span></a>{{pass}}
 
 					<!-- If the project can be closed, show a close button -->
-					{{if project.Project.canClose() and project.Project.total()[0]['COUNT(Transcription.id)'] > 0:}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.Project.id])}}">Close</a>{{pass}}
+					{{if project.Project.canClose() and project.Project.total()[0]['COUNT(Transcription.id)'] > 0:}}<a class="btn btn-primary" href="{{=URL('project', 'close', args=[project.Project.id])}}">Close <span>{{=project.Project.title}}</span></a>{{pass}}
 
 					<!-- Add a button to view available transcriptions -->
 					<a class="btn btn-primary" href="{{=URL('transcription', 'summary', args=[project.Project.id])}}">View Transcriptions<span> for {{=project.Project.title}}</span></a></td>

@@ -65,7 +65,7 @@ class BOOTSTRAPFORM(SQLFORM):
 
     def __init__(self, table, *args, **kwargs):
 
-        # Mark the required fields in the table with an asteriks
+        # Mark the required fields in the table with an asterisk
         mark_not_empty(table)
         super(BOOTSTRAPFORM, self).__init__(table, *args, formstyle='bootstrap3_stacked', **kwargs)
 

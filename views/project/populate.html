@@ -49,7 +49,7 @@
                         <!-- Show the field type -->
                         <td>{{=field.TranscriptionFieldType.friendlyName}}</td>
                         <!-- Show a delete button to delete the field -->
-                        <td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete</a></td>
+                        <td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteField', args=[project.id, field.ProjectField.id])}}">Delete <span>the {{=field.ProjectField.label}} field</span> </a></td>
                     </tr>
                     {{pass}}
                 </table>
@@ -92,7 +92,7 @@
 						<!-- Show the image description -->
 						<td>{{=image.imageDescription}}</td>
 						<!-- Show a button to delete the image -->
-						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete</a></td>
+						<td class="table-button-column"><a class="btn btn-primary" href="{{=URL('project', 'deleteImage', args=[project.id, image.id])}}">Delete <span>the {{=image.imageDescription}} image</span> </a></td>
                     </tr>
                     {{pass}}
                 </table>

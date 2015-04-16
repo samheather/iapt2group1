@@ -44,7 +44,7 @@
             
             <!-- Button to view the transcriptions -->
             {{if image.Image.total()[0]['COUNT(Transcription.id)'] >0:}}
-                <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for Image {{=image.Image.imageDescription}}</span></a></td>
+                <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for the Image {{=image.Image.imageDescription}}</span></a></td>
             {{else:}}
                 <td></td>
             {{pass}}

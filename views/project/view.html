@@ -90,7 +90,7 @@
                         <h3  id="image-closed">Image Closed for Transcriptions</h3>
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
-                        <a class="btn btn-primary transcribe-button" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
+                        <a class="btn btn-primary transcribe-button" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image <span>{{=image.imageDescription}}</span></a>
                     {{pass}}
                 </div>
                 <!--
