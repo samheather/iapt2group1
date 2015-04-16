@@ -61,7 +61,7 @@ a.btn {
     border-radius: 40px;
     width: 40px;
     height: 40px;
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
     background-color: #fafafa;
     text-align: center;
@@ -188,7 +188,7 @@ td {
 }
 
 #image-closed {
-        font-size: 1.3em;
+    font-size: 1.3em;
     line-height: 1.3em;
 }
 
@@ -466,4 +466,16 @@ a.navbar-brand {
 
 .not_empty {
     color: red;
+}
+
+.caption2,
+.style2 {
+    font-size: 30px;
+    color: #444;
+}
+
+.caption3,
+.style3 {
+    font-size: 24px;
+    color: #444;
 }

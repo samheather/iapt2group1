@@ -10,9 +10,14 @@
 
 <div class="section">
 	<h1>Dashboard</h1>
-	<h2>Your Projects:</h2>
 	<!-- Table containing list of projects belonging to that user -->
-	<table class="table table-striped">
+	<table class="table table-striped" summary="Column 1 contains an image link to the project,
+                                                column 2 displays the project title,
+                                                column 3 contains the status of the project - one of Open and Closed,
+                                                column 4 gives the total number of transcriptions as well as the pending,
+                                                column 5 displays the number of images added for the respective project and
+                                                column 6 gives 	action options such as View Project, Open or Close Project and View Transcriptions.">
+        <caption class="caption2">Your Projects</caption>
 		<tr>
 			<th>Image</th>
 			<th>Title</th>
@@ -36,7 +41,7 @@
 				<tr>
 			{{pass}}
 				<!-- Now add the image, title and transcription count for each project -->
-				<td><a href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}"><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" alt="Icon image for {{=project.Project.title}}" class="table-image-view" /></a></td>
+				<td><a href="{{=URL('project', 'view', args=[project.Project.id], vars=dict(ref='dashboard'))}}"><img src="{{=URL('default','download',args=project.ProjectTranscriptionCount.image)}}" alt="{{=project.Project.title}} project" class="table-image-view" /></a></td>
 				<td>{{=project.Project.title}}</td>
                 <td>{{if project.Project.canOpen(): }} <i>Closed</i>{{else:}}<i>Open</i>{{pass}}</td>
 				<td>{{=project.Project.total()[0]['COUNT(Transcription.id)']}} total, {{=project.ProjectTranscriptionCount.pendingTranscriptions}} pending</td>

@@ -18,10 +18,11 @@
             <h2>Transcriptions</h2>
         {{pass}}
         {{for idx, tx in enumerate(transcriptions):}}
-            <h3>Transcription #{{=(idx+1)}} <span>by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</span></h3>
                 <div class="tx-row">
-                    <table class="table table-striped">
-                        <caption class="sr-only">Transcriptions for this image provided by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</caption>
+                    <table class="table table-striped" summary="List of fields which the user has transcribed. Column 1 contains the name of the field,
+                    column 2 contains the transcription the user has added. Immediately after and outside the table are given the action options
+                    for Accepting or Rejecting a transcription, if it is pending, or its current status (Accepted or Rejected).">
+                        <caption class="caption3">Transcription #{{=(idx+1)}} <span>by {{=tx.auth_user.first_name+' '+tx.auth_user.last_name}}</span></caption>
                         <thead>
                             <tr>
                                 <th>Field</th>

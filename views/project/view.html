@@ -87,7 +87,7 @@
                         simply show an explanatory message.
                     -->
                     {{if image.done() or project.canOpen():}}
-                        <div id="image-closed">Image Closed for Transcriptions</div>
+                        <h3  id="image-closed">Image Closed for Transcriptions</h3>
                     <!-- Else, show a button to go transcribe the image -->
                     {{else:}}
                         <a class="btn btn-primary transcribe-button" href="{{=URL('project','transcribe', args=image.id, vars=dict(pid=project.id))}}">Transcribe this image</a>
@@ -95,7 +95,7 @@
                 </div>
                 <!--
                     Center images and text in the page (can't use the full width, or the
-                    image is too big) by creating a constant space down the left side. 
+                    image is too big) by creating a constant space down the left side.
                 -->
                 <div class="col-md-1"></div>
             </div>

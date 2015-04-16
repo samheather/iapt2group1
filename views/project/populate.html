@@ -22,14 +22,15 @@
                 <!--
                     Title, list of fields, and open to add more Fields
                 -->
-                <h2>Fields</h2>
                 {{if len(project.customFields()) >0: }}
                 <!-- Start the table for Fields -->
-                <table class="table table-striped">
+                <table class="table table-striped" summary="Column one has the label for the added field,
+                column two describes the type and the third column allows you to delete the respective field.">
+                    <caption class="caption2">List of Fields</caption>
                     <tr>
                         <th>Field Name</th>
                         <th>Field Type</th>
-                        <th></th>
+                        <th>Options</th>
                     </tr>
                     <!-- For each field added so far -->
                     {{for field in project.customFields():}}
@@ -61,14 +62,15 @@
 					Table showing images added, their delete buttons, and open to upload
 					more images
 				-->
-                <h2>Images</h2>
                 {{if len(project.images()) >0: }}
                 <!-- Start the table for Images -->
-                <table class="table table-striped">
+                <table class="table table-striped" summary="Column one contains the added image,
+                column two contains its description and column three contains a Delete button per each image.">
+                    <caption class="caption2">List of Images</caption>
                     <tr>
                         <th>Image</th>
 						<th>Description</th>
-						<th></th>
+						<th>Options</th>
 					</tr>
                     <!-- For each image added so far: -->
                     {{for image in project.images():}}
@@ -78,7 +80,7 @@
                         <tr>
                     {{pass}}
                         <!-- Show the image -->
-                        <td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}"/></td>
+                        <td class="table-image-column"><img class="table-image-view" src="{{=URL('project','img',args=image.image)}}" alt="{{=image.imageDescription}}"/></td>
 						<!-- Show the image description -->
 						<td>{{=image.imageDescription}}</td>
 						<!-- Show a button to delete the image -->
@@ -97,9 +99,10 @@
 
         <!-- Show a sidebar with instrucitons on adding fields and images -->
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <div><span class="step">1</span>Create Project</div>
-            <div><span class="step active_step">2</span>Add Fields and Records</div>
-            <div><span class="step">3</span>Open To Public</div>
+            <h2 class="style3">Step-by-step</h2>
+            <div><span class="step">1</span> Create Project</div>
+            <div><span class="step active_step">2</span> Add Fields and Records</div>
+            <div><span class="step">3</span> Open To Public</div>
             <div class="instructions">
                 <h2>Instructions</h2>
                     <p>Add fields to represent the information that you would like to be
