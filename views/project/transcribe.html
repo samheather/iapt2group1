@@ -7,8 +7,12 @@
 
     <!-- Provide the image description -->
     <h2 id="transcribe-description">Transcribing: {{=image.imageDescription}}</h2>
-    
-    <p class="center">Please transcribe the content from the image to at least one of the appropriate fields.</p>
+    <div class="instructions center" style="margin: 15px;">
+        <h3>Instructions</h3>
+        <p>You can offer your transcription on this page. To do that simply
+        fill in the information requested by the project owner and click "Transcribe". If there is
+        more than one field, you are not required to fill in all of them. </p>
+    </div>
 
     <!-- Half screen width shows the actual image been transcribed -->
     <div class="col-lg-6">
@@ -20,6 +24,7 @@
     <!-- The other half shows the fields that should be filled in -->
     <div class="col-lg-6">
     {{if error_message:}}
+
     <div class="error">
         <span class="glyphicon glyphicon-warning-sign"></span>{{=error_message}}
     </div>
