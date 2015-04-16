@@ -23,8 +23,8 @@ if db(db.TranscriptionFieldType.id > 0).count() == 0:
 	db.commit()
 
 db.define_table('Project',
-			Field('title', 'string', label='Title', requires=(IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=100)), required=True),
-			Field('requestDescription', 'text', label='Request Description', requires=(IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=300)), required=True),
+			Field('title', 'string', label='Title', requires=(IS_NOT_EMPTY(error_message="You must enter a title for your project."), IS_LENGTH(minsize=1, maxsize=100)), required=True),
+			Field('requestDescription', 'text', label='Request Description', requires=(IS_NOT_EMPTY(error_message="You must enter a description for your project."), IS_LENGTH(minsize=1, maxsize=300)), required=True),
 			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
 			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False),
             Field.Method('canOpen',lambda row: (row.Project.projectOpen==False)),
@@ -40,7 +40,7 @@ db.define_table('Image',
                   label='Image Description',
                   comment="Provide a brief description for the chosen image",
                   requires=[
-                      IS_NOT_EMPTY(error_message="Cannot be empty. Please enter an image description shorter than 100 characters"),
+                      IS_NOT_EMPTY(error_message="Please enter an image description, which is shorter than 100 characters"),
                       IS_LENGTH(minsize=1, maxsize=100)],
                   required=True
                   ),
@@ -69,7 +69,7 @@ db.executesql('CREATE TABLE IF NOT EXISTS Image '
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
 			Field('type_id', db.TranscriptionFieldType, required=True, label='Field Type', requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type",error_message="Please select a field type!")),
-			Field('label', 'string', label='Field Description', requires=[IS_NOT_EMPTY(error_message="Cannot be empty"), IS_LENGTH(minsize=1, maxsize=30)], required=True, comment="Describe what you would like people to transcribe into this Field (e.g. date, document title or author)")
+			Field('label', 'string', label='Field Description', requires=[IS_NOT_EMPTY(error_message="You must choose a label for your field e.g. Actor, Title."), IS_LENGTH(minsize=1, maxsize=30)], required=True, comment="Describe what you would like people to transcribe into this Field (e.g. date, document title or author)")
 )
 
 db.define_table('TranscriptionField',
