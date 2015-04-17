@@ -6,26 +6,27 @@
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
     
-    <div class="section">
-        <h1>Create Project</h1>
-        <h2>Upload Image:</h2>
-        <div class="row">
-        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-        <!-- Show the form for adding a field -->
-    	{{=form}}
-        </div>
+<section class="section">
+    <h1>Create Project</h1>
 
-        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4">
-            <h2 class="style3">Step-by-step</h2>
-            <div><span class="step">1</span> Create Project</div>
-            <div><span class="step active_step">2</span> <a href="{{=URL('project','populate',args=projectid)}}"> Add Fields and Records</a></div>
-            <div><span class="step">3</span> Open To Public</div>
-            <div class="instructions">
-            <h2>Instructions</h2>
-                <p>Use the Add Image form to upload images to your project. Images will be displayed
-                in your project for transcription by the community.</p>
-                <p>You should add a label to each image describing what it looks like.</p>
-            </div>
+    <div class="row">
+    <section class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
+        <!-- Show the form for adding a field -->
+        <h2>Upload Image:</h2>
+        {{=form}}
+    </section>
+
+    <aside class="col-xs-12 col-md-4 col-sm-4 col-lg-4">
+        <h2 class="style3">Step-by-step</h2>
+        <div><span class="step">1</span> Create Project</div>
+        <div><span class="step active_step">2</span> <a href="{{=URL('project','populate',args=projectid)}}"> Add Fields and Records</a></div>
+        <div><span class="step">3</span> Open To Public</div>
+        <div class="instructions">
+        <h2>Instructions</h2>
+            <p>Use the Add Image form to upload images to your project. Images will be displayed
+            in your project for transcription by the community.</p>
+            <p>You should add a label to each image describing what it looks like.</p>
         </div>
-            </div>
-	</div>
+    </aside>
+        </div>
+</section>

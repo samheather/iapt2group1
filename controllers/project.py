@@ -27,13 +27,13 @@ def populate():
     canClickCreateMessage = ''
     if (len(project.customFields()) == 0):
         canClickCreate = False
-        canClickCreateMessage = 'Please add some fields to this project to be able to submit.'
+        canClickCreateMessage = 'Please add some fields to this project to be able to create this project.'
     elif (len(project.images()) == 0):
         canClickCreate = False
-        canClickCreateMessage = 'Please upload some images to this project to be able to submit.'
+        canClickCreateMessage = 'Please upload some images to this project to be able to create this project.'
     if (len(project.customFields()) == 0) and (len(project.images()) == 0):
         canClickCreate = False
-        canClickCreateMessage = 'Please add fields and images to this project to be able to submit.'
+        canClickCreateMessage = 'Please add fields and images to this project to be able to create this project.'
 
     just_added_image = 0
     just_added_field = 0

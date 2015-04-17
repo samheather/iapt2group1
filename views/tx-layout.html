@@ -97,7 +97,7 @@
     </nav>
 
     <!-- Now show the main page contents -->
-	<div class="container whitebg" role="main" id="main">
+	<nav class="container whitebg" role="main" id="main">
         <!-- Show breadcrumbs -->
         {{if ("breadcrumbs" in locals()):}}
             <ol class="breadcrumb">
@@ -112,11 +112,11 @@
         {{pass}}
 		{{include}}
 		{{pass}}
-	</div>
+	</nav>
 		
 		<!-- Show the page footer -->
 		<div class="container">
-			<hr>
+			<hr />
 			<footer>
 				<p>© 2015 TX</p>
 			</footer>

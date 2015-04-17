@@ -10,22 +10,21 @@
     {{pass}}
 
     <!-- Main jumbotron for site title (TX) and tagline of what we do. -->
-    <div class="jumbotron">
-      <div class="section">
+    <section class="jumbotron">
         <h1>Welcome to TransXribe!</h1>
         <p>Crowd Sourced Transcription at its best.  Check out some projects up for
         transcription, or add yours now!</p>
-      </div>
-    </div>
+    </section>
 
     <!--
-        Seciton to contain projects most in need of transcription (because they are old)
+        Setion to contain projects most in need of transcription (because they are old)
     -->
-    <div class="section">
+    <section class="fullwidth">
     	<h2>Oldest Pending Projects Awaiting Transcriptions:</h2>
     	<!-- General transcription project list, using the subview display-txs -->
 		{{include "subviews/display-txs.html"}}
-	</div>
-    {{if projects:}}
-        <div id="view-more-projects"><a href="{{=URL('default', 'browse')}}">View More Projects</a></div>
-    {{pass}}
+
+        {{if projects:}}
+            <div id="view-more-projects"><a href="{{=URL('default', 'browse')}}">View More Projects</a></div>
+        {{pass}}
+    </section>

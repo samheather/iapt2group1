@@ -5,33 +5,34 @@
 {{breadcrumbs=[[URL('default','index'),'Home'],['/user/login','Login']]}}
 {{extend 'tx-layout.html'}}
 
-<h2>Login</h2>
 
-{{if '_next' in request.vars:}}
-        <div class="error">
-            <span class="glyphicon glyphicon-warning-sign"></span> You need to log in or create an account before you can do this action.
-        </div>
-{{pass}}
-<div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <h3>Returning Users</h3>
-        {{if 'invalid' in request.args: }}<div class='error'>Invalid Password</div>{{pass}}
-        {{=form}}
+<section>
+    <h1>Login</h1>
 
-        {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
-          <br/>
-          <a href="{{=URL('user','reset', vars=dict(ref='login'))}}">Reset password</a>
-        {{pass}}
+    {{if '_next' in request.vars:}}
+            <div class="error">
+                <span class="glyphicon glyphicon-warning-sign"></span> You need to log in or create an account before you can do this action.
+            </div>
+    {{pass}}
+    <div class="row">
+        <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <h2>Returning Users</h2>
+            {{if 'invalid' in request.args: }}<div class='error'>Invalid Password</div>{{pass}}
+            {{=form}}
 
+            {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+              <br/>
+              <a href="{{=URL('user','reset', vars=dict(ref='login'))}}">Reset password</a>
+            {{pass}}
+
+        </section>
+        <aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            {{if not 'register' in auth.settings.actions_disabled:}}
+                <h2>New Users</h2>
+                <p>Don't have an account? You can register in less than 2 minutes.</p>
+                <a href="{{=URL('user','register')}}">Register</a>
+            {{pass}}
+
+        </aside>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        {{if not 'register' in auth.settings.actions_disabled:}}
-            <h3>New Users</h3>
-        <p>Don't have an account? You can register in less than 2 minutes.</p>
-        <a href="{{=URL('user','register')}}">Register</a>
-        {{pass}}
-
-    </div>
-
-
-</div>
+</section>

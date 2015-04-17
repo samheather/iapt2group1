@@ -15,7 +15,6 @@ html, body
     height: 100%;
 }
 
-
 /*
  *  Skip to main content link appears at the top of the page. but only when it's focused
  */
@@ -337,6 +336,7 @@ ul.projects {
     clear: left;
     padding-left: 0;
     padding-right: 0;
+    width:100%;
 }
 
 li.cell {

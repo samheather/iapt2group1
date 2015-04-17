@@ -24,13 +24,16 @@
     <div id="tx-alert" class="alert alert-success">{{=message}}</div>
 {{pass}}
 
+<section>
 <!-- First display the project title and owner -->
 <h1 id="project-title">{{=project.title}}<span id="owner"> by {{=owner.first_name+' '+owner.last_name}}</span></h1>
 
 <!-- Show the project description -->
 <div id="project-description">{{=project.requestDescription}}</div>
+
     <!-- If the project has images, for each image: -->
     {{if images:}}
+        <section>
         {{for image in images:}}
             <!-- Create a row for each image and it's associated text -->
             <div class="row">
@@ -100,4 +103,7 @@
                 <div class="col-md-1"></div>
             </div>
         {{pass}}
+
+        </section>
     {{pass}}
+</section>

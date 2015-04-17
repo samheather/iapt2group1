@@ -9,30 +9,30 @@
 <!-- Show in the project template -->
 {{extend 'tx-layout.html'}}
     
-    <div class="section">
-        <h1>Create Project</h1>
-        <h2>Add Field</h2>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">{{=form}}</div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <h2 class="style3">Step-by-step</h2>
-                <div><span class="step">1</span> Create Project</div>
-                <div><span class="step active_step">2</span> <a href="{{=URL('project','populate',args=projectid)}}"> Add Fields and Records</a></div>
-                <div><span class="step">3</span> Open To Public</div>
-                <div class="instructions">
-                <h2>Instructions</h2>
-                    <p>Use the Add Field form to add fields to your project. Fields represent the
-                    information that you would like to be transcribed. </p>
-                    <p> 1) Add a field for 
-                    each distinct block of information. For example: the document title, the author, 
-                        or the main contents.</p>
-                    <p> 2) Provide a brief description for each field,
-                        explaining to the 
-                        community what you'd like to be transcribed into this box. </p>
-                </div>
+<section>
+    <h1>Create Project</h1>
+
+    <div class="row">
+        <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8"><h2>Add Field</h2>{{=form}}</section>
+        <aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h2 class="style3">Step-by-step</h2>
+            <div><span class="step">1</span> Create Project</div>
+            <div><span class="step active_step">2</span> <a href="{{=URL('project','populate',args=projectid)}}"> Add Fields and Records</a></div>
+            <div><span class="step">3</span> Open To Public</div>
+            <div class="instructions">
+            <h2>Instructions</h2>
+                <p>Use the Add Field form to add fields to your project. Fields represent the
+                information that you would like to be transcribed. </p>
+                <p> 1) Add a field for
+                each distinct block of information. For example: the document title, the author,
+                    or the main contents.</p>
+                <p> 2) Provide a brief description for each field,
+                    explaining to the
+                    community what you'd like to be transcribed into this box. </p>
             </div>
-        </div>
-
-    	<!-- Show the form for adding a field -->
-
+        </aside>
     </div>
+
+    <!-- Show the form for adding a field -->
+
+</section>
