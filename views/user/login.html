@@ -18,6 +18,7 @@
         <section class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <h2>Returning Users</h2>
             {{if 'invalid' in request.args: }}<div class='error'>Invalid Password</div>{{pass}}
+            <div class="note">Note that mandatory fields are marked with an asterisk (<span style="color: red;">*</span>).</div>
             {{=form}}
 
             {{if not 'request_reset_password' in auth.settings.actions_disabled:}}

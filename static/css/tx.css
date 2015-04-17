@@ -402,6 +402,11 @@ form .btn-primary {
 
 }
 
+.note {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
 #owner {
     font-size: 60%;
 }
