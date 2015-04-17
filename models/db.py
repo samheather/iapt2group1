@@ -23,8 +23,8 @@ if db(db.TranscriptionFieldType.id > 0).count() == 0:
 	db.commit()
 
 db.define_table('Project',
-			Field('title', 'string', label='Title', requires=(IS_NOT_EMPTY(error_message="You must enter a title for your project."), IS_LENGTH(minsize=1, maxsize=100)), required=True),
-			Field('requestDescription', 'text', label='Request Description', requires=(IS_NOT_EMPTY(error_message="You must enter a description for your project."), IS_LENGTH(minsize=1, maxsize=300)), required=True),
+			Field('title', 'string', label='Title', requires=(IS_NOT_EMPTY(error_message="You must enter a title for your project."), IS_LENGTH(minsize=1, maxsize=100, error_message="Your title must be between 1 and 100 characters.")), required=True, comment="Choose a title for your project which is less than 100 characters."),
+			Field('requestDescription', 'text', label='Request Description', requires=(IS_NOT_EMPTY(error_message="You must enter a description for your project."), IS_LENGTH(minsize=1, maxsize=300, error_message="Your request description must be between 1 and 300 characters.")), required=True, comment="Choose a request description for your project which is less than 300 characters."),
 			Field('owner_id', db.auth_user, required=True,readable=False,writable=False,default=auth.user_id),
 			Field('projectOpen', 'boolean', required=True,readable=False,writable=False,default=False),
             Field.Method('canOpen',lambda row: (row.Project.projectOpen==False)),
@@ -38,7 +38,7 @@ db.define_table('Image',
                    , comment="Maximum file size: 5 MB. Supported image formats: JPG, JPEG, PNG, GIF, BMP."),
 			Field('imageDescription', 'string',
                   label='Image Description',
-                  comment="Provide a brief description for the chosen image",
+                  comment="Provide a brief description (under 100 characters) for the chosen image.",
                   requires=[
                       IS_NOT_EMPTY(error_message="Please enter an image description, which is shorter than 100 characters"),
                       IS_LENGTH(minsize=1, maxsize=100)],
@@ -49,7 +49,7 @@ db.define_table('Image',
 )
 
 db.Image.image.requires=[IS_NOT_EMPTY(error_message="Please select an image file before proceeding."),
-                         IS_IMAGE(error_message="Invalid file. Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP."),
+                         IS_IMAGE(error_message="Your file is invalid. Please select an image in one of these formats: JPG, JPEG, PNG, GIF, BMP."),
                          IS_LENGTH(5242880,0, error_message="Please choose an image which is less than 5 MB.")]
 
 db.define_table('Transcription',
@@ -69,7 +69,7 @@ db.executesql('CREATE TABLE IF NOT EXISTS Image '
 db.define_table('ProjectField',
 			Field('project_id', db.Project, required=True,readable=False, writable=False),
 			Field('type_id', db.TranscriptionFieldType, required=True, label='Field Type', requires=IS_IN_DB(db,db.TranscriptionFieldType.id,'%(friendlyName)s',zero="Select a field type",error_message="Please select a field type!")),
-			Field('label', 'string', label='Field Description', requires=[IS_NOT_EMPTY(error_message="You must choose a label for your field e.g. Actor, Title."), IS_LENGTH(minsize=1, maxsize=30)], required=True, comment="Describe what you would like people to transcribe into this Field (e.g. date, document title or author)")
+			Field('label', 'string', label='Field Description', requires=[IS_NOT_EMPTY(error_message="You must choose a label for your field e.g. Actor, Title."), IS_LENGTH(minsize=1, maxsize=30)], required=True, comment="Describe what you would like people to transcribe into this Field (e.g. date, document title or author) in under 30 characters.")
 )
 
 db.define_table('TranscriptionField',

@@ -10,7 +10,7 @@
     buttons to click to review transcriptions for an image
 -->
 <table class="table table-striped" summary="Column 1 displays the image,
-                                            column two contains its description,
+                                            column 2 contains its description,
                                             column 3 contains the number of total transcriptions as well as the number of pending ones.
                                             Column 4 gives action options such as View Transcriptions.">
     <caption class="caption2">Summary of Images for This Project</caption>
@@ -44,7 +44,7 @@
             
             <!-- Button to view the transcriptions -->
             {{if image.Image.total()[0]['COUNT(Transcription.id)'] >0:}}
-                <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View <span>Transcriptions for the Image {{=image.Image.imageDescription}}</span></a></td>
+                <td><a class="btn btn-primary" href="{{=URL('transcription', 'view', args=[image.Image.id])}}">View Transcriptions <span>for the Image {{=image.Image.imageDescription}}</span></a></td>
             {{else:}}
                 <td></td>
             {{pass}}
