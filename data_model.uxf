@@ -7,7 +7,7 @@
       <x>216</x>
       <y>176</y>
       <w>120</w>
-      <h>112</h>
+      <h>104</h>
     </coordinates>
     <panel_attributes>User
 --
@@ -75,7 +75,7 @@ value</panel_attributes>
       <x>0</x>
       <y>496</y>
       <w>152</w>
-      <h>56</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes>TranscriptionFieldType
 --
@@ -153,6 +153,7 @@ label</panel_attributes>
     <panel_attributes>lt=-
 m1=1
 m2=1..n
+
 </panel_attributes>
     <additional_attributes>190.0;20.0;10.0;20.0;10.0;420.0</additional_attributes>
   </element>
