@@ -6,19 +6,18 @@
 <!-- If no reference set, set it to blank -->
 {{if not ("ref" in locals()): ref=""}}
 
+
+        <ul class="projects row">
         {{idx=0}}
 <!-- Create a divider which contains the list of projects -->
 {{for idx, project in enumerate(projects):}}
     <!-- Break to a new row every five projects -->
-    {{if (idx or 0)%5 == 0:}}
-        <ul class="projects">
-    {{pass}}
-        <li class="cell">
+        <li class="cell col-xs-6 col-sm-6 col-md-4 col-lg-4">
            <div class="project-tile">
                <!-- Upper row to contain the thumbnail -->
                <div class="row1">
                		<a href="{{=URL('project','view', args=project.id, vars=dict(ref=ref))}}">
-	                    <img src="{{=URL('default','download',args=project.image)}}" alt="{{=project.title}} project" />
+	                    <img class="view-img" src="{{=URL('default','download',args=project.image)}}" alt="{{=project.title}} project" />
 	                </a>
                </div>
            </div>
@@ -30,6 +29,5 @@
             </div>
         </li>
     {{pass}}
-    {{if idx%5 == 0:}}
-        </ul>
-    {{pass}}
+
+   </ul>

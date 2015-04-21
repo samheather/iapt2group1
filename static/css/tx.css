@@ -45,6 +45,9 @@ a.skip-main:focus, a.skip-main:active {
     line-height: 50px;
 }
 
+/*
+Global look and feel
+*/
 a {
     color: #0A5A9C !important;
 }
@@ -52,6 +55,34 @@ a {
 a.btn {
     color: #FFFFFF !important;
 }
+
+.container[role=main]  {
+    min-height: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.account-bar {
+    padding-top: 3px;
+}
+
+
+.whitebg {
+    background-color: #ffffff;
+}
+
+
+.current span {
+    background-color: #428bca;
+    width:100%;
+    height:4px;
+    display: block;
+}
+.brand-colour{
+	color: #428bca !important;
+}
+
+
 
 /*
  *  Styles for bullet points in step-by-step project creation
@@ -78,6 +109,9 @@ a.btn {
 }
 
 
+/*
+Search form styles
+*/
 #search_text {
     font-size:12px;
     padding-bottom:0;
@@ -101,30 +135,9 @@ a.btn {
     position: relative;
 }
 
-.container[role=main]  {
-    min-height: 100%;
-    padding-top:10px;
-    padding-bottom:10px;
-}
-
-.account-bar {
-    padding-top: 3px;
-}
-
-
-.whitebg {
-    background-color: #ffffff;
-}
-
-.current span {
-    background-color: #428bca;
-    width:100%;
-    height:4px;
-    display: block;
-}
-.brand-colour{
-	color: #428bca !important;
-}
+/*
+Align lists and tables to centre
+*/
 
 ul {
     list-style-position: inside;
@@ -162,6 +175,10 @@ td {
 	text-align: center;
 }
 
+
+/*
+On view transcription page. make checked text green
+*/
 .flaticon-checked21 {
     color: green;
 }
@@ -186,6 +203,8 @@ td {
     margin-top: 30px;
 }
 
+
+
 #image-closed {
     font-size: 1.3em;
     line-height: 1.3em;
@@ -197,12 +216,19 @@ td {
     margin-right: 0;
 }
 
+/*
+Just added colour for feedback
+*/
 .just-added-project,
 .just-added-image,
 .just-added-field {
 	background-color: #DEF6D5 !important;
 }
 
+
+/*
+View image page
+*/
 .view-img {
     height:180px;
     overflow:hidden;
@@ -340,8 +366,7 @@ ul.projects {
 }
 
 li.cell {
-    float: left;
-    width: 226px;
+
     list-style: none;
     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
     white-space: pre-wrap;       /* css-3 */
@@ -363,10 +388,23 @@ div.title {
     padding-bottom: 10px;
     font-weight: bold;
 }
+.project-tile .row1 {
+      position: relative;
+    width:100%;
+
+    height: 180px;
+  overflow: hidden;
+}
 
 .project-tile img {
-    width: 218px;
-    height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
 }
 
 a:hover img,
