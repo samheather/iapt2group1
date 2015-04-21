@@ -19,14 +19,14 @@ html, body
  *  Skip to main content link appears at the top of the page. but only when it's focused
  */
 a.skip-main {
-    left:-999px;
+
     position:absolute;
     top:auto;
     width:1px;
     height:1px;
     overflow:hidden;
     background-color: #FFF;
-    z-index:-999;
+
 }
 a.skip-main:focus, a.skip-main:active {
     background-color: #FFF;
@@ -402,6 +402,11 @@ form .btn-primary {
 
 }
 
+.note {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
 #owner {
     font-size: 60%;
 }
@@ -482,4 +487,25 @@ a.navbar-brand {
 .style3 {
     font-size: 24px;
     color: #444;
+}
+
+/*
+Fonts. Imported from google fonts
+*/
+/* latin */
+@font-face {
+  font-family: 'Shadows Into Light';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Shadows Into Light'), local('ShadowsIntoLight'), url(clhLqOv7MXn459PTh0gXYKkG_nMAIv3PPZbC2XDns-o.woff2) format('woff2'), url(clhLqOv7MXn459PTh0gXYMdQSYiIg2Yb25Hg13-ek1M.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url(s-BiyweUPV0v-yRb-cjciAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2'),url(s-BiyweUPV0v-yRb-cjciL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }

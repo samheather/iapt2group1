@@ -33,26 +33,26 @@
 	response.files.insert(0,URL('static','bootstrap3/css/bootstrap.min.css'))
 	response.files.insert(1,URL('static','css/tx.css'))
     response.files.insert(2,URL('static','css/flaticon.css'))
+    response.files.insert(3,URL('static','jquery.js'))
+    response.files.insert(4,URL('static','css/jqueryui.css'))
 	}}
 
 	{{include 'web2py_ajax.html'}}
-	
-	<!-- Import the fonts and JQuery that we use -->
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
-    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+
+
 
     <!-- Set the site Title -->
 	<title>{{=response.title or request.application}}</title>
 	</head>
 
 	<body>
+    <div class="sr-only">Access Keys: <ul><li>0: home</li><li>1: Create Project</li><li>2: Browse</li><li>3: Dashboard</li><li>S: Skip to content</li></ul></div>
     <!-- Skip to main content link -->
-    <a class="skip-main" href="#main">Skip to main content</a>
+    <a class="skip-main" href="#main" accesskey="S">Skip to main content</a>
     {{include "tx-header.html"}}
 <!-- Setup the fixed navbar -->
     <nav class="navbar navbar-default navbar-bg" role="navigation">
+          <a class="skip-main" href="#main" tabindex="1">Skip to main content</a>
         <h1 class="sr-only">Navigation</h1>
       <div class="container">
         <div class="navbar-header">
@@ -62,16 +62,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand-colour navbar-brand brand" href="{{=URL('default','index')}}">TransXribe<span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="brand-colour navbar-brand brand" href="{{=URL('default','index')}}" accesskey="0">TransXribe</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
           <!-- Now setup the right hand side of the nav bar -->
           <ul class="nav navbar-nav">
             <!-- Header bar links -->
-            <li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}">Create New Project</a><span></span></li>
-            <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}">Browse</a><span></span></li>
-            <li {{if active=="dashboard":}}class="current"{{pass}}><a href="{{=URL('default','dashboard')}}">Dashboard</a><span></span></li>
+            <li {{if active=="new":}}class="current"{{pass}}><a href="{{=URL('project','create')}}" accesskey="1">Create New Project</a><span></span></li>
+            <li {{if active=="browse":}}class="current"{{pass}}><a href="{{=URL('default','browse')}}" accesskey="2">Browse</a><span></span></li>
+            <li {{if active=="dashboard":}}class="current"{{pass}}><a href="{{=URL('default','dashboard')}}" accesskey="3">Dashboard</a><span></span></li>
           </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -97,7 +97,7 @@
     </nav>
 
     <!-- Now show the main page contents -->
-	<nav class="container whitebg" role="main" id="main">
+	<nav class="container whitebg" style="padding-top:10px">
         <!-- Show breadcrumbs -->
         {{if ("breadcrumbs" in locals()):}}
             <ol class="breadcrumb">
@@ -110,15 +110,19 @@
                 {{pass}}
             </ol>
         {{pass}}
-		{{include}}
-		{{pass}}
+
 	</nav>
-		
+
+    <main class="container whitebg" role="main" id="main" style="padding-top:0px; margin-top:-20px;">
+        {{include}}
+
+    </main>
 		<!-- Show the page footer -->
 		<div class="container">
 			<hr />
 			<footer>
 				<p>© 2015 TX</p>
+                <p>Access keys: <ul><li>0: home</li><li>1: Create Project</li><li>2: Browse</li><li>3: Dashboard</li><li>S: Skip to content</li></ul></p>
 			</footer>
 		</div>
 
