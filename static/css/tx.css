@@ -46,6 +46,66 @@ a.skip-main:focus, a.skip-main:active {
 }
 
 /*
+Change appearance of navbar
+*/
+.navbar-brand {
+    font-size:200%;
+    color:#EEE !important;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.navbar-bg {
+    background-color: #000000;
+    color:#FFFFFF !important;
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+.navbar-nav > li > a {
+    padding-top: 20px;
+    color:#EEEEEE !important;
+    line-height: 12px;
+}
+
+.navbar-nav > li > a:hover {
+    color:#FFFFFF !important;
+    text-decoration: underline !important;
+}
+
+
+a.navbar-brand:hover {
+    color:#FFFFFF !important;
+
+}
+/*
+    Search Form
+*/
+#search-form input{
+    color: #1E2226;
+}
+
+#search-form .btn {
+    margin-top: -4px;
+    padding: 4px 12px;
+}
+
+#search-form  input[type=text] {
+    margin-top: 3px;
+}
+
+
+/* For accessibility reasons hide the extra information in the link but
+allow screen readers to pick it up
+*/
+a span {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
+}
+
+/*
 Global look and feel
 */
 a {
@@ -204,12 +264,18 @@ On view transcription page. make checked text green
 }
 
 
-
+/*
+Make image clsoed message big
+*/
 #image-closed {
     font-size: 1.3em;
     line-height: 1.3em;
 }
 
+
+/*
+Button in fields is on right
+*/
 #fields .btn {
     float: right;
     margin-top: 10px;
@@ -266,62 +332,8 @@ View image page
     vertical-align: middle;
 }
 
-.navbar-brand {
-    font-size:200%;
-    color:#EEE !important;
-    font-family: 'Shadows Into Light', cursive;
-}
-
-.navbar-bg {
-    background-color: #000000;
-    color:#FFFFFF !important;
-    font-weight: bolder;
-    margin-bottom: 0;
-}
-
-.navbar-nav > li > a {
-    padding-top: 20px;
-    color:#EEEEEE !important;
-    line-height: 12px;
-}
-
-.navbar-nav > li > a:hover {
-    color:#FFFFFF !important;
-    text-decoration: underline !important;
-}
 
 
-a.navbar-brand:hover {
-    color:#FFFFFF !important;
-
-}
-/*
-    Search Form
-*/
-#search-form input{
-    color: #1E2226;
-}
-
-#search-form .btn {
-    margin-top: -4px;
-    padding: 4px 12px;
-}
-
-#search-form  input[type=text] {
-    margin-top: 3px;
-}
-
-
-/* For accessibility reasons hide the extra information in the link but
-allow screen readers to pick it up
-*/
-a span {
-    height: 1px;
-    width: 1px;
-    position: absolute;
-    overflow: hidden;
-    top: -10px;
-}
 
 /* Transcriptions Page */
 .options {
